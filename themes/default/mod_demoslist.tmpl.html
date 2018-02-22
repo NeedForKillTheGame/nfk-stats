@@ -1,0 +1,30 @@
+// matchlist
+<!-- GTW: main -->
+<div align="center">
+{L_SORT_BY} <a href="/demoslist/downloads">{L_BY_DONWLOADS}</a> | <a href="/demoslist/">{L_BY_DATE}</a>  
+<table id="tbl" border="0" cellspacing="1">
+	<thead>
+		<th>{L_HOSTNAME}</th>
+		<th>{L_MAP}</th>
+		<th>{L_GAMETYPE}</th>
+		<th>{L_GAMETIME}</th>
+		<th>{L_PLAYERS}</th>
+		<th>{L_DATE}</th>
+		<th>{L_DEMO}</th>
+	</thead> 
+	{G_DEMO_LIST}
+	<!-- GTW: match -->
+		<tr bgcolor=#C7CCD9>
+			<td><span class='newsautor'><a href="/match/{MATCH_ID}">{HOST_NAME_AND_CMTS}</a></span></td>
+			<td><span class='newsnumcom'>{MATCH_MAP}</span></td>
+			<td><span class='newsnumcom'>{GAMETYPE_SHORT}</span></td>
+			<td><span class='newsnumcom'>{GAME_TIME}</span></td>
+			<td><span class='newsnumcom'>{PLAYERS}</span></td>
+			<td><span class='newsnumcom' title="{MATCH_DATE}">{MATCH_DATE_AGO} {L_AGO}</span></td>
+			<td><span class='newsnumcom'><b>{DEMO_LINK}</b></span></td>
+		</tr>
+	<!-- GTW: /match -->
+</table>
+	{PAGES}
+</div>
+<!-- GTW: /main -->

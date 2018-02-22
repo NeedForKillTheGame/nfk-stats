@@ -1,0 +1,297 @@
+// profile overall
+<!-- GTW: main -->
+{OVERALL}
+<!-- GTW: overall -->
+<div align="center">
+	<b><a href="/profile/{PLAYER_ID}">{L_OVERALL_STATS}</a></b> | 
+	<a href="/profile/{PLAYER_ID}/matches">{L_FILL_MATCH_LIST}</a> | 
+	<a href="/profile/{PLAYER_ID}/duelslist">{L_FILL_DUEL_LIST}</a> |
+	<a href="/profile/{PLAYER_ID}/seasons">{L_SEASONS}</a>
+	<br><br>
+	{IF_IN_CLAN}
+	<!-- GTW: if_in_clan -->
+		<b>{L_CLAN}: <a href='/clan/{CLAN_ID}'>{CLAN_NAME}</a></b><br />
+	<!-- GTW: else -->
+	<!-- GTW: /if_in_clan -->
+	{G_SHOW_IP}
+	<!-- GTW: if_show_ip -->
+		IP {L_ADDRES}: {PLAYER_IP}
+		<br />
+	<!-- GTW: else -->
+	<!-- GTW: /if_show_ip -->
+	{G_USER_OPTIONS}
+	<!-- GTW: if_my_profile -->
+	<a href="javascript://" onClick="ShowOrHide('user_frm'); return false;">>{L_USER_OPTIONS}<</a>
+	<div id="user_frm" style="display:none">
+		<div style="border-style:solid; border-width:1px; width: 300px">
+			<form action="/do/user/rename" method="post">
+				<table>
+					<tr>
+						<td>{L_CHANGE_NICK_NAME}*:</td>
+						<td><input type="text" name="nickname" /></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="submit" value="{L_CHANGE}" /></td>
+					</tr>
+				</table>
+				*{L_DONT_FORGET_CHANGE}
+			</form>
+		</div>
+		<div style="border-style:solid; border-width:1px; width: 300px">
+			<form action="/do/user/changepass" method="post">
+				<table>
+					<tr>
+						<td>{L_CHANGE_PASSWORD}:</td>
+						<td><input type="text" name="newpass" /></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="submit" value="{L_CHANGE}" /></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		{CLAN_OPTIONS}
+		<!-- GTW: if_me_in_clan -->
+			<b>></b> <a href="/do/user/leaveclan">{L_LEAVE_CLAN}</a>
+		<!-- GTW: else -->
+		<!-- GTW: /if_me_in_clan -->
+	</div>
+	<br />
+	<br />
+	<!-- GTW: else -->
+	<!-- GTW: /if_my_profile -->
+
+<span id="2" name="Seasons" ><a class="SeasSelect" href="/profile/{PLAYER_ID}/seasons">{L_SEASON} IX</a></span>
+<div id="SeasTbl">
+<!-- GTW: ico_first --><img src="{THEME_ROOT}/images/ranks/crown.png" alt="1 place" width="20" height="20" title="First place"><!-- GTW: /ico_first -->
+<!-- GTW: ico_second --><img src="{THEME_ROOT}/images/ranks/medal2second.gif" width="20" height="20" title="Second place" alt="2 place"><!-- GTW: /ico_second -->
+<!-- GTW: ico_third --><img src="{THEME_ROOT}/images/ranks/medal3thr.gif" width="20" height="20"  title="Third place" alt="3 place"><!-- GTW: /ico_third -->
+<table  class="PlrStTbl" border="0" cellspacing="1">
+  <tr bgcolor="#C7CCD9">
+    <th scope="col" class='newsnumcom'>&nbsp;</th>
+    <th align="center" scope="col">{L_PLACE}</th>
+    <th align="center" scope="col">{L_SCORE}</th>
+	<th align="center" scope="col">{L_WINS}</th>
+    <th align="center" scope="col">{L_LOSSES_C}</th>
+    <th align="center" scope="col">{L_WIN_RATE}</th>
+    <th align="center" scope="col">{L_FRAGS}</th>
+    <th align="center" scope="col">{L_DEATHS}</th>
+    <th align="center" scope="col">{L_FRAG_RATE}</th>
+    <th align="center" scope="col">{L_GAMES}</th>
+    <th align="center" scope="col">{L_LASTGAME}</th>
+  </tr>
+  <tr bgcolor="#C7CCD9">
+    <th align="left" scope="row">Duel</th>
+    <td align="center">{DUEL_PLACE}</td>
+    <td align="center"><img src="{THEME_ROOT}/images/ranks/d{DUEL_RANK}.jpg" alt="{DUEL_SCORE}" title="{DUEL_SCORE} {L_POINTS}"></td>
+	<td align="center">{DUEL_WINS}</td>
+    <td align="center">{DUEL_LOSSES}</td>
+    <td align="center">{DUEL_WIN_RATE}%</td>
+    <td align="center">{DUEL_FRAGS}</td>
+    <td align="center">{DUEL_DEATHS}</td>
+    <td align="center">{DUEL_FRAG_RATE}</td>
+    <td align="center">{DUEL_GAMES}</td>
+    <td align="center">{DUEL_AGO}</td>
+  </tr>
+  <tr bgcolor="#C7CCD9">
+    <th align="left" scope="row">DM</th>
+    <td align="center">{DM_PLACE}</td>
+    <td align="center">{DM_SCORE}</td>
+	<td align="center">{DM_WINS}</td>
+    <td align="center">{DM_LOSSES}</td>
+    <td align="center">{DM_WIN_RATE}%</td>
+    <td align="center">{DM_FRAGS}</td>
+    <td align="center">{DM_DEATHS}</td>
+    <td align="center">{DM_FRAG_RATE}</td>
+    <td align="center">{DM_GAMES}</td>
+    <td align="center">{DM_AGO}</td>
+  </tr>
+  <tr bgcolor="#C7CCD9">
+    <th align="left" scope="row">TDM</th>
+    <td align="center">{TDM_PLACE}</td>
+    <td align="center">{TDM_SCORE}</td>
+	<td align="center">{TDM_WINS}</td>
+    <td align="center">{TDM_LOSSES}</td>
+    <td align="center">{TDM_WIN_RATE}%</td>
+    <td align="center">{TDM_FRAGS}</td>
+    <td align="center">{TDM_DEATHS}</td>
+    <td align="center">{TDM_FRAG_RATE}</td>
+    <td align="center">{TDM_GAMES}</td>
+    <td align="center">{TDM_AGO}</td>
+  </tr>
+  <tr bgcolor="#C7CCD9">
+    <th align="left" scope="row">CTF</th>
+    <td align="center">{CTF_PLACE}</td>
+    <td align="center">{CTF_SCORE}</td>
+	<td align="center">{CTF_WINS}</td>
+    <td align="center">{CTF_LOSSES}</td>
+    <td align="center">{CTF_WIN_RATE}%</td>
+    <td align="center">{CTF_FRAGS}</td>
+    <td align="center">{CTF_DEATHS}</td>
+    <td align="center">{CTF_FRAG_RATE}</td>
+    <td align="center">{CTF_GAMES}</td>
+    <td align="center">{CTF_AGO}</td>
+  </tr>
+  <tr bgcolor="#C7CCD9">
+    <th align="left" scope="row">{L_TOTAL}</th>
+    <td align="center">&nbsp;</td>
+    <td align="center"><b>{TOTAL_SCORE}</b></td>
+	<td align="center">{TOTAL_WINS}</td>
+    <td align="center">{TOTAL_LOSSES}</td>
+    <td align="center">{TOTAL_WIN_RATE}%</td>
+    <td align="center">{TOTAL_FRAGS}</td>
+    <td align="center">{TOTAL_DEATHS}</td>
+    <td align="center">{TOTAL_FRAG_RATE}</td>
+    <td align="center">{TOTAL_GAMES}</td>
+    <td align="center" title="Потрачено драгоценного времени впустую">{L_PLAYED}: {TOTAL_PLAYED}</td>
+  </tr>
+</table>
+</div>
+<br>
+<b>{L_ALL_STATS}:</b>
+<table id="tbl2" border="0" cellspacing="1">
+  <tr bgcolor="#C7CCD9">
+	<th align="center" scope="col">{L_WINS}</th>
+    <th align="center" scope="col">{L_LOSSES}</th>
+    <th align="center" scope="col">{L_WIN_RATE}</th>
+    <th align="center" scope="col">{L_FRAGS}</th>
+    <th align="center" scope="col">{L_DEATHS}</th>
+    <th align="center" scope="col">{L_FRAG_RATE}</th>
+    <th align="center" scope="col">{L_GAMES}</th>
+  </tr>
+  <tr bgcolor="#C7CCD9">
+	<td align="center">{ALL_WINS}</td>
+    <td align="center">{ALL_LOSSES}</td>
+    <td align="center">{ALL_WIN_RATE}%</td>
+    <td align="center">{ALL_FRAGS}</td>
+    <td align="center">{ALL_DEATHS}</td>
+    <td align="center">{ALL_FRAG_RATE}</td>
+    <td align="center">{ALL_GAMES}</td>
+  </tr>
+</table>
+<table id="tbl2" border="0" cellspacing="1">
+  <tr bgcolor="#C7CCD9">
+	<td align="center"><b>Excellents</b></td>
+	<td align="center"><b>Humiliations</b></td>
+	<td align="center"><b>Impressives</b></td>
+	<td align="center"><b>{L_TOTAL}</b></td>
+  </tr>
+<br>
+  <tr bgcolor="#C7CCD9">
+	<td align="center">{EXCEL_NUM}</td>
+	<td align="center">{HUMIL_NUM}</td>
+	<td align="center">{IMPRES_NUM}</td>
+	<td align="center">{AWARDS_NUM}</td>
+  </tr>
+</table>
+
+<b>{L_WEAP_STATS}:</b>
+<table id="tbl2" border="0" cellspacing="1">
+  <tr bgcolor="#C7CCD9">
+    <th scope="col" class='newsnumcom'>&nbsp;</th>
+    <th align="center" scope="col">{L_SHOTS}</th>
+    <th align="center" scope="col">{L_HITS}</th>
+	<th align="center" scope="col">{L_ACCURACY}</th>
+	<th align="center" scope="col">{L_USE}</th>
+  </tr>
+  <tr bgcolor="#C7CCD9">
+	<td align="center"><img src="{THEME_ROOT}/images/weap_ico/gaun.png"></td>
+	<td align="center">-</td>
+	<td align="center">{GAUN_HITS}</td>
+	<td align="center">-</td>
+	<td align="center">{GAUN_USE}%</td>
+  </tr>
+  <tr bgcolor="#C7CCD9">
+	<td align="center"><img src="{THEME_ROOT}/images/weap_ico/mach.png"></td>
+	<td align="center">{MACH_FIRE}</td>
+	<td align="center">{MACH_HITS}</td>
+	<td align="center">{MACH_ACC}%</td>
+	<td align="center">{MACH_USE}%</td>
+  </tr>
+  <tr bgcolor="#C7CCD9">
+	<td align="center"><img src="{THEME_ROOT}/images/weap_ico/shot.png"></td>
+	<td align="center">{SHOT_FIRE}</td>
+	<td align="center">{SHOT_HITS}</td>
+	<td align="center">{SHOT_ACC}%</td>
+	<td align="center">{SHOT_USE}%</td>
+  </tr>
+  <tr bgcolor="#C7CCD9">
+	<td align="center"><img src="{THEME_ROOT}/images/weap_ico/gren.png"></td>
+	<td align="center">{GREN_FIRE}</td>
+	<td align="center">{GREN_HITS}</td>
+	<td align="center">{GREN_ACC}%</td>
+	<td align="center">{GREN_USE}%</td>
+  </tr>
+  <tr bgcolor="#C7CCD9">
+	<td align="center"><img src="{THEME_ROOT}/images/weap_ico/rocket.png"></td>
+	<td align="center">{ROCKET_FIRE}</td>
+	<td align="center">{ROCKET_HITS}</td>
+	<td align="center">{ROCKET_ACC}%</td>
+	<td align="center">{ROCKET_USE}%</td>
+  </tr>
+  <tr bgcolor="#C7CCD9">
+	<td align="center"><img src="{THEME_ROOT}/images/weap_ico/shaft.png"></td>
+	<td align="center">{SHAFT_FIRE}</td>
+	<td align="center">{SHAFT_HITS}</td>
+	<td align="center">{SHAFT_ACC}%</td>
+	<td align="center">{SHAFT_USE}%</td>
+  </tr>
+  <tr bgcolor="#C7CCD9">
+	<td align="center"><img src="{THEME_ROOT}/images/weap_ico/rail.png"></td>
+	<td align="center">{RAIL_FIRE}</td>
+	<td align="center">{RAIL_HITS}</td>
+	<td align="center">{RAIL_ACC}%</td>
+	<td align="center">{RAIL_USE}%</td>
+  </tr>
+  <tr bgcolor="#C7CCD9">
+	<td align="center"><img src="{THEME_ROOT}/images/weap_ico/plasma.png"></td>
+	<td align="center">{PLASMA_FIRE}</td>
+	<td align="center">{PLASMA_HITS}</td>
+	<td align="center">{PLASMA_ACC}%</td>
+	<td align="center">{PLASMA_USE}%</td>
+  </tr>
+<!--
+  <tr bgcolor="#C7CCD9">
+	<td align="center"><img src="{THEME_ROOT}/images/weap_ico/bfg.png"></td>
+	<td align="center">$weap[bfg_fire]</td>
+	<td align="center">$weap[bfg_hits]</td>
+	<td align="center">$weap[bfg_acc]</td>
+	<td align="center">$weap[bfg_use]</td>
+  </tr> -->
+  <tr bgcolor="#C7CCD9">
+	<td align="center"><b>{L_TOTAL}</b></td>
+	<td align="center">{SHOTS}</td>
+	<td align="center">{HITS}</td>
+	<td align="center">{ACC}%</td>
+	<td align="center">-</td>
+  </tr>
+</table>
+
+<table id="tbl2">
+	<tbody>
+		<tr>
+			<td><b>{L_FAV_WEAPONS}:</b></td>
+			<td><img src="{THEME_ROOT}/images/weap_ico/{FAV_WPN1}.png"> <img src="{THEME_ROOT}/images/weap_ico/{FAV_WPN2}.png"> <img src="{THEME_ROOT}/images/weap_ico/{FAV_WPN3}.png"></td>
+		</tr>
+	</tbody>
+</table>
+
+<br />
+	<b>{L_LAST5_DUELS}</b>
+	<table id="tbl" border="0" cellspacing="1">
+		{G_LAST5_DUELS}
+		<!-- GTW: last_duel -->
+		<tr bgcolor="#C7CCD9">
+			<td><span class="newsautor">{PLAYER1_NAME}</span></td>
+			<td><span class="newsnumcom"  title="{MATCH_DATE}"><a href="/match/{MATCH_ID}">{FRAGS}</a></span></td>
+			<td><span class="newsautor"><a href="/profile/{PLAYER2_ID}">{PLAYER2_NAME}</a></span></td>
+			<td><span class="newsautor">@{MAP_NAME}</a></span></td>
+			<td><span class='newsautor'><b>{DEMO_LINK}</b></span></td>
+		</tr>
+		<!-- GTW: /last_duel -->
+	</table>
+</div>
+<!-- GTW: /overall -->
+<!-- GTW: /main -->

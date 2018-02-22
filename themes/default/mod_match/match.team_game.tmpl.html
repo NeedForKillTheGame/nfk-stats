@@ -1,0 +1,35 @@
+// match team game
+<!-- GTW: main -->
+
+<b><span style='color:red'>RED</span> SCORE: {MATCH_REDSCORE}
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<span style='color:blue'>BLUE</span> SCORE: {MATCH_BLUESCORE}</b>
+
+<table id="tbl" border="0" cellspacing="1">
+	<thead>
+		<th>{L_NAME}</th>
+		<th>{L_FRAGS}</th>
+		<th>{L_DEATHS}</th>
+		<th>{L_FRAG_RATE}</th>
+		<th>{L_PING}</th>
+		<th>{L_SCORE}</th>
+		<th>{L_TEAM}</th>
+		<th>{L_RESULT}</th>
+		<th>{L_TIME}</th>
+	</thead> 
+	{G_PLAYERS_STATS}
+	<!-- GTW: player_stats -->
+		<tr bgcolor="#C7CCD9">
+			<td><span class="newsautor">{PLAYER_ICO}{PLAYER_NAME}</span></td>
+			<td><span class="newsnumcom">{FRAGS}</span></td>
+			<td><span class="newsnumcom">{DEATHS}</span></td>
+			<td><span class="newsnumcom">{FRAG_RATE}</span></td>
+			<td><span class="newsnumcom">{PING}</span></td>
+			<td><span class="newsnumcom">{SCORE}</span></td>
+			<td><span class="newsautor" style="color:{TEAM_LOWER}">{TEAM}</span></td>
+			<td><span class="newsnumcom">{RESULT}</span></td>
+			<td><span class="newsnumcom">{PLAYED_TIME}</span></td>
+		</tr>
+	<!-- GTW: /player_stats -->
+</table>
+<!-- GTW: /main -->

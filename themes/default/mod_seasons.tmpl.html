@@ -1,0 +1,36 @@
+// seasons
+<!-- GTW: main -->
+	<br>
+<a href="/seasons/duel">Duel</a> <a href="/seasons/dm">DM</a> 
+<a href="/seasons/tdm">TDM</a> <a href="/seasons/ctf">CTF</a> 
+	<br><br>
+	{G_SEASONS}
+	<!-- GTW: season -->
+		<span><b>{L_SEASON} {SEASON_NUM}</b> ({SEAS_DATE_START} &mdash; {SEAS_DATE_END})</span> 
+		
+		<table id="tbl" border="0" cellspacing="1">
+			<thead>
+				<th>#</th>
+				<th>{L_NAME}</th>
+				<th>{L_SCORE}</th>
+				<th>{L_FRAGS}</th>
+				<th>{L_WINS}</th>
+				<th>{L_LOSSES}</th>
+				<th>{L_WIN_RATE}</th>
+			</thead> 
+			{G_LADDER}
+			<!-- GTW: player -->	
+				<tr bgcolor=#C7CCD9>
+					<td>{PLACE}</td>
+					<td align='left'><span  class='newsautor'>{DUEL_RANK}{PLAYER_NAME}</span></td>
+					<td><span class='newsnumcom'>{SCORE}</span></td>
+					<td><span class='newsnumcom'>{FRAGS}</span></td>
+					<td><span class='newsnumcom'>{WINS}</span></td>
+					<td><span class='newsnumcom'>{LOSSES}</span></td>
+					<td><span class='newsnumcom'>{WIN_RATE}%</span></td>
+				</tr>
+			<!-- GTW: /player -->	
+		</table>	
+		<br>
+	<!-- GTW: /season -->	
+<!-- GTW: /main -->

@@ -1,0 +1,27 @@
+// profile duelslist
+<!-- GTW: main -->		
+<br>
+	<a href="/profile/{PLAYER_ID}">{L_OVERALL_STATS}</a> | 
+	<a href="/profile/{PLAYER_ID}/matches">{L_FILL_MATCH_LIST}</a> | 
+	<b><a href="/profile/{PLAYER_ID}/duelslist">{L_FILL_DUEL_LIST}</a></b> |
+	<a href="/profile/{PLAYER_ID}/seasons">{L_SEASONS}</a>
+<br><br>
+{DUELSLIST}
+<!-- GTW: duelslist -->
+<div align="center">
+<table id="tbl" border="0" cellspacing="1">
+	{G_DUELS_LIST}
+	<!-- GTW: duel -->
+		<tr bgcolor="#C7CCD9">
+			<td><span class="newsautor">{PLAYER1_NAME}</span></td>
+			<td><span class="newsnumcom" title="{MATCH_DATE}"><a href="/match/{MATCH_ID}">{FRAGS}</b></a></span></td>
+			<td><span class="newsautor">{PLAYER2_NAME}</span></td>
+			<td><span class="newsautor">@{MAP_NAME}</a></span></td>
+			<td><span class='newsautor'><b>{DEMO_LINK}</b></span></td>
+		</tr>
+	<!-- GTW: /duel -->
+</table>
+	{PAGES}
+</div>
+<!-- GTW: /duelslist -->
+<!-- GTW: /main -->

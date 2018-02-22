@@ -1,0 +1,127 @@
+// profile seasons
+<!-- GTW: main -->
+<div align="center">
+	<a href="/profile/{PLAYER_ID}">{L_OVERALL_STATS}</a> | 
+	<a href="/profile/{PLAYER_ID}/matches">{L_FILL_MATCH_LIST}</a> | 
+	<a href="/profile/{PLAYER_ID}/duelslist">{L_FILL_DUEL_LIST}</a> |
+	<b><a href="/profile/{PLAYER_ID}/seasons">{L_SEASONS}</a></b>
+<br><br>
+{SEASONS}
+<!-- GTW: seasons -->
+<h3>{L_ALL_SEASONS}</h3>
+{G_SEASONS}
+<!-- GTW: season -->
+<span><b>{L_SEASON} {SEASON_NUM}</b> ({SEAS_DATE_START} &mdash; {SEAS_DATE_END})</span> 
+<div class="SeasTbl">
+<!-- GTW: ico_first --><img src="{THEME_ROOT}/images/ranks/crown.png" alt="1 place" width="20" height="20" title="First place"><!-- GTW: /ico_first -->
+<!-- GTW: ico_second --><img src="{THEME_ROOT}/images/ranks/medal2second.gif" width="20" height="20" title="Second place" alt="2 place"><!-- GTW: /ico_second -->
+<!-- GTW: ico_third --><img src="{THEME_ROOT}/images/ranks/medal3thr.gif" width="20" height="20"  title="Third place" alt="3 place"><!-- GTW: /ico_third -->
+	<table  class="PlrStTbl" border="0" cellspacing="1">
+	  <tr bgcolor="#C7CCD9">
+		<th scope="col" class='newsnumcom'>&nbsp;</th>
+		<th align="center" scope="col">{L_PLACE}</th>
+		<th align="center" scope="col">{L_SCORE}</th>
+		<th align="center" scope="col">{L_WINS}</th>
+		<th align="center" scope="col">{L_LOSSES_C}</th>
+		<th align="center" scope="col">{L_WIN_RATE}</th>
+		<th align="center" scope="col">{L_FRAGS}</th>
+		<th align="center" scope="col">{L_DEATHS}</th>
+		<th align="center" scope="col">{L_FRAG_RATE}</th>
+		<th align="center" scope="col">{L_GAMES}</th>
+		<th align="center" scope="col">{L_PLAYED}</th>
+	  </tr>
+	  <tr bgcolor="#C7CCD9">
+		<th align="left" scope="row">Duel</th>
+		<td align="center">{DUEL_PLACE}</td>
+		<td align="center"><img src="{THEME_ROOT}/images/ranks/d{DUEL_RANK}.jpg" alt="{DUEL_SCORE}" title="{DUEL_SCORE} {L_POINTS}"></td>
+		<td align="center">{DUEL_WINS}</td>
+		<td align="center">{DUEL_LOSSES}</td>
+		<td align="center">{DUEL_WIN_RATE}</td>
+		<td align="center">{DUEL_FRAGS}</td>
+		<td align="center">{DUEL_DEATHS}</td>
+		<td align="center">{DUEL_FRAG_RATE}</td>
+		<td align="center">{DUEL_GAMES}</td>
+		<td align="center">{DUEL_PLAYED}</td>
+	  </tr>
+	  <tr bgcolor="#C7CCD9">
+		<th align="left" scope="row">DM</th>
+		<td align="center">{DM_PLACE}</td>
+		<td align="center">{DM_SCORE}</td>
+		<td align="center">{DM_WINS}</td>
+		<td align="center">{DM_LOSSES}</td>
+		<td align="center">{DM_WIN_RATE}</td>
+		<td align="center">{DM_FRAGS}</td>
+		<td align="center">{DM_DEATHS}</td>
+		<td align="center">{DM_FRAG_RATE}</td>
+		<td align="center">{DM_GAMES}</td>
+		<td align="center">{DM_PLAYED}</td>
+	  </tr>
+	  <tr bgcolor="#C7CCD9">
+		<th align="left" scope="row">TDM</th>
+		<td align="center">{TDM_PLACE}</td>
+		<td align="center">{TDM_SCORE}</td>
+		<td align="center">{TDM_WINS}</td>
+		<td align="center">{TDM_LOSSES}</td>
+		<td align="center">{TDM_WIN_RATE}</td>
+		<td align="center">{TDM_FRAGS}</td>
+		<td align="center">{TDM_DEATHS}</td>
+		<td align="center">{TDM_FRAG_RATE}</td>
+		<td align="center">{TDM_GAMES}</td>
+		<td align="center">{TDM_PLAYED}</td>
+	  </tr>
+	  <tr bgcolor="#C7CCD9">
+		<th align="left" scope="row">CTF</th>
+		<td align="center">{CTF_PLACE}</td>
+		<td align="center">{CTF_SCORE}</td>
+		<td align="center">{CTF_WINS}</td>
+		<td align="center">{CTF_LOSSES}</td>
+		<td align="center">{CTF_WIN_RATE}</td>
+		<td align="center">{CTF_FRAGS}</td>
+		<td align="center">{CTF_DEATHS}</td>
+		<td align="center">{CTF_FRAG_RATE}</td>
+		<td align="center">{CTF_GAMES}</td>
+		<td align="center">{CTF_PLAYED}</td>
+	  </tr>
+	  <tr bgcolor="#C7CCD9">
+		<th align="left" scope="row">{L_TOTAL}</th>
+		<td align="center">&nbsp;</td>
+		<td align="center"><b>{TOTAL_SCORE}</b></td>
+		<td align="center">{TOTAL_WINS}</td>
+		<td align="center">{TOTAL_LOSSES}</td>
+		<td align="center">{TOTAL_WIN_RATE}</td>
+		<td align="center">{TOTAL_FRAGS}</td>
+		<td align="center">{TOTAL_DEATHS}</td>
+		<td align="center">{TOTAL_FRAG_RATE}</td>
+		<td align="center">{TOTAL_GAMES}</td>
+		<td align="center">{TOTAL_PLAYED}</td>
+	  </tr>
+	</table>
+</div>
+<br>
+<!-- GTW: /season -->
+<br>
+<b>{L_ALL_STATS}:</b>
+<table id="tbl2" border="0" cellspacing="1">
+  <tr bgcolor="#C7CCD9">
+	<th align="center" scope="col">{L_WINS}</th>
+    <th align="center" scope="col">{L_LOSSES}</th>
+    <th align="center" scope="col">{L_WIN_RATE}</th>
+    <th align="center" scope="col">{L_FRAGS}</th>
+    <th align="center" scope="col">{L_DEATHS}</th>
+    <th align="center" scope="col">{L_FRAG_RATE}</th>
+    <th align="center" scope="col">{L_GAMES}</th>
+  </tr>
+  <tr bgcolor="#C7CCD9">
+	<td align="center">{ALL_WINS}</td>
+    <td align="center">{ALL_LOSSES}</td>
+    <td align="center">{ALL_WIN_RATE}%</td>
+    <td align="center">{ALL_FRAGS}</td>
+    <td align="center">{ALL_DEATHS}</td>
+    <td align="center">{ALL_FRAG_RATE}</td>
+    <td align="center">{ALL_GAMES}</td>
+  </tr>
+</table>
+
+</div>
+<!-- GTW: /seasons -->
+<!-- GTW: /main -->

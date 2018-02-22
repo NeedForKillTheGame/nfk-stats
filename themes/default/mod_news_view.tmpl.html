@@ -1,0 +1,54 @@
+// mod_news_view
+<!-- GTW: main -->
+<div class="news-list">
+    <div class="news">
+        <div class="news-header"><span class="news-title">{title}</span><span class="title-right">{date} <span class="icon-comments"></span>{comments}</span>
+        </div>
+        <div class="news-description">{description}</div>
+        <div class="news-content">{content}</div>
+    </div>
+</div>
+{IF_HAVE_COMMENT}
+<!-- GTW: if_have_comments -->
+<table id="tbl" border="0" cellspacing="8"><th>{L_COMMENTS}</th>
+    {G_MATCH_COMMENTS}
+    <!-- GTW: comment -->
+    <tr>
+        <td width="350">
+            <strong>
+                <a name="cmt{CMT_NUM}" href="#cmt{CMT_NUM}" onclick="return anchor_clk({CMT_NUM});">
+                    #{CMT_NUM}</a>&nbsp;&nbsp;<span class="newsautor">{CMT_AUTHOR}</span></strong>
+            <span class="newsautor">&nbsp;&nbsp;{CMT_DATE}</span> &nbsp;&nbsp;{CMT_DELETE}<br>
+            {COMMENT}
+        </td>
+    </tr>
+    <!-- GTW: /comment -->
+</table>
+<!-- GTW: else -->
+<br><br>
+<!-- GTW: /if_have_comments -->
+<a href="#addcmt" onClick="ShowOrHide('fcmt'); return false;"><b>{L_ADD_COMMENT}</b></a>
+<div  id="fcmt" style="display:none">
+    <form name="addcmt" style="" method="POST" action="/do/comment/add/{MODULE_ID}">
+        <table border="0">
+            {IF_LOGGED}
+            <!-- GTW: if_logged -->
+            <!-- GTW: else -->
+            <tr>
+                <td>
+                    <b>{L_NAME}:</b> <span style="display:none"><input type="text" name="uname" /></span><input type="text" name="afxad" />
+                </td>
+            </tr>
+            <!-- GTW: /if_logged -->
+            <tr><td><textarea name="cmessage"  style="height:60px;width:300px;"></textarea></td></tr>
+            <tr>
+                <td align="center">
+                    <input type="hidden" name="materialID" value="{MATERIAL_ID}" />
+                    <input type="submit" value="{L_ADD}" style="width:100px;" />
+                </td>
+            </tr>
+            </tr>
+        </table>
+    </form>
+</div>
+<!-- GTW: /main -->

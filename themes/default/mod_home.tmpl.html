@@ -1,0 +1,234 @@
+﻿// mod_home
+<!-- GTW: main -->
+<div align="center"> 
+<b>NFK Planet</b>
+
+<table id="tbl" border="0" cellspacing="1">
+	<thead>
+		<tr>
+			<th>{L_HOSTNAME}</th>
+			<th>{L_MAP}</th>
+			<th>{L_GAMETYPE}</th>
+			<th>{L_PLAYERS}</th>
+			<th>IP:{L_PORT}</th>
+		</tr>
+	</thead> 
+	{G_NFK_PLANET}
+	<!-- GTW: planet_server -->
+		<tr bgcolor="#C7CCD9">
+			<td><span class='newsautor'><a href="/server/{HOST_LINK}">{HOST_NAME}</a></span></td>
+			<td><span class='newsnumcom'>{MAP_NAME}</span></td>
+			<td><span class='newsnumcom'>{GAMETYPE}</span></td>
+			<td><span class='newsnumcom'>{PLAYERSCOUNT}/{PLAYERSMAX}</span></td>
+			<td><span class='newsnumcom'><a href="nfk://{SERVER_IP}:{SERVER_PORT}">{SERVER_IP}:{SERVER_PORT}</a></span></td>
+		</tr>
+	<!-- GTW: /planet_server -->
+</table>
+<br />
+<b><a href="/matchlist">{L_RECENT_MATCHES}</a></b>
+<table id="tbl" border="0" cellspacing="1">
+	<thead>
+		<tr>
+			<th>{L_HOSTNAME}</th>
+			<th>{L_MAP}</th>
+			<th>{L_GAMETYPE}</th>
+			<th>{L_GAMETIME}</th>
+			<th>{L_PLAYERS}</th>
+			<th>{L_DATE}</th>
+			<th>{L_DEMO}</th>
+		</tr>
+	</thead> 
+	{G_RECENT_MATCHES}
+	<!-- GTW: recent_match -->
+	<tr bgcolor="#C7CCD9">
+		<td><span class='newsautor'><a href="/match/{MATCH_ID}">{VIDEO_ICO}{HOST_NAME_AND_CMTS}</a></span></td>
+		<td><span class='newsnumcom'>{MATCH_MAP}</span></td>
+		<td><span class='newsnumcom'>{GAMETYPE_SHORT}</span></td>
+		<td><span class='newsnumcom'>{GAME_TIME}</span></td>
+		<td><span class='newsnumcom'>{PLAYERS}</span></td>
+		<td><span class='newsnumcom' title="{MATCH_DATE}">{MATCH_DATE_AGO} {L_AGO}</span></td>
+		<td><span class='newsnumcom'><b>{DEMO_LINK}</b></span></td>
+	</tr>
+	<!-- GTW: /recent_match -->
+</table>
+<br>
+<table id="tbl" border="0" cellspacing="2"><th><a href="/comments">{L_LAST_COMMENTS}</a></th> 
+	{G_LAST_COMMENTS}
+	<!-- GTW: last_comment -->
+	<tr >
+		<td width="450">
+			<strong>
+			<a href="/{MOD_URL}/{MATERIAL_ID}">{MATERIAL_NAME}</a> <span class="newsautor">{CMT_AUTHOR}</span>: </strong>{COMMENT}
+		</td>
+	</tr>
+	<!-- GTW: /last_comment -->	
+</table>
+<br />
+{G_IF_TOUR}
+<!-- GTW: if_tour -->
+	<table id="tbl" border="0" cellspacing="2">
+		<thead>
+			<tr>
+				<th>{L_TITLE}</th>
+				<th>{L_DATE_START}</th>
+				<th>{L_REG_NUM}</th>
+				<th>{L_WINNER}</th>
+			</tr>
+		</thead> 
+		{G_TOURNEYS}
+		<!-- GTW: tourney -->
+		<tr bgcolor="#C7CCD9">
+			<td><a href="/tourneys/{TOUR_ID}">{TITLE}</a></td>
+			<td>
+				<span class='newsnumcom' title="{DATE_START}" >{DATE_START_F}</span> 
+			</td>
+			<td>{REG_NUM}/{CHECK_NUM}</td>
+			<td>{WINNER}</td>
+		</tr>
+		<!-- GTW: /tourney -->	
+	</table>
+	<br />
+<!-- GTW: else -->
+<!-- GTW: /if_tour -->
+<b>{L_TOP8PLAYERS} ({L_SEASON} IX)</b>
+<table id="tbl"  border="0">
+  <tr>
+    <td valign="top" align="center">
+	
+	<b><a href="/ladder/duel">Duel</a></b>
+	<table id="tbl2" border="0" cellspacing="1">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>{L_RANK}</th>
+				<th>{L_NAME}</th>
+				<th>{L_SCORE}</th>
+			</tr>
+		</thead> 
+	{G_TOP_DUEL}
+	<!-- GTW: top_duel -->
+		<tr bgcolor="#C7CCD9">
+			<td>{PLACE}</td>
+			<td><img src="{THEME_ROOT}/images/ranks/d{RANK}.jpg" title="{SCORE} {L_POINTS}"></td>
+			<td align="left"><span class='newsautor'>{PLAYER_NAME}</span></td>
+			<td><span class='newsnumcom'>{SCORE}</span></td>
+		</tr>
+	<!-- GTW: /top_duel -->
+	
+	</table>
+	</td>
+	<td valign="top" align="center">
+		<b><a href="/ladder/dm">DM</a></b>
+		<table id="tbl" border="0" cellspacing="1">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>{L_NAME}</th>
+					<th>{L_SCORE}</th>
+				</tr>
+			</thead> 
+		{G_TOP_DM}
+		<!-- GTW: top_dm -->
+			<tr bgcolor="#C7CCD9">
+				<td>{PLACE}</td>
+				<td align="left"><span class='newsautor'>{PLAYER_NAME}</span></td>
+				<td><span class='newsnumcom'>{SCORE}</span></td>
+			</tr>
+		<!-- GTW: /top_dm -->
+		</table>
+	</td>
+	
+</tr>
+<tr>
+	<td valign="top" align="center">
+	<b><a href="/ladder/tdm">TDM</a></b>
+	<table id="tbl" border="0" cellspacing="1">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>{L_NAME}</th>
+				<th>{L_SCORE}</th>
+			</tr>
+		</thead> 
+	{G_TOP_TDM}
+	<!-- GTW: top_tdm -->
+		<tr bgcolor="#C7CCD9">
+			<td>{PLACE}</td>
+			<td align="left"><span class='newsautor'>{PLAYER_NAME}</span></td>
+			<td><span class='newsnumcom'>{SCORE}</span></td>
+		</tr>
+	<!-- GTW: /top_tdm -->
+		
+	</table>
+	</td>
+	<td valign="top" align="center">
+	<b><a href="/ladder/ctf">CTF</a></b>
+	<table id="tbl" border="0" cellspacing="1">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>{L_NAME}</th>
+				<th>{L_SCORE}</th>
+			</tr>
+		</thead> 
+	{G_TOP_CTF}
+	<!-- GTW: top_ctf -->
+		<tr bgcolor="#C7CCD9">
+			<td>{PLACE}</td>
+			<td align="left"><span class='newsautor'>{PLAYER_NAME}</span></td>
+			<td><span class='newsnumcom'>{SCORE}</span></td>
+		</tr>
+	<!-- GTW: /top_ctf -->
+	</table>
+	
+    </td>
+</tr>
+</table>
+<table id="tbl"  border="0">
+<tr>
+	<td valign="top" align="center">
+		<b><a href="/tourneys/ladder">{L_TOUR_RATING}</a></b>
+		<table id="tbl" border="0" cellspacing="1">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>{L_NAME}</th>
+					<th>{L_SCORE}</th>
+				</tr>
+			</thead> 
+		{G_TOP_TOUR}
+		<!-- GTW: top_tour -->
+			<tr bgcolor="#C7CCD9">
+				<td>{PLACE}</td>
+				<td align="left"><span class='newsautor'>{PLAYER_NAME}</span></td>
+				<td><span class='newsnumcom'>{SCORE}</span></td>
+			</tr>
+		<!-- GTW: /top_tour -->
+		</table>
+	</td>
+	<td valign="top" align="center">
+		<b><a href="/ladder/all">{L_OVERALL_RATING}</a></b>
+		<table id="tbl" border="0" cellspacing="1">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>{L_NAME}</th>
+					<th>{L_SCORE}</th>
+				</tr>
+			</thead> 
+		{G_TOP_ALL}
+		<!-- GTW: top_all -->
+			<tr bgcolor="#C7CCD9">
+				<td>{PLACE}</td>
+				<td align="left"><span class='newsautor'>{PLAYER_NAME}</span></td>
+				<td><span class='newsnumcom'>{SCORE}</span></td>
+			</tr>
+		<!-- GTW: /top_all -->
+		</table>
+	</td>
+</tr>
+</table>
+<br>
+<a href="stats.html"><img src="images/graph-players-week.png"></a>
+</div>
+<!-- GTW: /main -->

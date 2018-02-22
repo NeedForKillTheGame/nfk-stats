@@ -1,0 +1,54 @@
+// tourneys list
+<!-- GTW: main -->
+<div align="center"><br>
+	<span class="headmenu"><a href="/tourneys/ladder">{L_TOUR_LADDER}</a></span>
+<br><br>
+<b>{L_UPCOMING_TOURNEYS}</b>
+<table id="tbl" border="0" cellspacing="1">
+	<thead>
+		<tr>
+			<th>{L_TOUR_TITLE}</th>
+			<th>{L_STATUS}</th>
+			<th>{L_DATE_REG}</th>
+			<th>{L_DATE_CHECKIN}</th>
+			<th>{L_DATE_START}</th>
+			<th>{L_REG_NUM}</th>
+			<th>{L_CHECK_NUM}</th>
+		</tr>
+	</thead> 
+	{G_UP_TOURNEYS}
+	<!-- GTW: up_tourney -->
+	<tr bgcolor="#C7CCD9">
+		<td><a href="/tourneys/{TOURNEY_ID}">{TITLE}</a></td>
+		<td>{STATUS}</td>
+		<td>{DATE_REG}</td>
+		<td>{DATE_CHECK}</td>
+		<td>{DATE_START}</td>
+		<td>{REG_NUM}</td>
+		<td>{CHECK_NUM}</td>
+	</tr>
+	<!-- GTW: /up_tourney -->
+</table>
+<br>
+<b>{L_LAST_TOURNEYS}</b>
+<table id="tbl" border="0" cellspacing="1">
+	<thead>
+		<tr>
+			<th>{L_TOUR_TITLE}</th>
+			<th>{L_PLAYERS_NUM}</th>
+			<th>{L_DATE_END}</th>
+			<th>{L_WINNER}</th>
+		</tr>
+	</thead> 
+	{G_LAST_TOURNEYS}
+	<!-- GTW: last_tourney -->
+	<tr bgcolor="#C7CCD9">
+		<td><a href="/tourneys/{TOURNEY_ID}">{TITLE}</a></td>
+		<td>{PLAYERS_NUM}/{PLAYERS_CHECK}</td>
+		<td>{DATE_END}</td>
+		<td>{WINNER}</td>
+	</tr>
+	<!-- GTW: /last_tourney -->
+</table>
+</div>
+<!-- GTW: /main -->

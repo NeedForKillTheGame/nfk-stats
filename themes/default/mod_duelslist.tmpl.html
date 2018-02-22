@@ -1,0 +1,18 @@
+// duelslist
+<!-- GTW: main -->
+<div align="center">
+<table id="tbl" border="0" cellspacing="1">
+	{G_DUELS_LIST}
+	<!-- GTW: duel -->
+		<tr bgcolor="#C7CCD9">
+			<td><span class="newsautor">{PLAYER1_NAME}</span></td>
+			<td><span class="newsnumcom" title="{MATCH_DATE}"><a href="/match/{MATCH_ID}">{FRAGS}</b></a></span></td>
+			<td><span class="newsautor">{PLAYER2_NAME}</span></td>
+			<td><span class="newsautor">@{MAP_NAME}</a></span></td>
+			<td><span class='newsautor'><a href='/demo/{MATCH_ID}'><b>{DEMO_LINK}</b></a></span></td>
+		</tr>
+	<!-- GTW: /duel -->
+</table>
+	{PAGES}
+</div>
+<!-- GTW: /main -->

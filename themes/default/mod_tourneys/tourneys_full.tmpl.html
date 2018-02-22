@@ -1,0 +1,271 @@
+// tourney full
+<!-- GTW: main -->
+
+<style>
+#tour1 .bracket_cell { 
+	border-left: 1px solid #d0d4e0;
+}
+.tours { 
+	float: left;
+	width: 200px;
+	min-width: 200px;
+}
+.bracket_cell { 
+	background-color: #ececec;
+	border: 1px solid #d0d4e0;
+	border-left: none;
+	height: 20px;
+	text-align: left;
+}
+.bracket_cell.new_pl { 
+	padding: 2px 3px;
+}
+.bracket_cell .pl_num { 
+	float: right;
+	color: #8f8d8d;
+	font-size: 15px;
+	margin-right: 2px;
+}
+#tour1 .bracket_cell { 
+	border-left: 1px solid #d0d4e0;
+}
+#br_main {
+	margin-top: 15px;
+	
+	width: 800px;
+}
+
+.border { 
+	border-right: 2px solid #d0d4e0;
+}
+.bracket_cell.upper .cell_user{ 
+	margin-top: 1px;
+	height: 19px;
+}
+.cell_user {
+ margin-left: 3px;
+}
+
+.delim1 { 
+	height: 22px;
+}
+
+.delim2 { 
+	height: 66px;
+}
+
+.delim3 { 
+	height: 154px;
+}
+.delim4 { 
+	height: 330px;
+}
+
+.delim5 { 
+	height: 330px;
+}
+.meet_score { 
+	float: right;
+	font-weight: bold;
+	height: 20px;
+	margin-top: 0px;
+	text-align: center;
+	width: 15px;
+
+ }
+.winner { 
+	background-color: #9FA8ED;
+}
+.looser { 
+	background-color: #C5C5C5;
+}
+.bracket_sc1 { 
+	text-align: center;
+	
+ }
+.bracket_sc2 { 
+	padding: 21px 0px;
+	text-align: center;
+ }
+.bracket_sc3 { 
+	padding: 63px 0px;
+	text-align: center;
+ }
+.bracket_sc4 { 
+	padding: 140px 0px;
+	text-align: center;
+ }
+ .map {
+	 cursor: pointer;
+ }
+</style>
+
+<br/>
+{IF_TOUR_OPTIONS}
+<!-- GTW: if_tour_options -->
+	<br>
+	<div id="tourOptions">
+	{IF_CAN_LEAVE}
+	<!-- GTW: if_can_leave -->
+		<a href="/do/user/leave-tour/{TOURNEY_ID}" onClick="return confirm('{L_LEAVE_TOUR}?')">{L_LEAVE_TOUR}</a>
+	<!-- GTW: else --> <!-- GTW: /if_can_leave -->
+	{IF_CAN_REPORT}
+	<!-- GTW: if_can_report -->
+		| <a href="/do/user/report-tour/{TOURNEY_ID}" onClick="return confirm('{L_REPORT_TOUR}?')">{L_REPORT_TOUR}</a>
+	<!-- GTW: else --> <!-- GTW: /if_can_report -->
+	</div>
+<!-- GTW: else --> <!-- GTW: /if_tour_options -->
+{IF_TOUR_FAILED}
+<!-- GTW: if_tour_failed -->
+<h1>Турнир отменен: подтвердили участие меньше 4 игроков.</h1>
+<!-- GTW: else --> <!-- GTW: /if_tour_failed -->
+<table cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td align="center">
+			<div id="br_main">
+				{G_STAGES}
+				<!-- GTW: if_stage -->
+					<div id='tour{DELIM_ID}' class='tours'>
+						<div class='tour_title'>
+							Stage #{STAGE_ID}
+						</div>
+						<div class='delim{UPPERDELIM_ID}'></div>
+						{G_MATCHES}
+						<!-- GTW: match -->
+							<div class='bracket_cell border'>
+								<div class="cell_user">
+									{PLAYER1_NAME}
+									<span id="score" class="meet_score {SCORE1_CSS}">{SCORE1_NUM}</span>
+								</div>
+							</div>
+							<div class='delim{DELIM_ID} border'>
+								<div  class="bracket_sc{DELIM_ID}">
+									{GAME_LIST}
+								</div>
+							</div>
+							<div class='bracket_cell border'>
+								<div class="cell_user">
+									{PLAYER2_NAME}
+									<span id="score" class="meet_score {SCORE2_CSS}">{SCORE2_NUM}</span>
+								</div>
+							</div>
+							{IF_DELIM}
+							<!-- GTW: if_delim --><div class='delim{DELIM_ID}'></div><!-- GTW: else --><!-- GTW: /if_delim -->
+						<!-- GTW: /match -->
+					</div>
+				<!-- GTW: else -->
+					<br>
+					{IF_CANREG}
+					<!-- GTW: if_canreg -->
+						{IF_USER}
+						<!-- GTW: if_user -->
+							{IF_REGISTRED}
+							<!-- GTW: if_registred -->
+								{IF_CANCHECK}
+								<!-- GTW: if_cancheck -->
+									{IF_CHECKED}
+									<!-- GTW: if_checked -->
+										{L_YOU_ARE_CHECKED}.<br>
+										{L_TOUR_START_AT}:  <b>{TOUR_DATE_START}</b> ({L_MOSСOW_TIME})
+									<!-- GTW: else -->
+										<h2>Вы еще не подтвердили регистрацию!</h2><br><br><b>> <a href="/do/user/check-in/{TOURNEY_ID}">{L_CHECKIN}</a> <</b>
+									<!-- GTW: /if_checked -->
+								<!-- GTW: else -->
+									{L_CHECKIN_START_AT} <b>{TOUR_DATE_CHECK}</b> {L_CHECKIN_TO} <b>{TOUR_DATE_START}</b>
+									({L_MOSСOW_TIME})
+								<!-- GTW: /if_cancheck -->
+							<!-- GTW: else -->
+								<b><a href="/do/user/reg-tour/{TOURNEY_ID}">{L_REGISTER_ON_TOUR}</a></b>
+							<!-- GTW: /if_registred -->
+						<!-- GTW: else -->
+							{L_ONLY_FOR_LOGINED}
+						<!-- GTW: /if_user -->
+					<!-- GTW: else -->
+						<b>{L_REG_START_IN}</b><br> {DATE_REG} ({TOUR_DATE_REG})
+					<!-- GTW: /if_canreg -->
+					<br><br>
+					<b>{L_TOUR_START_AT}</b>:<br>
+					 {DATE_START} ({TOUR_DATE_START})<br><br>
+					<b>{L_REG_LIST}</b>:<br>
+					{REG_PLAYERS}<br><br>
+					<b>{L_CHECK_LIST}</b>:<br>
+					{CHECK_PLAYERS}<br><br>
+				<!-- GTW: /if_stage -->
+			</div>
+		</td>
+	</tr>
+</table>
+<b>{L_MAP_LIST}</b>:<br>
+{MAP_LIST}<br><br>
+<b>Правила турнира</b>
+<div style="width:350px; text-align:left;">
+1) Все матчи идут до 2-х побед, финал до 3-х побед. 
+<br>2) Выбор карт: каждый по очереди вычеркивает по карте, пока не останется 3 карты (5 карт для финала).
+<br>Первый начинает вычеркивание и выбирает, на какой карте играть первый матч, тот, кто находится выше по сетке.
+<br>Дальше идет лузер-пик - проигравший выбирает карту из оставшихся.
+<br>3) Игры засчитываются только на серверах Rip или cleanvoice.
+<br>4) Играть нужно под тем ником, под которым зарегистрировались, иначе матч не засчитается.
+<br>5) Подтвердить регистрацию нужно в течение часа перед началом турнира.
+<br>6) Турнир будет отменен, если подтвердят свое участие меньше 4 человек.
+</div>
+<br>
+{IF_HAVE_COMMENTS}
+<!-- GTW: if_have_comments -->
+<table id="tbl" border="0" cellspacing="8"><th>{L_COMMENTS}</th> 
+	{G_MATERIAL_COMMENTS}
+	<!-- GTW: comment -->
+	<tr>
+		<td width="350">
+			<strong>
+			<a name="cmt{CMT_NUM}" href="#cmt{CMT_NUM}" onclick="return anchor_clk({CMT_NUM});">
+			#{CMT_NUM}</a>&nbsp;&nbsp;<span class="newsautor">{CMT_AUTHOR}</span></strong>
+			<span class="newsautor">&nbsp;&nbsp;{CMT_DATE}</span> &nbsp;&nbsp;{CMT_DELETE}<br>
+			{COMMENT}
+		</td>
+	</tr>
+	<!-- GTW: /comment -->
+</table>
+<!-- GTW: else -->
+<br><br>
+<!-- GTW: /if_have_comments -->
+
+{IF_CAN_CMT}
+<!-- GTW: if_can_cmt -->
+<a href="#addcmt" onClick="ShowOrHide('fcmt'); return false;"><b>{L_ADD_COMMENT}</b></a>
+<div  id="fcmt" style="display:none">
+	<form name="addcmt" style="" method="POST" action="/do/comment/add/{MODULE_ID}">
+	<table border="0">
+			{IF_LOGGED}
+			<!-- GTW: if_logged -->
+			<!-- GTW: else -->
+			<tr>
+				<td>
+					<b>{L_NAME}:</b> <span style="display:none"><input type="text" name="uname" /></span><input type="text" name="afxad" />
+				</td>
+			</tr>
+			<!-- GTW: /if_logged -->
+			<tr><td><textarea name="cmessage" style="height:60px;width:300px;"></textarea></td></tr>
+			<tr>
+				<td align="center">
+					<input type="hidden" name="materialID" value="{MATERIAL_ID}" />
+					<input type="submit" value="{L_ADD}" style="width:100px;" />
+				</td>
+			</tr>
+		</tr>
+	</table>
+	</form>
+	
+</div><br>
+<!-- GTW: else -->
+{BAN_MSG}
+<!-- GTW: /if_can_cmt -->
+<script>
+	$('.map').bind('click',function(){
+		if ($(this).css('text-decoration') === 'line-through') {
+			$(this).css('text-decoration','none');
+		} else {
+			$(this).css('text-decoration','line-through');
+		}
+	});
+</script>
+<!-- GTW: /main -->

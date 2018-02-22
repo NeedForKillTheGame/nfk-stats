@@ -1,0 +1,207 @@
+// match
+<!-- GTW: main -->
+<div align="center">
+
+<b>{NEXT_MATCH} {L_MATCH} #{MATCH_ID} {PREV_MATCH}</b>
+
+<table id="tbl" border="0" cellspacing="1">
+	<thead>
+		<th>{L_HOSTNAME}</th>
+		<th>{L_MAP}</th>
+		<th>{L_GAMETYPE}</th>
+		<th>{L_GAMETIME}</th>
+		<th>{L_PLAYERS}</th>
+		<th>{L_DATE}</th>
+	</thead> 
+	<tr bgcolor="#C7CCD9">
+		<td><span class='newsautor'><a href="/match/{MATCH_ID}">{HOST_NAME}</a></span></td>
+		<td><span class='newsnumcom'>{MATCH_MAP}</span></td>
+		<td><span class='newsnumcom'>{GAMETYPE_SHORT}</span></td>
+		<td><span class='newsnumcom'>{GAME_TIME}</span></td>
+		<td><span class='newsnumcom'>{PLAYERS}</span></td>
+		<td><span class='newsnumcom' title="{MATCH_DATE}">{MATCH_DATE_AGO} {L_AGO}</span></td>
+	</tr>
+</table>
+    {DEMO_LINK}<br>
+    {IF_VIDEOS}
+    <!-- GTW: if_videos -->
+        <div>{G_VIDEO_LINKS}</div>
+        <!-- GTW: video_link -->
+            <a href="#" onclick="$('#video{VIDEO_ID}').toggle();">{VIDEO_NAME}</a>
+        <!-- GTW: /video_link -->
+        {G_VIDEOS}
+        <!-- GTW: video -->
+            <div id="video{VIDEO_ID}" style="display: none">
+                <iframe width="854" height="480" src="//www.youtube.com/embed/{VIDEO_URL}" frameborder="0" allowfullscreen></iframe>
+            </div>
+        <!-- GTW: /video -->
+        <br>
+    <!-- GTW: else -->
+    <!-- GTW: /if_videos -->
+	<br>
+
+{G_SCORE_BOARD}
+
+<a href="javascript://" onClick="ShowOrHide('wpstats'); return false;"><b>{L_ALL_STATS}</b></a>
+<br>
+	<div id="wpstats" style="display:none">
+	<br>
+		<table id="tbl" border='0' cellspacing='1'>
+			<tr bgcolor="#C7CCD9">
+				<td>{L_PLAYER} \ {L_WEAPON}</td>
+				<td><img src="{THEME_ROOT}/images/weap_ico/gaun.png"></td>
+				<td><img src="{THEME_ROOT}/images/weap_ico/mach.png"></td>
+				<td><img src="{THEME_ROOT}/images/weap_ico/shot.png"></td>
+				<td><img src="{THEME_ROOT}/images/weap_ico/gren.png"></td>
+				<td><img src="{THEME_ROOT}/images/weap_ico/rocket.png"></td>
+				<td><img src="{THEME_ROOT}/images/weap_ico/shaft.png"></td>
+				<td><img src="{THEME_ROOT}/images/weap_ico/rail.png"></td>
+				<td><img src="{THEME_ROOT}/images/weap_ico/plasma.png"></td>
+				<td>{L_TOTAL}</td>
+			</tr>
+			
+			{G_WEAPONS_STATS}
+			<!-- GTW: weapon_stats -->
+				<tr>
+					<td> </td>
+				</tr>
+				<tr>
+					<td> </td>
+				</tr>
+				<tr bgcolor="#C7CCD9">
+					<td>{PLAYER_NAME}</td>
+				</tr>
+				<tr bgcolor="#C7CCD9">
+					<td><span class="newsnumcom">{L_ACCURACY}</span></td>
+					<td><span class="newsnumcom" title="{GAUN_HITS}/{GAUN_FIRE}">{GAUN_HITS}</span></td>
+					<td><span class="newsnumcom" title="{MACH_HITS}/{MACH_FIRE}">{MACH_ACC}%</span></td>
+					<td><span class="newsnumcom" title="{SHOT_HITS}/{SHOT_FIRE}">{SHOT_ACC}%</span></td>
+					<td><span class="newsnumcom" title="{GREN_HITS}/{GREN_FIRE}">{GREN_ACC}%</span></td>
+					<td><span class="newsnumcom" title="{ROCKET_HITS}/{ROCKET_FIRE}">{ROCKET_ACC}%</span></td>
+					<td><span class="newsnumcom" title="{SHAFT_HITS}/{SHAFT_FIRE}">{SHAFT_ACC}%</span></td>
+					<td><span class="newsnumcom" title="{RAIL_HITS}/{RAIL_FIRE}">{RAIL_ACC}%</span></td>
+					<td><span class="newsnumcom" title="{PLASMA_HITS}/{PLASMA_FIRE}">{PLASMA_ACC}%</span></td>
+					<td><span class="newsnumcom" title="{HITS}/{SHOTS}">{ACC}%</span></td>
+				</tr>
+				<tr bgcolor="#C7CCD9">
+					<td><span class="newsnumcom">{L_WEAP_USE}</span></td>
+					<td><span class="newsnumcom">{GAUN_USE}%</span></td>
+					<td><span class="newsnumcom">{MACH_USE}%</span></td>
+					<td><span class="newsnumcom">{SHOT_USE}%</span></td>
+					<td><span class="newsnumcom">{GREN_USE}%</span></td>
+					<td><span class="newsnumcom">{ROCKET_USE}%</span></td>
+					<td><span class="newsnumcom">{SHAFT_USE}%</span></td>
+					<td><span class="newsnumcom">{RAIL_USE}%</span></td>
+					<td><span class="newsnumcom">{PLASMA_USE}%</span></td>
+					<td><span class="newsnumcom">-</span></td>
+				</tr>
+			<!-- GTW: /weapon_stats -->
+		</table>
+		<br>
+		<table id="tbl" border="0" cellspacing="1">
+			<thead>
+				<th>{L_PLAYER}</th>
+				<th><img src="{THEME_ROOT}/images/stats/ya.png" height="18" alt="{L_YELLOWARMORS}" title="{L_YELLOWARMORS}"></th>
+				<th><img src="{THEME_ROOT}/images/stats/ra.png" height="18" alt="{L_REDARMORS}" title="{L_REDARMORS}"></th>
+				<th><img src="{THEME_ROOT}/images/stats/mega.png" height="18" alt="{L_MEGAHEALTHES}" title="{L_MEGAHEALTHES}"></th>
+				<th><img src="{THEME_ROOT}/images/stats/power.png" height="18" alt="{L_POWERUPS}" title="{L_POWERUPS}"></th>
+				<th><img src="{THEME_ROOT}/images/stats/impr.png" height="18" alt="{L_IMPRESSIVES}" title="{L_IMPRESSIVES}"></th>
+				<th><img src="{THEME_ROOT}/images/stats/excel.png" height="18" alt="{L_EXCELLENTS}" title="{L_EXCELLENTS}"></th>
+				<th><img src="{THEME_ROOT}/images/stats/humil.png" height="18" alt="{L_HUMILIATIONS}" title="{L_HUMILIATIONS}"></th>
+				<th>{L_DMGGIVEN}</th>
+				<th>{L_DMGRECVD}</th>
+				<th>{L_DMGRATE}</th>
+			</thead> 
+			{G_MORE_STATS}
+			<!-- GTW: more_stats -->
+				<tr bgcolor="#C7CCD9">
+					<td>{PLAYER_NAME}</td>
+					<td>{YELLOWARMORS}</td>
+					<td>{REDARMORS}</td>
+					<td>{MEGAHEALTHES}</td>
+					<td>{POWERUPS}</td>
+					<td>{IMPRESSIVES}</td>
+					<td>{EXCELLENTS}</td>
+					<td>{HUMILIATIONS}</td>
+					<td>{DMGGIVEN}</td>
+					<td>{DMGRECVD}</td>
+					<td><span title="{DMGGIVEN}/{DMGRECVD}">{DMGRATE}</span></td>
+				</tr>
+			<!-- GTW: /more_stats -->
+		</table>
+		
+	</div>
+			
+	{IF_GT_DUEL}
+	<!-- GTW: if_gametype_duel -->
+	<br>
+	<b>{L_LAST10_DUELS}</b>
+	<table id="tbl" border="0" cellspacing="1">
+		{G_LAST10_DUELS}
+		<!-- GTW: last_duel -->
+		<tr bgcolor="#C7CCD9">
+			<td><span class="newsautor">{PLAYER1_NAME}</span></td>
+			<td><span class="newsnumcom" title="{MATCH_DATE}"><a href="/match/{MATCH_ID}">{FRAGS}</a></span></td>
+			<td><span class="newsautor">{PLAYER2_NAME}</span></td>
+			<td><span class="newsautor">@{MAP_NAME}</a></span></td>
+			<td><span class='newsautor'><b>{DEMO_LINK}</b></span></td>
+		</tr>
+		<!-- GTW: /last_duel -->
+	</table>
+	<a href="/duelslist/{PLAYER1_ID}/{PLAYER2_ID}"><b>{L_PLRS_DUEL_LIST}</b></a>
+	<!-- GTW: else -->
+	<!-- GTW: /if_gametype_duel -->
+	
+
+
+	{IF_HAVE_COMMENT}
+	<!-- GTW: if_have_comments -->
+	<table id="tbl" border="0" cellspacing="8"><th>{L_COMMENTS}</th> 
+		{G_MATCH_COMMENTS}
+		<!-- GTW: comment -->
+		<tr>
+			<td width="350">
+				<strong>
+				<a name="cmt{CMT_NUM}" href="#cmt{CMT_NUM}" onclick="return anchor_clk({CMT_NUM});">
+				#{CMT_NUM}</a>&nbsp;&nbsp;<span class="newsautor">{CMT_AUTHOR}</span></strong>
+				<span class="newsautor">&nbsp;&nbsp;{CMT_DATE}</span> &nbsp;&nbsp;{CMT_DELETE}<br>
+				{COMMENT}
+			</td>
+		</tr>
+		<!-- GTW: /comment -->
+	</table>
+	<!-- GTW: else -->
+	<br><br>
+	<!-- GTW: /if_have_comments -->
+	
+	{IF_CAN_CMT}
+	<!-- GTW: if_can_cmt -->
+	<a href="#addcmt" onClick="ShowOrHide('fcmt'); return false;"><b>{L_ADD_COMMENT}</b></a>
+	<div  id="fcmt" style="display:none">
+		<form name="addcmt" style="" method="POST" action="/do/comment/add/{MODULE_ID}">
+		<table border="0">
+				{IF_LOGGED}
+				<!-- GTW: if_logged -->
+				<!-- GTW: else -->
+				<tr>
+					<td>
+						<b>{L_NAME}:</b> <span style="display:none"><input type="text" name="uname" /></span><input type="text" name="afxad" />
+					</td>
+				</tr>
+				<!-- GTW: /if_logged -->
+				<tr><td><textarea name="cmessage"  style="height:60px;width:300px;"></textarea></td></tr>
+				<tr>
+					<td align="center">
+						<input type="hidden" name="materialID" value="{MATERIAL_ID}" />
+						<input type="submit" value="{L_ADD}" style="width:100px;" />
+					</td>
+				</tr>
+			</tr>
+		</table>
+		</form>
+	</div>
+	<!-- GTW: else -->
+	{BAN_MSG}
+	<!-- GTW: /if_can_cmt -->
+</div>
+<!-- GTW: /main -->

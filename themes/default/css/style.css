@@ -1,0 +1,395 @@
+BODY {
+ margin : 0; 
+ background-color : #dee3eb;
+ color: #354D73;
+ font: 12px Verdana, Arial, Helvetica, sans-serif;
+ line-height: 140%;
+SCROLLBAR-FACE-COLOR:#7284A0;
+SCROLLBAR-SHADOW-COLOR:#E8EAED;
+SCROLLBAR-HIGHLIGHT-COLOR:#7284A0;
+SCROLLBAR-3DLIGHT-COLOR:#E8EAED;
+SCROLLBAR-DARKSHADOW-COLOR:#7284A0;
+SCROLLBAR-TRACK-COLOR:#B7C0CF;
+SCROLLBAR-ARROW-COLOR:#E8EAED;
+}
+A {
+ color : #002F5B;
+ text-decoration: none;
+}
+A:hover {
+ border-bottom: 1px ridge;
+}
+A:active {
+ color: White;
+}
+A.adminbutton:hover {
+ background : red;
+ text-decoration : none;
+ color : White;
+}
+A.adminbutton:active {
+ background : red;
+ text-decoration : none;
+ color : White;
+}
+.blochead A {
+ color: White;
+ text-decoration: none;
+}
+.blochead A:hover {
+ border-bottom: 1px dashed;
+}
+IMG {
+ margin : 0;
+}
+BUTTON {
+ height: 25px;
+ margin: 3px;
+ font: 14px Arial, Helvetica, sans-serif;
+ COLOR: #123160;
+ border: 2px solid;
+ background: White;
+}
+H5 {
+ margin-bottom: 0px;
+ font-size: 12px;
+}
+INPUT, select {
+ background:#FFFFFF; 
+ border: 1px solid #9fa9b3;
+ FONT: 12px Arial, Helvetica, sans-serif;
+ height: 18px;
+ padding: 0px;
+ }
+INPUT.check {
+ background: #e8eaed;
+ border-width: 0px;
+}
+P {
+ margin: 10px 0px;
+}
+P.formsubmit {
+ padding: 10px;
+}
+P.formsubmitdel {
+ padding: 10px;
+ width: 100%;
+ text-align: right;
+}
+SPAN.error {
+ font-weight: bold;
+}
+TH, TH A {
+ background: #7484A0;
+ color: #D9DFE9;
+ font: 14px Verdana, Arial, Helvetica, sans-serif;
+}
+TD {
+
+}
+TD.model {
+ font: 12px Verdana, Arial, Helvetica, sans-serif;
+}
+TEXTAREA {
+ background:#FFFFFF; 
+ border: 1px solid #9fa9b3;
+ FONT: 12px Arial, Helvetica, sans-serif;
+}
+.headmenu A {
+ background: #7484A0;
+ color: #D9DFE9;
+ font: 14px Verdana, Arial, Helvetica, sans-serif;
+}
+
+.SeasSelect {
+ background: #7484A0;
+ color: #D9DFE9;
+ font: 14px Verdana, Arial, Helvetica, sans-serif;
+ cursor: pointer;
+}
+
+.SeasNoSl {
+ font: 14px Verdana, Arial, Helvetica, sans-serif;
+ cursor: pointer;
+}
+
+.headmenu {
+
+}
+
+#load {
+	display: none;
+	position: relative;
+	right: 0px;
+	top: 0px;
+	width: 16px;
+	height: 16px;
+}
+
+#tbl { 
+text-align: left;
+}
+
+#tbl thead { 
+text-align: center;
+}
+
+
+#tbl TD{
+ font: 11px Verdana, Arial, Helvetica, sans-serif;
+ padding: 0px 10px;
+
+}
+
+#tbl2 TD{
+ font: 11px Verdana, Arial, Helvetica, sans-serif;
+ padding: 0px 10px;
+	
+}
+#tbl2 TR{
+	font-size: smaller;
+}
+
+.PlrStTbl {
+ font: 11px Verdana, Arial, Helvetica, sans-serif;
+ padding: 0px 10px;
+}
+
+
+
+.blochead {
+ text-align : left;
+ margin: 5px;
+ background: #7284A0 url(http://pff.clan.su/image/bg_news_head.gif) repeat-x;
+ height: 26px;
+}
+.blocheadtext {
+ color : White;
+ font-size: 14px;
+ font-weight: bold;
+ padding: 5px 20px;
+ background: url(http://pff.clan.su/image/head_news.gif) no-repeat top left;
+ height: 26px;
+}
+.code {
+ font-size: 12px;
+ background-color: silver;
+ font-family : "Courier New", Courier, monospace;
+}
+.comment {
+ BORDER-BOTTOM: 3px solid #9AA7BC;
+ margin: 5px 0px;
+ padding: 5px 0px;
+ font: 15px Georgia;
+}
+.contentbloc {
+ BORDER: 4px solid #354d73;
+ padding : 7px;
+ text-align : left;
+ background: #e8eaed;
+}
+.error {
+ color: Maroon;
+}
+.formleft {
+ float: left;
+ width: 100px;
+}
+.intexthead {
+ margin-top: 20px;
+}
+.intextbloc {
+ margin-left: 20px;
+}
+.menuhead {
+ background: #7284A0 url(http://pff.clan.su/image/head_menu.gif);
+ width: 140px;
+ height: 18px;
+ text-align: center;
+ color : White;
+ font: bold Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+.menutext {
+ padding : 3px;
+ color : #E0E4EC;
+}
+.newsautor {
+ /* color: #E0E4EC; */
+}
+.newstheme {
+ font-size: 14px;
+ font-weight: bold;
+}
+.newsthemeback {
+ background-color: #B7C0CF;
+}
+.newsnumcom {
+ font-size: smaller;
+}
+.newstext {
+ margin-bottom: 7px;
+ font: 15px Georgia;
+ line-height: 140%;
+}
+.note {
+ font-size: 0.8em;
+}
+.ramka {
+ BORDER: 3px solid #9AA7BC;
+ padding : 2px;
+ margin: 5px 5px 15px 5px;
+}
+#comthispage {
+ color: white;
+ BORDER: 1px solid #9AA7BC;
+}
+#copy {
+ color: #B7C0CF;
+ text-align: center;
+}
+#copy A {
+ color: #E0E4EC;
+}
+#counters{
+ text-align: center;
+}
+#main {
+ background: #7284A0 url(http://pff.clan.su/image/bg_main.gif) repeat-x top;
+ text-align: center;
+ margin: 0px;
+ padding: 10px;
+}
+#bitnik {
+ background: #59687F;
+ text-align: center;
+ margin: 0px;
+}
+#menu {
+ background: url(http://pff.clan.su/image/bg_menu.gif) repeat-y;
+ margin : 0px;
+ width: 140px;
+ top: 22px;
+ position: absolute;
+}
+#menu A {
+ color: #E0E4EC;
+ text-decoration : none;
+}
+#menu A:hover {
+ text-decoration : underline;
+}
+#menu A:active {
+ text-decoration : underline;
+}
+#reglogout {
+ font-weight: bold;
+ margin-bottom: 5px;
+ text-align: center;
+}
+#top {
+ background: #7284A0 url(http://pff.clan.su/image/top.gif) repeat-x;
+ font-size: 20px;
+ font-weight: bold;
+ height : 59px;
+ margin: 0px;
+ text-align: center;
+ padding-top:15px;
+}
+#right {
+ position: absolute;
+ top: 22px;
+ left:140px;
+ min-width: 650px;
+ width: 80%;
+}
+#submain {
+ background-color : #B7C0CF;
+ text-align : center;
+ margin: 0px;
+
+}
+
+#chatmain {
+ background-color : #B7C0CF;
+ text-align : center;
+ BORDER: 1px solid #7185A0;
+ margin: 0px;
+}
+
+.blueb {
+ font-weight: bold;
+font: bold;
+}
+
+div.offtopicHeader {
+ cursor: pointer;
+ cursor: hand;
+ }
+ div.offtopicHeader span.outerWrapper {
+ padding: 0 2px 0 1px;
+ white-space: nowrap;
+ }
+ div.offtopicHeader span.outerWrapper span.outerBorder {
+ border: 1px solid black; 
+ font-size: 6px;
+ padding: 1px 3px 0px 2px;
+ }
+ div.offtopicHeader span.outerWrapper span.innerSymbol {
+ font: 9px arial;
+ margin-left: -7px;
+ }
+ 
+#divpages, #pagesloading
+{
+ text-align: center;
+}
+
+/* User Group Marks */ 
+a.groupModer:link,a.groupModer:visited,a.groupModer:hover {color:blue;} 
+a.groupAdmin:link,a.groupAdmin:visited,a.groupAdmin:hover {color:red;} 
+a.groupVerify:link,a.groupVerify:visited,a.groupVerify:hover {color:green;} 
+/* ---------------- */
+
+.news-header {
+    background-color: #B7C0CF;
+    padding: 1px;
+}
+.news {
+    text-align: left;
+    border-color: #C7CCD9;
+    border-style: solid;
+    border-width: 1px;
+}
+.news-list {
+    max-width: 600px;
+}
+.title-right {
+    float: right;
+}
+.news-title {
+    margin-left: 5px;
+    font-weight: bold;
+}
+.news-content, .news-description {
+    padding: 3px 5px;
+}
+.icon-comments {
+    background: url('/images/icons/comments.png') no-repeat;
+    width: 16px;
+    height: 16px;
+    margin-bottom: -3px;
+    display: inline-block;
+}
+.block-center {
+    max-width: 500px;
+    margin: 10px 0px;
+}
+.block-header {
+    text-align: left;
+    padding: 3px;
+    background: #7484A0;
+}
+.block-header a {
+    color: #D9DFE9;
+    font-size: 14px;
+}

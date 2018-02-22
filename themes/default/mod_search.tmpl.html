@@ -1,0 +1,59 @@
+// ladder
+<!-- GTW: main -->
+<div align="center">
+<form action="/search" method="post">
+	<p><b>{L_PLAYER_SEARCH}</b></p>
+	<p>{L_PLAYER_NAME}: <input type="text" name="q" value="{QUERY}" maxlength="20" /></p>
+	<p><input type="submit" value="{L_SEARCH}" /></p>
+</form>
+ 
+	<!-- GTW: if_allow_ip_search -->
+	<br />
+	<form action="/search" method="post">
+		<p><b>{L_PLAYER_SEARCH_IP}</b></p>
+		<p>{L_PLAYER_IP}: <input type="text" name="qip" value="{QUERY_IP}" maxlength="20" /></p>
+		<p><input type="submit" value="{L_SEARCH}" /></p>
+	</form>
+	<!-- GTW: else -->
+	<!-- GTW: /if_allow_ip_search -->
+
+	{NAMES_FOUND}
+	<!-- GTW: if_name_found -->
+	<b>{L_FOUND_PLAYERS} ({QUERY})</b>
+	<table id="tbl" border="0" cellspacing="1">
+		<thead>
+			<th>#</th>
+			<th>{L_NAME}</th>
+		</thead>
+		{G_FOUND_PLAYERS}
+		<!-- GTW: found_player -->
+			<tr bgcolor="#C7CCD9">
+				<td>{PLACE}</td>
+				<td align="left"><span class='newsautor'>{PLAYER_NAME}</span></td>
+			</tr>
+		<!-- GTW: /found_player -->
+	</table>
+	<!-- GTW: else -->
+	<!-- GTW: /if_name_found -->
+	
+	<!-- GTW: if_ip_found -->
+	<b>{L_FOUND_PLAYERS_IP} ({QUERY_IP})</b>
+	<table id="tbl" border="0" cellspacing="1">
+		<thead>
+			<th>#</th>
+			<th>{L_NAME}</th>
+			<th>IP</th>
+		</thead>
+		{G_FOUND_PLAYERS}
+		<!-- GTW: found_ip_player -->
+			<tr bgcolor="#C7CCD9">
+				<td>{PLACE}</td>
+				<td align="left"><span class='newsautor'>{PLAYER_NAME}</span></td>
+				<td>{PLAYER_IP}</td>
+			</tr>
+		<!-- GTW: /found_ip_player -->
+	</table>
+	<!-- GTW: else -->
+	<!-- GTW: /if_ip_found -->
+</div>
+<!-- GTW: /main -->

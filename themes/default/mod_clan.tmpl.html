@@ -1,0 +1,66 @@
+// clan
+<!-- GTW: main -->
+<div align="center">
+<br />
+	<b>{L_PLAYERS}</b>
+	<table id="tbl" border="0" cellspacing="1">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>{L_NAME}</th>
+				<th>{L_SCORE} (V)</th>
+				<th>{L_GAMES}</th>
+			</tr>
+		</thead> 
+		{G_PLAYERS}
+		<!-- GTW: player -->
+		<tr bgcolor="#C7CCD9">
+			<td>{PLACE}</td>
+			<td align="left"><span class='newsautor'>{PLAYER_NAME}{IF_LEADER}</span></td>
+			<!-- GTW: if_leader --> <img src="{THEME_ROOT}/images/clan_leader.gif" title="Clan Leader" alt="Clan Leader"><!-- GTW: else --><!-- GTW: /if_leader -->
+			<td><span class='newsnumcom'>{PLAYER_SCORE}</span></td>
+			<td><span class='newsnumcom'>{PLAYER_GAMES}</span></td>
+		</tr>
+		<!-- GTW: /player -->
+	</table>
+<b>{L_CLAN_SCORE}: {CLAN_SCORE} {L_POINTS}</b>
+
+{CLAN_OPTIONS}
+<!-- GTW: if_clan_leader -->
+	<br />
+	<a href="javascript://" onClick="ShowOrHide('cl_frm'); return false;">>{L_CLAN_OPTIONS}<</a>
+	<div id="cl_frm" style="display:none">
+		<div style="border-style:solid; border-width:1px; width: 300px">
+			<form action="/do/clan/add" method="post">
+				<p><b>{L_ADD_PLAYER}</b></p>
+				<p>{L_PLAYER_NAME}:<input type="text" name="plr_name"><br /> {L_OR} <br />
+				{L_PLAYER_ID}:<input type="text" name="plr_id"></p>
+				<p><input type="hidden" name="clanID" value="{CLAN_ID}" />
+					<input type="submit" value="{L_ADD_PLAYER}"></p>
+			</form>
+		</div>
+		<div style="border-style:solid; border-width:1px; width: 300px">
+			<form action="/do/clan/leader"  method="post">
+				<p><b>{L_CHANGE_LEADER}</b></p>
+				<p>{L_PLAYER_NAME}:<input type="text" name="cl_name">
+				<br /> {L_OR} <br />
+				{L_PLAYER_ID}:<input type="text" name="cl_id"></p>
+				<p><input type="hidden" name="clanID" value="{CLAN_ID}" />
+					<input type="submit" value="{L_CHANGE}"></p>
+			</form>
+		</div>
+		<div style="border-style:solid; border-width:1px; width: 300px">
+			<form action="/do/clan/remove"  method="post">
+				<p><b>{L_REMOVE_PLAYER}</b></p>
+				<p>{L_PLAYER_NAME}:<input type="text" name="rem_name">
+				<br /> {L_OR} <br />
+				{L_PLAYER_ID}:<input type="text" name="rem_id"></p>
+				<p><input type="hidden" name="clanID" value="{CLAN_ID}" />
+					<input type="submit" value="{L_REMOVE}"></p>
+			</form>
+		</div>
+	 </div>
+ <!-- GTW: else -->
+ <!-- GTW: /if_clan_leader --> 
+</div>
+<!-- GTW: /main -->

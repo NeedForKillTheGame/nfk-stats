@@ -1,0 +1,125 @@
+﻿// index
+<!-- GTW: main --> 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link type="text/css" rel="StyleSheet" href="{THEME_ROOT}/css/style.css" />
+    <link rel="stylesheet" href="/css/prettyPhoto.css" type="text/css" media="screen" charset="utf-8" />
+	<title>NFK - {PAGE_TITLE}</title>
+	<script type="text/javascript" src="{THEME_ROOT}/javascripts/jquery.js"></script>
+	<script type="text/javascript" src="{THEME_ROOT}/javascripts/ShowOrHide.js"></script>
+    <script src="/js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div align="center">
+	<a href="http://needforkill.ru/">PFF.CLAN.SU</a>: {L_STATS_FROM} <b>Rip, cleanvoice.ru, cleanvoice.com</b> <a href="/do/language/ru"><img src='/images/flags/ru.png' title='Russian' align='absmiddle'></a> <a href="/do/language/en"><img src='/images/flags/gb.png' title='English' align='absmiddle'></a>
+	<br />
+		{G_FORM_LOGIN}
+		<!-- GTW: if_login -->	
+			{G_ATTACH_PLAYER}
+			<!-- GTW: if_attached -->
+				{L_WELCOME}, <b><a href="/profile">{NICK_NOCOLOR}</a></b>! <a href="/logoff">{L_LOGOFF}</a><br>
+			<!-- GTW: else -->
+				<div align="center">
+					{L_WELCOME}, {USER_LOGIN}! <a href="/logoff">{L_LOGOFF}</a><br>
+					<a href="javascript://" onClick="ShowOrHide('attach_frm'); return false;"><b>{L_ATTACH_PLAYER}</b></a>
+					<div id="attach_frm" style="display:none">
+						<div style="border-style:solid; border-width:1px; width: 300px">
+							<form action="/do/user/attach" method="post">
+								<p><b>{L_ATTACH_PLAYERTOACC}</b></p>
+								<p>{L_BY_PLR_NAME}:<input type="text" name="plr_name"><br /> {L_OR} <br />
+								{L_BY_PLR_ID}:<input type="text" name="plr_id"></p>
+								<p><input type="submit" value="{L_ATTACH}"></p>
+							</form>
+						</div>
+					</div>
+				</div>	
+			<!-- GTW: /if_attached -->
+		<!-- GTW: else -->
+			<a href="javascript://" onClick="ShowOrHide('login_frm'); return false;">{L_LOGIN_USER}</a> {L_OR} 
+			<a href="javascript://" onClick="ShowOrHide('reg_frm'); return false;">{L_CREATE_ACC}</a>
+			<div id="login_frm" style="display:none">
+				<form action="/login" method="post">
+					<table>
+						<tr>
+							<td>{L_LOGIN}:</td>
+							<td><input type="text" name="f_login" /></td>
+						</tr>
+						<tr>
+							<td>{L_PASSWORD}:</td>
+							<td><input type="password" name="f_password" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<input type="hidden" name="f_action" value="login" />
+								<input type="submit" value="{L_ENTER}" />
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div id="reg_frm" style="display:none">
+				<form action="/do/user/register" method="post">
+					<table>
+						<tr>
+							<td>{L_LOGIN}:</td>
+							<td><input type="text" name="login" /></td>
+						</tr>
+						<tr>
+							<td>{L_PASSWORD}:</td>
+							<td><input type="password" name="password" /></td>
+						</tr>
+						<tr>
+							<td>E-mail:</td>
+							<td><input type="text" name="email" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input type="submit" value="{L_REGISTER}" /></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		<!-- GTW: /if_login -->
+	<br />
+	<span class="headmenu"><a href="/">{L_MAIN_PAGE}</a></span>
+	<span class="headmenu"><a href="/news">{L_NEWS}</a></span>
+	<span class="headmenu"><a href="/matchlist">{L_MATCHES}</a></span>
+	<span class="headmenu"><a href="/demoslist">{L_DEMOS}</a></span>
+	<span class="headmenu"><a href="/comments">{L_COMMENTS}</a></span>
+	<span class="headmenu"><a href="/maps">{L_MAPS}</a></span>
+	<span class="headmenu"><a href="/search">{L_SEARCH}</a></span>
+	<table>
+		<thead>
+			<tr>
+				<th><a href="/ladder/duel">Duel</a></th>
+				<th><a href="/ladder/dm">DM</a></th>
+				<th><a href="/ladder/tdm">TDM</a></th>
+				<th><a href="/ladder/ctf">CTF</a></th>
+				<th><a href="/ladder/dom">DOM</a></th>
+				<th><a href="/ladder/all">All</a></th>
+				<!--<th><a href="/seasons">{L_SEASONS}</a></th>-->
+			</tr>
+		</thead>
+	</table>
+	<span class="headmenu"><a href="/clans">{L_CLAN_LADDER}</a></span>
+	<span class="headmenu"><a href="/tourneys">{L_TOURNEYS}</a></span>
+	<span class="headmenu"><a href="/seasons">{L_SEASONS}</a></span>
+	<br />
+	<br />
+
+	<b>{PAGE_NAME}</b>
+	{SUB_NAME}
+
+	{OVERLAY_CONTENT}
+	{IF_LOGGED2}
+	{CONTENT}
+	<br>
+	{L_VERSION}: {ENGINE_VERSION} {L_BY} <a href="http://pff.clan.su/index/0-2">PFF-Team</a><br />
+			{L_PAGE_GEN_IN} {PAGE_GEN_TIME} {L_SEC}.
+</div>
+</body>
+</html>
+<!-- GTW: /main -->
