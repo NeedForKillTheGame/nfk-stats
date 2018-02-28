@@ -32,7 +32,7 @@ $MARKERS = Array(
 
 	'PLAYER_ID' => $plr['playerID'],
 	
-	'MY_ID' => $targetUsr['id'],
+	'MY_ID' => $targetUsr,
 	
 	'L_FILL_MATCH_LIST' => $dict->data['full_match_list'],
 	'L_FILL_DUEL_LIST' => $dict->data['full_duel_list'],
