@@ -13,3 +13,9 @@
 ## Write permissions
 * `demos/`
 * `mods/inc/dateflag.txt`
+
+## Deny permissions from outside
+* `mods`
+* `langs`
+* `inc`
+* `cron`
