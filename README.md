@@ -14,7 +14,7 @@
 * `demos/`
 * `mods/inc/dateflag.txt`
 
-## Deny permissions from outside
+## Deny access from outside
 * `mods`
 * `langs`
 * `inc`
