@@ -2,6 +2,7 @@
 if (!defined("NFK_LIVE")) die("error");
 
 // Delete old demos
+/*
 $demos_dir = "demos/";
 $res = $db->select("matchID, dateTime, demo, dlnum","matchList",
 						"WHERE demo <> '' 
@@ -15,6 +16,7 @@ foreach ($res as $row) {
 		}
 	}
 }
+*/
 // END
 
 // Update all rating

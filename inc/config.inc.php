@@ -3,7 +3,7 @@ $CFG = Array (
     'db_host'			=> '127.0.0.1',
     'db_name'			=> 'stats',
     'db_login'			=> 'stats',
-    'db_pass'			=> 'egTprEnS3UMm3MErCatDbibfx',
+    'db_pass'			=> '',
     'db_prefix'			=> 'nfkLive',
 	
     'debug_mode'		=> true,
@@ -15,7 +15,7 @@ $CFG = Array (
 	
 	'items_per_page'	=> 30,
 );
-define("NFKPLANET_HOST", "10.100.70.8");
+define("NFKPLANET_HOST", "local.planet.needforkill.ru");
 
 $COLORS = Array (
 	'1' 			=> '#FF0000',
