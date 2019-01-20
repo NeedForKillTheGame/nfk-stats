@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# run every 10 min
+# run every 1 hour
 
 cd /var/www/cron
 

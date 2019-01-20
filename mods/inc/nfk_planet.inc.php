@@ -170,10 +170,11 @@
 	//returns array with servers currently on NFK Planet
 	function nfkpl_getServers()
 	{
-// check port availability with timeout (timeout doesn't work on windows using socket_set_option)
-if(!@fsockopen(NFKPL_ADDRESS, NFKPL_PORT, $errCode, $errStr, 2)) {
-	throw new \Exception('Host ' . NFKPL_ADDRESS . ' is not responding (' . $errCode . '): ' . $errStr, $errCode);
-}
+		// check port availability with timeout (timeout doesn't work on windows using socket_set_option)
+		if(!@fsockopen(NFKPL_ADDRESS, NFKPL_PORT, $errCode, $errStr, 2)) {
+			throw new \Exception('Host ' . NFKPL_ADDRESS . ' is not responding (' . $errCode . '): ' . $errStr, $errCode);
+		}
+		
 		$sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 		
 		if ($sock === false)

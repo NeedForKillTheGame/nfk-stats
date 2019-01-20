@@ -7,7 +7,8 @@
 
 <html>
 <head>
-<title>NFK Planet Scaner</title>
+<title>NFK Planet Scanner</title>
+<meta charset="utf-8">
 <link type="text/css" rel="StyleSheet" href="http://needforkill.ru/_st/my.css" />
 <style>
 body {background: #ebebeb;}
@@ -35,22 +36,24 @@ SCROLLBAR-ARROW-COLOR:#E8EAED;
 */
 
 ?>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
 </head>
 <BODY>
 <?php
 
+require_once("inc/config.inc.php");
 require_once("mods/inc/nfk_planet.inc.php");
 function stripNameColor($nick)
 {
-	for ($i = 0; $i<=strlen($nick); $i++ )
+	$pure = "";
+	for ($i = 0; $i < strlen($nick); $i++ )
 	{
-		if (($nick[$i] != '^') and ($nick[$i-1] != '^'))
+		if (($nick[$i] != '^') && $i > 0 && ($nick[$i-1] != '^'))
 				$pure .= $nick[$i];
 	}
 	
 	return $pure;
 }
+
 function cmpServers($a, $b)
 {
     if ($a['Players'] == $b['Players']) {
@@ -58,7 +61,7 @@ function cmpServers($a, $b)
     }
     return ($a['Players'] > $b['Players']) ? -1 : 1;
 }
-
+$html = "";
 $servers = nfkpl_getServers();
 $playersCount = 0;
 if (count($servers) == 0)
@@ -67,15 +70,16 @@ if (count($servers) == 0)
 }
 else
 {
-usort($servers, "cmpServers");
-$html .= '<table class="eBlock1">'
-	.'<tr><td width="190"><b>Хост</b></td>'
-                .'<td width="130"><b>Карта</b></td>'
-                .'<td width="120"><b>Тип</b></td>'
-                .'<td width="120"><b>Игроки</b></td>'
+	usort($servers, "cmpServers");
+	$html .= '<table class="eBlock1">'
+	.'<tr><td width="190"><b>Host</b></td>'
+                .'<td width="130"><b>Map</b></td>'
+                .'<td width="120"><b>Type</b></td>'
+                .'<td width="120"><b>Players</b></td>'
                 .'<td width="120"><b>IP</b></td></tr>';
     foreach ($servers as $key => $server)
-    {preg_replace('/\W/', '', $a);
+    {
+		//preg_replace('/\W/', '', $a);
 		$hostlink = stripNameColor($server['Hostname']);
 		$hostlinkx = $hostlink;
 		$hostlink = str_replace("#", "%23", $hostlink); 
