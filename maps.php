@@ -26,7 +26,7 @@ $SITE = <<<HTML
 </head>
 <body>
 <div align="center">
-<span class="headmenu"><a href="http://needforkill.ru/">PFF.CLAN.SU</a></span> <span class="headmenu"><a href="http://nfk.pro2d.ru/">NFK.PRO2D.RU</a></span>
+<span class="headmenu"><a href="http://needforkill.ru/">PFF.CLAN.SU</a></span> <span class="headmenu"><a href="http://stats.needforkill.ru/">STATS.NEEDFORKILL.RU</a></span>
 <br />
 <br />
 Топ 100 карт

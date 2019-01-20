@@ -101,7 +101,7 @@ switch ($act) {
         }
         echo json_encode(array(
             'id' => $match['matchID'],
-            'file' => 'http://nfk.pro2d.ru/demos/' . urlencode($match['demo']),
+            'file' => 'http://stats.needforkill.ru/demos/' . urlencode($match['demo']),
             'date' => strtotime($match['dateTime']),
             'gametype' => $match['gameType'],
             'duration' => $match['gameTime'],

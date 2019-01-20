@@ -721,10 +721,10 @@ function getIcons($player, $profile = true, $flag = true, $ico = true, $colored 
 	} else $flag_ico = "";
 	
 	if ($ico) {
-		if (!in_array($modelname[0],$arr_model)) $player['model'] = "sarge_default";
 		$i_title = $player['model'];
 		$modelname = explode('_', $player['model']);
 		$arr_model = array("crashed", "doom", "doom2", "keel", "sarge", "xaero", "klesk2", "ranger");
+		if (!in_array($modelname[0],$arr_model)) $player['model'] = "sarge_default";
 		if ($player['model']=="") $player['model'] = "sarge_default";
 		$ico_img = "<img src='/images/players/icon_15/$player[model].png' title='$i_title' align='absmiddle'> ";
 	} else $ico_img = "";
@@ -794,6 +794,8 @@ function GetPID($name) {
 	global $db;
 	$name = iconv('CP1251','UTF-8',$name);
 	$player = $db->select("playerID","playerStats","WHERE `name`='$name' LIMIT 1");
+	if ( count($player) == 0)
+		return false;
 	$playerID = $player[0]['playerID'];
 	if ((is_numeric($playerID)) and ($playerID > 0)) {
 		return $playerID;

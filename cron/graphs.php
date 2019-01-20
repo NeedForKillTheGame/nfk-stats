@@ -2,7 +2,10 @@
 error_reporting(E_ALL);
 if (!defined("NFK_LIVE")) define("NFK_LIVE", true);
 
-$cronPeriod = $_GET['period'];
+if ($argc != 2)
+	die("Usage graphs.php [period]]");
+
+$cronPeriod = $argv[1];
 
 require_once("../inc/config.inc.php");
 require_once("../inc/functions.inc.php");
@@ -75,7 +78,7 @@ if ($cronPeriod == 'graph-7days') {
 	for ($i = $statDays; $i >= 0; $i--) {
 		$time = strtotime("-$i days");
 		$day = date('Y-m-d',$time);
-		$players[] = ($stats[$day])?$stats[$day]:0;
+		$players[] = isset($stats[$day]) ? $stats[$day] : 0;
 		$daysLabel[] = strftime('%e%a',$time); //  iconv("windows-1251", "UTF-8",strftime('%#d%a',$time));
 	}
 	$MyData = new pData();   
@@ -129,8 +132,8 @@ if ($cronPeriod == 'graph-62days') {
 	for ($i = $statDays; $i >= 1; $i--) {
 		$time = strtotime("-$i days");
 		$day = date('Y-m-d',$time);
-		$players[] = ($statsPlayers[$day])?$statsPlayers[$day]:0;
-		$matches[] = ($statsMatches[$day])?$statsMatches[$day]:0;
+		$players[] = isset($statsPlayers[$day]) ? $statsPlayers[$day] : 0;
+		$matches[] = isset($statsMatches[$day]) ? $statsMatches[$day] : 0;
 		$daysLabel[] = strftime('%m.%e %a',$time); //  iconv("windows-1251", "UTF-8",strftime('%m/%#d%a',$time));
 	}
 	$MyData = new pData();   

@@ -430,7 +430,8 @@
 		}	
 	  for($j=1;$j<=$GameNumRows;$j++)
 		{
-		  $Game[$j]['timeCoef'] = ($Game[$j+1]['time'])/$maxTime;
+		  if ( isset($Game[$j+1]) )
+			$Game[$j]['timeCoef'] = ($Game[$j+1]['time'])/$maxTime;
 		}
 	  $AddAll = 8+50*exp(1-9/($GameNumRows+1));
 	  $AddAllWin = $AddAll*sqrt($SumReiting2Win)/(sqrt($SumReiting2Win)+sqrt($SumReiting2Lose));
@@ -504,9 +505,9 @@
 		  $Game[$j]['CtfReiting']=$Game[$j]['CtfReiting']+$ChangeReiting; 	
 		  mysqli_query($db->link,"UPDATE AltStat_Players SET CtfReiting='{$Game[$j]['CtfReiting']}', RailWin='{$Game[$j]['CtfWin']}', CtfGame='{$Game[$j]['CtfGame']}' WHERE PlayerId='{$Game[$j]['playerID']}'") or die("Error".mysqli_error($db->link));
 								//Inc clan score
-			$plr_id = $Game[$j][playerID];
+			$plr_id = $Game[$j]['playerID'];
 			$clanID = mysqli_fetch_array(mysqli_query($db->link,"SELECT clanID, playerID FROM nfkLive_playerStats WHERE playerID='$plr_id'"));
-			$clanID = $clanID[clanID];
+			$clanID = $clanID['clanID'];
 			if ($clanID <> 0) {
 				mysqli_query($db->link,"UPDATE `nfkLive_clanList` SET score=score+$ChangeReiting WHERE clanID='$clanID'");
 				mysqli_query($db->link,"UPDATE `nfkLive_playerStats` SET clanScore=clanScore+$ChangeReiting, clanGames=clanGames+1 WHERE playerID='$plr_id'");

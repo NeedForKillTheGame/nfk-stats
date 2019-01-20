@@ -7,6 +7,8 @@
 // Version:	0.1.14	14.07.2011
 /////////////////////////////////////////////
 //if ($_SERVER['REMOTE_ADDR']<>'158.46.2.34' ) die("<h1 align='center'>SITE UNDER CONSTRUCTION</h1>");
+
+
 if (!defined("NFK_LIVE")) define("NFK_LIVE", true);
 ini_set('display_errors', 1);
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
@@ -30,7 +32,6 @@ require("inc/classes.inc.php");
 
 // skin
 $template = new skin();
-
 // db connect
 $db = new db();
 $db->connect
@@ -58,9 +59,9 @@ if (in_array($_COOKIE['_nllang'],$lang_arr)) {
 		setCookie("_nllang", "en" , 0, "/"); 
 		$CUR_LANG = 'en';
 	};
-	
+
 require "mods/inc/bans.php";
-	
+
 // user
 $me = new user();
 $user = new user();
@@ -112,17 +113,19 @@ $xdata = $_SESSION['me_data'];
 $page_title = $dict->data['main_page'];
 $page_name = $dict->data['main_page'];
 
-
 require_once('inc/autoloader.php');
 Autoloader::register();
 // default module
 if ($module == '') $module = $CFG['default_page'];
 
+
 if (file_exists("./mods/".$module.".mod.php")) {
     // this is module
 	$CUR_ADDRES .=$module."/";
     $template->setRoute($module);
+
     include("./mods/".$module.".mod.php");
+
 } else {
     // it could be node then, check it
     $res = $db->select("id","nodes","where `alias` = '$module'");
@@ -137,6 +140,7 @@ if (file_exists("./mods/".$module.".mod.php")) {
 		include("./mods/node.mod.php");
     }
 }
+	
 
 $template->load_template('overall');
 

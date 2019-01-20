@@ -1,9 +1,9 @@
 <?php
 $CFG = Array (
     'db_host'			=> '127.0.0.1',
-    'db_name'			=> 'pro2dru_nfk',
-    'db_login'			=> 'pro2dru_nfk',
-    'db_pass'			=> 'nuxqXbKP8jWF9HXr',
+    'db_name'			=> 'stats',
+    'db_login'			=> 'stats',
+    'db_pass'			=> 'egTprEnS3UMm3MErCatDbibfx',
     'db_prefix'			=> 'nfkLive',
 	
     'debug_mode'		=> true,
@@ -15,6 +15,7 @@ $CFG = Array (
 	
 	'items_per_page'	=> 30,
 );
+define("NFKPLANET_HOST", "10.100.70.8");
 
 $COLORS = Array (
 	'1' 			=> '#FF0000',

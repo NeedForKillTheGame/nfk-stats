@@ -35,9 +35,10 @@ switch ( $PARAMSTR[3] ) {
 		
 		
 		if (($cmt <> "") & ($NickName<>"")) {
-			include('inc/AntiMat.class.php');
-			$am = new AntiMat;
-			$f_cmt = $am->filter($cmt);
+			//require_once('inc/AntiMat.class.php');
+			//$am = new AntiMat();
+			//$f_cmt = $am->filter($cmt);
+			$f_cmt = $cmt; // FIXME: (harpywar) upper code does not work by a reason
 			$cell = Array (
 				"materialID"	=> $materialID,
 				'moduleID'		=> $moduleID,

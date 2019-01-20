@@ -1,5 +1,5 @@
 <?php
-	define("NFKPL_ADDRESS", "planet.needforkill.ru");
+	define("NFKPL_ADDRESS", NFKPLANET_HOST);
 	define("NFKPL_PORT", 10003);
 	
 	//ob_implicit_flush();
@@ -170,6 +170,10 @@
 	//returns array with servers currently on NFK Planet
 	function nfkpl_getServers()
 	{
+// check port availability with timeout (timeout doesn't work on windows using socket_set_option)
+if(!@fsockopen(NFKPL_ADDRESS, NFKPL_PORT, $errCode, $errStr, 2)) {
+	throw new \Exception('Host ' . NFKPL_ADDRESS . ' is not responding (' . $errCode . '): ' . $errStr, $errCode);
+}
 		$sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 		
 		if ($sock === false)

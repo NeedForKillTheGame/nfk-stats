@@ -88,9 +88,9 @@ switch ( $PARAMSTR[3] ) {
 	case "register" :
 		$BACKADDRES = "";
 		if ((trim($_POST['login'])<>'') && (trim($_POST['password'])<>'') && (trim($_POST['email'])<>'')) {
-			$login = mysql_real_escape_string($_POST['login']);
+			$login = my_escape_mysql_str($_POST['login']);
 			$password = md5($_POST['password']);
-			$email = mysql_real_escape_string($_POST['email']);
+			$email = my_escape_mysql_str($_POST['email']);
 			
 			$res = $db->insert('users', Array(
 				'login'			=> "'$login'",
@@ -157,5 +157,13 @@ switch ( $PARAMSTR[3] ) {
 	default: header("Location: /");
 }
 
+// FIXME: use pdo
+function my_escape_mysql_str($var) {
+	$var=stripslashes($var);
+	$var=htmlentities($var);
+	$var=strip_tags($var);
+	//$var=mysql_real_escape_string($var); // does not work in PHP7
+	return $var;
+}
 
 ?>

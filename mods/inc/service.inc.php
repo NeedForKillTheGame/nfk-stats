@@ -2,7 +2,7 @@
 if (!defined("NFK_LIVE")) die("error");
 
 // Delete old demos
-$demos_dir = "/home/vhosts/pro2d.ru/web/nfk/demos/";
+$demos_dir = "demos/";
 $res = $db->select("matchID, dateTime, demo, dlnum","matchList",
 						"WHERE demo <> '' 
 						AND dateTime <= DATE_SUB(CURDATE(), INTERVAL 7 DAY) 

@@ -7,7 +7,10 @@ require_once("../inc/classes.inc.php");
 $db = new db();
 $db->connect($CFG['db_host'], $CFG['db_login'], $CFG['db_pass'], $CFG['db_name'], $CFG['db_prefix']);
 
-$action = $_GET['action'];
+if ($argc != 2)
+	die("Usage tourneys.php [action]]");
+
+$action = $argv[1];
 
 switch ($action) {
 	case "tourney-start":

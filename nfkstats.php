@@ -1,11 +1,15 @@
 <?php
 if (!defined("NFK_LIVE")) define("NFK_LIVE", true);
-ini_set('display_errors',1);
+#ini_set('display_errors',1);
 $G = $_GET;
 //if (!$G['dllvers']) die("Hello World!");
 //if ($G['dllvers']<45) die('ERROR:001 Your DLL Version is not suported on this server.');
-$act = $G['action'];
+$act = isset($G['action']) ? $G['action'] : false;
 //if ($act == '') die('ERROR:002 Action cannot be empty');
+
+// DEBUG (save all requests into a file)
+#file_put_contents("demos/helloworld", "\n\n--------------------------------\n[" . date("d.m.Y H:i:s") . "]\n" . var_export($_REQUEST, true), FILE_APPEND);
+
 
 // Configuration
 require("inc/config.inc.php");
@@ -22,9 +26,9 @@ $db->connect(
     $CFG['db_name'],
     $CFG['db_prefix']
 );
-$uploadDir = "/home/vhosts/pro2d.ru/web/nfk/demos/";
+$uploadDir = "demos/";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($_POST['version'] >= 99) {
+    if (isset($_POST['version']) && $_POST['version'] >= 99) {
         switch ($_POST['action']) {
             case 'addMatch':
                 $info = json_decode($_POST['match']);
@@ -72,9 +76,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             $db->insert("ladderCTF", Array('playerID' => "'$playerID'",));
                             $db->insert("ladderDUEL", Array('playerID' => "'$playerID'",));
                         }
-                        $win = ?;
-                        $modScore = ?;
-                        $lose = ?;
+                        $win = 0;
+                        $modScore = 0;
+                        $lose = 0;
                         $db->insert("matchData", Array(
                             'matchID' => "'$matchID'", 'playerID' => "'$playerID'", 'frags'	=> "'$player[frags]'",
                             'deaths' => "'$player[deaths]'", 'team' => "'$player[team]'", 'win' => "'$win'",
@@ -154,8 +158,8 @@ switch ($act) {
 			'gameType'		=> "'$G[gametype]'",
 			'timeLimit'		=> "'$G[timelimit]'",
 			'players'		=> "'$G[players]'", 
-			'redScore'		=> "'$G[redscore]'",
-			'blueScore'		=> "'$G[bluescore]'",
+			'redScore'		=> isset($G['redscore']) ? "'$G[redscore]'" : false,
+			'blueScore'		=> isset($G['bluescore']) ? "'$G[bluescore]'" : false,
 			'dateTime'		=> "NOW()",
 			'gameTime'		=> "'$G[matchtime]'",
 		));
@@ -308,7 +312,7 @@ switch ($act) {
 		$summ_hits = $G['gaun_hits']+$G['mach_hits']+$G['shot_hits']+$G['gren_hits']+$G['rocket_hits']
 					+$G['shaft_hits']+$G['plasma_hits']+$G['rail_hits']+$G['bfg_hits'];
 		// Summ fire
-		$summ_fire = $G['gaun_fire']+$G['mach_fire']+$G['shot_fire']+$G['gren_fire']+$G['rocket_fire']
+		$summ_fire = (isset($G['gaun_fire']) ? $G['gaun_fire'] : 0) + $G['mach_fire']+$G['shot_fire']+$G['gren_fire']+$G['rocket_fire']
 					+$G['shaft_fire']+$G['plasma_fire']+$G['rail_fire']+$G['bfg_fire'];
 		
 		// INSERT MATCH DATA
@@ -317,13 +321,13 @@ switch ($act) {
 			'playerID'		=> "'$playerID'",
 			'frags'			=> "'$G[frags]'",
 			'deaths'		=> "'$G[deaths]'",
-			'team'			=> "'$G[team]'", 
+			'team'			=> isset($G['team']) ? "'$G[team]'" : 0, 
 			'win'			=> "'$win'",
-			'score'			=> "'$G[modscore]'",
+			'score'			=> isset($G['modscore']) ? "'$G[modscore]'" : 0,
 			'ping'			=> "'$G[ping]'",
 			'time'			=> "'$G[time]'",
 			'IP'			=> "'$G[ip]'",
-			'suisides'		=> "'$G[suisides]'",
+			'suisides'		=> isset($G['suisides']) ? "'$G[suisides]'" : 0,
 			'dmgrecvd'		=> "'$G[dmgrecvd]'",
 			'dmggiven'		=> "'$G[dmggiven]'",
 			'bfg_hits'		=> "'$G[bfg_hits]'", 
@@ -356,6 +360,7 @@ switch ($act) {
 		// UPDATE LADDER STATS
 		//if ($G['limit']<>'1') {
 			if ($win==-1) $win=0;
+			$duelTable = false;
 			if ($gtype == 'DUEL') {$duelTable = ", rank=$G[rank], score=score+$G[modscore]";};
 			$db->update($dbase,
 						"time=time+$G[time],
@@ -368,6 +373,7 @@ switch ($act) {
 						$duelTable",
 						"WHERE `playerID` = '$playerID'");
 						
+			$updateClanScore = false;
 			// UPDATE CLAN SCORE
 			if ($gtype == 'DUEL') {
 				$clanID = $db->select("clanID","playerStats","WHERE `playerID`='$playerID'");
@@ -426,7 +432,7 @@ switch ($act) {
 	
 	
 	case 'upload':
-		$uploaddir = "/home/vhosts/pro2d.ru/web/nfk/demos/"; 
+		$uploaddir = "demos/"; 
 		$filename = "$_GET[id]_".basename($_FILES['userfile']['name']);
 		$filename = iconv('CP1251','UTF-8',$filename);
 		$uploadfile = $uploaddir . $filename;
