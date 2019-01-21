@@ -42,7 +42,8 @@ class db {
 	public function connect($db_host, $db_login, $db_pass, $db_name, $db_prefix) {
 		
 		$this->prefix = $db_prefix;
-		$this->link = mysqli_connect($db_host, $db_login, $db_pass, $db_name); 
+		if (!($this->link = mysqli_connect($db_host, $db_login, $db_pass, $db_name)))
+			throw new Exception("No connection to database");
 		
 		//$this->link = mysql_connect($db_host, $db_login, $db_pass);
         mysqli_set_charset($this->link, "utf8");
@@ -61,7 +62,7 @@ class db {
 	}
 
     public function clean($string) {
-        return mysqli_real_escape_string($this->link, $string);
+        return $this->_escape($string);
     }
 
  	public function query($a) {
@@ -130,7 +131,7 @@ class db {
 		foreach ($cell_array as $key => $value ) {
 			$keys[] = $key;
             if ($cleanString) {
-                $values[] = '"'.mysqli_real_escape_string($this->link, $value).'"';
+                $values[] = '"'.$this->_escape($value).'"';
             } else {
                 $values[] = $value;
             }
@@ -139,6 +140,9 @@ class db {
 		$keys = implode(",",$keys);
 		$values = implode(",",$values);
 		//echo("<pre>insert into $table ($keys) values ($values)</pre>");
+		
+		$this->_log("insert into $table ($keys) values ($values);");
+		
 		$q = mysqli_query($this->link,"insert into $table ($keys) values ($values)");
 		if ($q) { return mysqli_insert_id($this->link); } else { 
 			print( strip_tags( mysqli_error($this->link) ) );
@@ -147,7 +151,7 @@ class db {
 		// return false;
 	}
 	
-	public function insert2($table,$cell_array,$addParam) {
+	public function insert2($table,$cell_array,$addParam = '') {
 		// clean input
 		//$table = $this->prefix."_".$table;
 		//$cell_array = clean('arr', $cell_array);
@@ -158,6 +162,8 @@ class db {
 		}
 		$keys = implode(",",$keys);
 		$values = implode(",",$values);
+		
+		$this->_log("insert2 into $table ($keys) values ($values) $addParam");
 		$q = mysqli_query($this->link,"insert into $table ($keys) values ($values) $addParam");
 		//echo "insert into $table ($keys) values ($values) $addParam";
 		if ($q) { return mysqli_insert_id($this->link); } else print( strip_tags( mysqli_error($this->link) ) );
@@ -176,6 +182,8 @@ class db {
 		}
 		$items = implode(",",$items);*/
 		//echo ("update $table SET $cell_array $condition");
+		$this->_log("update $table SET $cell_array $condition");
+		
 		$q = mysqli_query($this->link,"update $table SET $cell_array $condition") or print( strip_tags( mysqli_error($this->link) ) );
 		if ($q) { return true; } else return false;
 	}
@@ -190,6 +198,8 @@ class db {
 		}
 		$items = implode(",",$items);*/
 		//echo ("update $table SET $cell_array $condition");
+		$this->_log("update2 $table SET $cell_array $condition");
+		
 		$q = mysqli_query($this->link,"update $table SET $cell_array $condition") or print( strip_tags( mysqli_error($this->link) ) );
 		if ($q) { return true; } else return false;
 	}
@@ -215,6 +225,23 @@ class db {
 			while(mysqli_next_result($this->link));
 		unset($q);
 		return $result;
+	}
+	
+	private function _escape($value)
+	{
+		$search = array("\\",  "\x00", "\n",  "\r",  "'",  '"', "\x1a");
+		$replace = array("\\\\","\\0","\\n", "\\r", "\'", '\"', "\\Z");
+
+		return str_replace($search, $replace, $value);
+	}
+	
+	// just for debug log all insert and update queries
+	private $logfile = "/var/www/demos/queries";
+	private $enableLogQueries = false;
+	private function _log($line)
+	{
+		if ($this->enableLogQueries)
+			file_put_contents($this->logfile, date("[d.m.Y H:i:s] ") . $line . "\n", FILE_APPEND);
 	}
 }
 
@@ -393,7 +420,7 @@ class user {
 	// find user by name
 	public function fetchName($user_name) {
 		global $db;
-		$user_name = mysqli_real_escape_string($db->link,$user_name);
+		$user_name = $db->clean($user_name);
 		$user_id = clean('str',$user_name);
 		$table_users = $db->prefix . "_users";
 		$q = mysqli_query($db->link,"select * from `$table_users` where `login` = '$user_name'");
@@ -432,7 +459,7 @@ class player
 	// find player by name
 	public function fetchName($player_name) {
 		global $db;
-		$player_name = mysqli_real_escape_string($db->link,$player_name);
+		$player_name = $db->clean($player_name);
 		//$table_players = $db->prefix . "_";
 		$res = $db->select('*','playerStats',"WHERE name = '$player_name'");
 		//$q = mysqli_query($db->link,"select * from `$table_players` where `name` = '$player_name'");
