@@ -345,6 +345,7 @@ $MARKERS = Array
 		"L_SCORE"			=> $dict->data['score'],
 		"L_OVERALL_RATING"	=> $dict->data['overall_rating'],
 		"L_SEASON"			=> $dict->data['season'],
+		"CUR_SEASON"			=> CUR_SEASON,
 		"L_TOUR_RATING"			=> $dict->data['tour_ladder'],
 		"L_LAST_NEWS"			=> $dict->data['last_news'],
 	);

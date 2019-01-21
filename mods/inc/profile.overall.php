@@ -354,6 +354,7 @@ $MARKERS = Array (
 	'L_LEAVE_CLAN'			=> $dict->data['leave_clan'],
 	'L_PLAYER_STATISTICS'	=> $dict->data['player_statistics'],
 	'L_SEASON'				=> $dict->data['season'],
+	"CUR_SEASON"			=> CUR_SEASON,
 	'L_LOADING'				=> $dict->data['loading'],
 	'L_RANK'				=> $dict->data['rank'],
 	'L_WINS'				=> $dict->data['wins'],

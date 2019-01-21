@@ -17,6 +17,14 @@ $CFG = Array (
 );
 define("NFKPLANET_HOST", "local.planet.needforkill.ru");
 
+// season label for the main page
+define("CUR_SEASON", "2019");
+// to create new season navigate to https://stats.needforkill.ru/do/new_seasonJGA/8 (instead of 8 any number)
+// it will save data to the last item into "seasons" table and clear players stats
+// then insert new item into "seasons", it will be next season which will bi filled on next "new_seasonJGA" execution
+
+
+
 $COLORS = Array (
 	'1' 			=> '#FF0000',
 	'2' 			=> '#00FF00',

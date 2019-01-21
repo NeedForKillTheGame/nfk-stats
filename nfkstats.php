@@ -1,6 +1,7 @@
 <?php
 if (!defined("NFK_LIVE")) define("NFK_LIVE", true);
-#ini_set('display_errors',1);
+ini_set('display_errors',1);
+error_reporting(E_ALL);
 $G = $_GET;
 //if (!$G['dllvers']) die("Hello World!");
 //if ($G['dllvers']<45) die('ERROR:001 Your DLL Version is not suported on this server.');
@@ -41,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     'gameType' => "'$match[gametype]'",
                     'timeLimit' => "'$match[timelimit]'",
                     'players' => "'$match[players]'",
-                    'redScore' => "'$match[redscore]'",
-                    'blueScore' => "'$match[bluescore]'",
+                    'redScore' => isset($match['redscore']) ? "'$match[redscore]'" : "''",
+                    'blueScore' => isset($match['redscore']) ? "'$match[bluescore]'" : "''",
                     'dateTime' => "NOW()",
                     'gameTime' => "'$match[matchtime]'",
                 ));
@@ -158,8 +159,8 @@ switch ($act) {
 			'gameType'		=> "'$G[gametype]'",
 			'timeLimit'		=> "'$G[timelimit]'",
 			'players'		=> "'$G[players]'", 
-			'redScore'		=> isset($G['redscore']) ? "'$G[redscore]'" : false,
-			'blueScore'		=> isset($G['bluescore']) ? "'$G[bluescore]'" : false,
+			'redScore'		=> isset($G['redscore']) ? "'$G[redscore]'" :  "''",
+			'blueScore'		=> isset($G['bluescore']) ? "'$G[bluescore]'" :  "''",
 			'dateTime'		=> "NOW()",
 			'gameTime'		=> "'$G[matchtime]'",
 		));
@@ -216,7 +217,7 @@ switch ($act) {
 	case 'checkduel':
 		//die("OK");
 		// Проверка карты
-		/*$mapName = mysqli_real_escape_string($db->link,$_GET['map']);
+		/*$mapName = $db->clean($_GET['map']);
 		if ($mapName) {
 			$db->instert2('mapList',Array('mapName'=>"'$mapName'"),
 							'ON DUPLICATE KEY UPDATE gamesNum=gamesNum+1');
@@ -312,7 +313,7 @@ switch ($act) {
 		$summ_hits = $G['gaun_hits']+$G['mach_hits']+$G['shot_hits']+$G['gren_hits']+$G['rocket_hits']
 					+$G['shaft_hits']+$G['plasma_hits']+$G['rail_hits']+$G['bfg_hits'];
 		// Summ fire
-		$summ_fire = (isset($G['gaun_fire']) ? $G['gaun_fire'] : 0) + $G['mach_fire']+$G['shot_fire']+$G['gren_fire']+$G['rocket_fire']
+		$summ_fire = (isset($G['gaun_fire']) ? $G['gaun_fire'] : '') + $G['mach_fire']+$G['shot_fire']+$G['gren_fire']+$G['rocket_fire']
 					+$G['shaft_fire']+$G['plasma_fire']+$G['rail_fire']+$G['bfg_fire'];
 		
 		// INSERT MATCH DATA
@@ -321,13 +322,13 @@ switch ($act) {
 			'playerID'		=> "'$playerID'",
 			'frags'			=> "'$G[frags]'",
 			'deaths'		=> "'$G[deaths]'",
-			'team'			=> isset($G['team']) ? "'$G[team]'" : 0, 
+			'team'			=> isset($G['team']) ? "'$G[team]'" : "''", 
 			'win'			=> "'$win'",
-			'score'			=> isset($G['modscore']) ? "'$G[modscore]'" : 0,
+			'score'			=> isset($G['modscore']) ? "'$G[modscore]'" : "''",
 			'ping'			=> "'$G[ping]'",
 			'time'			=> "'$G[time]'",
 			'IP'			=> "'$G[ip]'",
-			'suisides'		=> isset($G['suisides']) ? "'$G[suisides]'" : 0,
+			'suisides'		=> isset($G['suisides']) ? "'$G[suisides]'" : "''",
 			'dmgrecvd'		=> "'$G[dmgrecvd]'",
 			'dmggiven'		=> "'$G[dmggiven]'",
 			'bfg_hits'		=> "'$G[bfg_hits]'", 
