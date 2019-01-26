@@ -9,6 +9,7 @@ switch ( $PARAMSTR[3] ) {
 				if ($_POST['plr_name']<>'') {
 					if (!is_numeric($_POST['plr_name'])) {
 						$att_name = parseString($_POST['plr_name']);
+						$att_name = $db->clean($att_name);
 						$q_plr_id = $db->select("`playerID`, `userID`","playerStats","WHERE `name`='$att_name' LIMIT 1");
 						$plr_id = $q_plr_id[0]['playerID'];
 						$plr_userid = $q_plr_id[0]['userID'];
@@ -44,6 +45,7 @@ switch ( $PARAMSTR[3] ) {
 			if (($xdata['playerID']<>0) and ($xdata['playerID']<>"")) {
 				$newnick = $_POST['nickname'];
 				if ( (!is_numeric($newnick)) and ($newnick<>'') ) {
+					$newnick = $db->clean($newnick);
 					$sql = $db->select("`playerID`","playerStats","WHERE `name`='$newnick' LIMIT 1");
 					if (count($sql) == 0) {
 						$db->update("playerStats","name = '$newnick', nick = '$newnick'","WHERE playerID='$xdata[playerID]' LIMIT 1");
@@ -88,9 +90,9 @@ switch ( $PARAMSTR[3] ) {
 	case "register" :
 		$BACKADDRES = "";
 		if ((trim($_POST['login'])<>'') && (trim($_POST['password'])<>'') && (trim($_POST['email'])<>'')) {
-			$login = my_escape_mysql_str($_POST['login']);
+			$login = $db->clean(trim($_POST['login']));
 			$password = md5($_POST['password']);
-			$email = my_escape_mysql_str($_POST['email']);
+			$email = $db->clean(trim($_POST['email']));
 			
 			$res = $db->insert('users', Array(
 				'login'			=> "'$login'",
@@ -155,15 +157,6 @@ switch ( $PARAMSTR[3] ) {
 	break;
 	
 	default: header("Location: /");
-}
-
-// FIXME: use pdo
-function my_escape_mysql_str($var) {
-	$var=stripslashes($var);
-	$var=htmlentities($var);
-	$var=strip_tags($var);
-	//$var=mysql_real_escape_string($var); // does not work in PHP7
-	return $var;
 }
 
 ?>

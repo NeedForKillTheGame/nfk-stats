@@ -8,9 +8,6 @@ $G = $_GET;
 $act = isset($G['action']) ? $G['action'] : false;
 //if ($act == '') die('ERROR:002 Action cannot be empty');
 
-// DEBUG (save all requests into a file)
-#file_put_contents("demos/helloworld", "\n\n--------------------------------\n[" . date("d.m.Y H:i:s") . "]\n" . var_export($_REQUEST, true), FILE_APPEND);
-
 
 // Configuration
 require("inc/config.inc.php");
@@ -19,6 +16,13 @@ require("inc/functions.inc.php");
 // Classes
 require("inc/classes.inc.php");
 // db connect
+
+if (LOG_RESPONSES)
+{
+	file_put_contents(RESPONSE_LOG_FILE, "\n\n--------------------------------\n[" . date("d.m.Y H:i:s") . "]\n" . var_export($_REQUEST, true), FILE_APPEND);
+}
+
+
 $db = new db();
 $db->connect(
     $CFG['db_host'],
@@ -36,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $match = $info['match'];
                 $players = $info['players'];
                 $gameType = $match['gametype'];
+				$match['hostname'] = $db->clean($match['hostname']);
                 $db->insert('matchList', Array(
                     'hostName' => "'$match[hostname]'",
                     'map' => "'$match[map]'",
@@ -151,8 +156,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 switch ($act) {
 	// UPDATE MATCH STATS
 	case "ums":
-		$hostName = $G['hostname'];
-		$map = $G['map'];
+		$hostName = $db->clean($G['hostname']);
+		$map = $db->clean($G['map']);
 		$db->insert('matchList', Array(
 			'hostName'		=> "'$hostName'",
 			'map'			=> "'$map'",
@@ -183,8 +188,8 @@ switch ($act) {
 	// ADD PLAYER
 	case 'addpl':
 		$name = $G['name'];
-		$name = iconv('CP1251','UTF-8',$name);
-		$server = $G['server'];
+		$name = $db->clean(iconv('CP1251','UTF-8',$name));
+		$server = $db->clean($G['server']);
 		$res = $db->insert('onServers', Array(
 			'serverName'	=> "'$server'",
 			'playerName'	=> "'$name'",

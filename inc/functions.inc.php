@@ -792,7 +792,7 @@ function parseString( $str ) {
 
 function GetPID($name) {	
 	global $db;
-	$name = iconv('CP1251','UTF-8',$name);
+	$name = $db->clean(iconv('CP1251','UTF-8',$name));
 	$player = $db->select("playerID","playerStats","WHERE `name`='$name' LIMIT 1");
 	if ( count($player) == 0)
 		return false;

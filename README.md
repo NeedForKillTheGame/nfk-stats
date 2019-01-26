@@ -3,9 +3,8 @@
 ## PHP requirements
 
 * PHP 5+ (works on 7)
-* `php-mbstring`
-* `php7.0-xml`
-* `php-gd`
+* `apt install php-mbstring php-gd php-bz2 php7.0-xml`
+
 
 ## Schedule cron script to update graph images
 `cron/update_graphs.sh`

@@ -6,6 +6,7 @@ $template->load_template('mod_search');
 
 
 $query = htmlspecialchars(trim($_POST['q']));
+$query = $db->clean($query);
 if ($query <> "") {
 	$res = $db->select("name, lastIP, playerID","playerStats","WHERE name LIKE '%$query%' LIMIT 60");
 	

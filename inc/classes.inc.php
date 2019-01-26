@@ -227,21 +227,21 @@ class db {
 		return $result;
 	}
 	
+	// replacement of mysql_real_escape_string, cause it does not work on php7
 	private function _escape($value)
 	{
 		$search = array("\\",  "\x00", "\n",  "\r",  "'",  '"', "\x1a");
 		$replace = array("\\\\","\\0","\\n", "\\r", "\'", '\"', "\\Z");
-
-		return str_replace($search, $replace, $value);
+		$str = str_replace($search, $replace, $value);
+		$str = htmlentities($str);
+		return $str;
 	}
 	
-	// just for debug log all insert and update queries
-	private $logfile = "/var/www/demos/queries";
-	private $enableLogQueries = false;
+	
 	private function _log($line)
 	{
-		if ($this->enableLogQueries)
-			file_put_contents($this->logfile, date("[d.m.Y H:i:s] ") . $line . "\n", FILE_APPEND);
+		if (LOG_QUERIES)
+			file_put_contents(QUERY_LOG_FILE, date("[d.m.Y H:i:s] ") . $line . "\n", FILE_APPEND);
 	}
 }
 

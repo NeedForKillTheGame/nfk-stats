@@ -3,7 +3,7 @@
 if (!defined("NFK_LIVE")) die();
 
 $template->load_template('mod_server');
-$hostName = urldecode($PARAMSTR[2]);
+$hostName = $db->clean(urldecode($PARAMSTR[2]));
 $res = $db->select('*','onServers',"WHERE serverName = '$hostName'");
 // GTW: player
 foreach ($res as $row)

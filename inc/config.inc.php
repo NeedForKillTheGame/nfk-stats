@@ -23,6 +23,12 @@ define("CUR_SEASON", "2019");
 // it will save data to the last item into "seasons" table and clear players stats
 // then insert new item into "seasons", it will be next season which will bi filled on next "new_seasonJGA" execution
 
+// [debug] log all insert and update queries
+define("QUERY_LOG_FILE", "/var/www/demos/queries");
+define("LOG_QUERIES", true);
+// [debug] log all queries from nfk dedicated servers
+define("RESPONSE_LOG_FILE", "/var/www/demos/responses");
+define("LOG_RESPONSES", true);
 
 
 $COLORS = Array (

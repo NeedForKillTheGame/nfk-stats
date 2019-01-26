@@ -29,7 +29,7 @@ switch ($act) {
 
 		$hostName = urldecode($_REQUEST['name']);
 		if ($hostName == '') die('error');
-		
+		$hostName = $db->clean($hostName);
 		$res = $db->select('*','onServers',"WHERE serverName = '$hostName'");
 		foreach ($res as $row) {
 			$plr = $player->fetchName(addslashes($row['playerName']));

@@ -11,6 +11,7 @@ switch ( $PARAMSTR[3] ) {
 				$clan = $clan[0];
 				if (($xdata['playerID']==$clan['leaderID']) or ($xdata['access']==3)) {
 					if ($_POST['plr_name']<>"") {
+						$_POST['plr_name'] = $db->clean($_POST['plr_name']);
 						$plr_id = $db->select("playerID","playerStats","WHERE name='$_POST[plr_name]'");
 						$plr_id = $plr_id[0]['playerID'];
 					} else if (is_numeric($_POST['plr_id'])) {
@@ -35,6 +36,7 @@ switch ( $PARAMSTR[3] ) {
 				$clan = $clan[0];
 				if (($xdata['playerID']==$clan['leaderID']) or ($xdata['access'])==3){
 					if ($_POST['rem_name']<>"") {
+						$_POST['rem_name'] = $db->clean($_POST['rem_name']);
 						$plr_id = $db->select("playerID","playerStats","WHERE name='$_POST[rem_name]'");
 						$plr_id = $plr_id[0]['playerID'];
 					} else if (is_numeric($_POST['rem_id'])) {
@@ -60,6 +62,7 @@ switch ( $PARAMSTR[3] ) {
 				if (($xdata['playerID']==$clan['leaderID']) or ($xdata['access'])==3) {
 					if ($_POST['cl_name']<>"") {
 						$cl_name = $_POST['cl_name'];
+						$cl_name = $db->clean($cl_name);
 						$cl_id = $db->select("playerID","playerStats","WHERE name='$cl_name'");
 						$cl_id = $cl_id[0]['playerID'];
 					} else if (is_numeric($_POST['cl_id'])) {

@@ -5,7 +5,7 @@ $players = '';
 if ($PARAMSTR[2] == 'server') {
 	$hostName = urldecode($PARAMSTR[3]);
 	if ($hostName == '') die('error');
-	
+	$hostName = $db->clean($hostName);
 	$res = $db->select('*','onServers',"WHERE serverName = '$hostName'");
 	foreach ($res as $row) {
 		$plr = $player->fetchName(addslashes($row['playerName']));
