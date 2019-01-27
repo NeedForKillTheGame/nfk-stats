@@ -3,6 +3,7 @@
 class Config
 {
 	// bot token
+	// make sure this bot has entered Discord gateway at least once
 	const discord_token = "";
 	// server id
 	const discord_guild_id = 536281825077755954;

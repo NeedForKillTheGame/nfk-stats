@@ -47,8 +47,8 @@ switch ($act) {
 	case 'gsl':
 		include_once('nfkpl.php');
 		$servers = nfkpl_getServers();
-		$players = $db->select('serverName, playerName, p.playerID, nick, model, country, AllRating',
-			'onServers s','LEFT JOIN nfkLive_playerStats p ON p.name = s.playerName LEFT JOIN AltStat_Players a ON a.PlayerId = p.playerID WHERE s.playerName <>  \'Null\' GROUP BY playerName,serverName');
+		$players = $db->select('id, serverName, playerName, p.playerID, nick, model, country, AllRating',
+			'onServers s','LEFT JOIN nfkLive_playerStats p ON p.name = s.playerName LEFT JOIN AltStat_Players a ON a.PlayerId = p.playerID WHERE s.playerName <>  \'Null\' GROUP BY playerName,serverName ORDER BY id');
 
 		$plrs = array();
 		foreach($players as $plr){
@@ -68,19 +68,34 @@ switch ($act) {
 		foreach($servers as $srv){
 			$servername = stripColor( $srv['Hostname'] );
 			$plist = array();
-			// remove duplicate players if several servers have the same name
-			if ( isset($plrs[$servername]) )
-			{
-				foreach ($plrs[$servername] as $p)
-				{
-					if ( !isset($players_unique[ $p['playerID'] ]) )
-					{
-						$plist[] = $p;
-						$players_unique[ $p['playerID'] ] = true;
-					}
-				}
-			}
 
+			
+			// place each player on appropriate server
+			$i = 0;
+			$count = 0;
+			foreach($players as $plr)
+			{
+				// if we reach current players count on a server
+				if ($count >= $srv['Players'])
+					break;
+				if ($plr['serverName'] == $servername)
+				{
+					$plist[] = array(
+						'playerID'=>$plr['playerID'],
+						'nick'=>$plr['nick'],
+						'name'=>$plr['playerName'],
+						'country'=>$plr['country'],
+						'model'=>$plr['model'],
+						'points'=>$plr['AllRating'],
+						'place'=>'0',
+					);
+					array_splice($players, $i, 1); // remove current element
+					$count++;
+				}
+				else
+					$i++; // index
+			}
+			
 			$srvs[] = array(
 				'name'=>$servername,
 				'hostname'=>$srv['Hostname'],
