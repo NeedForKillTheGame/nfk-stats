@@ -1,5 +1,5 @@
 <?php
-	define("NFKPL_ADDRESS", "planet.needforkill.ru");
+	define("NFKPL_ADDRESS", NFKPLANET_HOST);
 	define("NFKPL_PORT", 10003);
 	
 	//ob_implicit_flush();

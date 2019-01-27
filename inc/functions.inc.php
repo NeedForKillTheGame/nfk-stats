@@ -274,8 +274,9 @@ function GameTypeShortU($gt) {
 }
 
 function stripColor($nick) {
-	for ($i = 0; $i<=strlen($nick); $i++ ) {
-		if (($nick[$i] != '^') and ($nick[$i-1] != '^'))
+		$pure = "";
+	for ($i = 0; $i<strlen($nick); $i++ ) {
+		if (($nick[$i] != '^') && $i > 0 && ($nick[$i-1] != '^'))
 				$pure .= $nick[$i];
 	}
 	return $pure;

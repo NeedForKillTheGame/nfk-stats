@@ -48,8 +48,8 @@ switch ($act) {
 		include_once('nfkpl.php');
 		$servers = nfkpl_getServers();
 		$players = $db->select('serverName, playerName, p.playerID, nick, model, country, AllRating',
-			'onServers s','LEFT JOIN nfkLive_playerStats p ON p.name = s.playerName LEFT JOIN AltStat_Players a ON a.PlayerId = p.playerID WHERE s.playerName <>  \'Null\' GROUP BY serverName, playerName');
-			
+			'onServers s','LEFT JOIN nfkLive_playerStats p ON p.name = s.playerName LEFT JOIN AltStat_Players a ON a.PlayerId = p.playerID WHERE s.playerName <>  \'Null\' GROUP BY playerName,serverName');
+
 		$plrs = array();
 		foreach($players as $plr){
 			$plrs[$plr['serverName']][] = array(
@@ -62,17 +62,33 @@ switch ($act) {
 				'place'=>'0',
 			);
 		}
+		$players_unique = array();
+
 		$srvs = array();
 		foreach($servers as $srv){
-			$name = stripColor($srv['Hostname']);
+			$servername = stripColor( $srv['Hostname'] );
+			$plist = array();
+			// remove duplicate players if several servers have the same name
+			if ( isset($plrs[$servername]) )
+			{
+				foreach ($plrs[$servername] as $p)
+				{
+					if ( !isset($players_unique[ $p['playerID'] ]) )
+					{
+						$plist[] = $p;
+						$players_unique[ $p['playerID'] ] = true;
+					}
+				}
+			}
+
 			$srvs[] = array(
-				'name'=>$name,
+				'name'=>$servername,
 				'hostname'=>$srv['Hostname'],
 				'map'=>$srv['Map'],
 				'gametype'=>$srv['Gametype'],
 				'load'=>$srv['Players'].'/'.$srv['Maxplayers'],
 				'ip'=>$srv['IP'].':'.$srv['Port'],
-				'players'=>$plrs[$name]
+				'players'=> $plist
 			);
 			
 		}
