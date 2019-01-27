@@ -1,0 +1,10 @@
+{
+	"config": {
+		"platform": {
+			"php": "7.0"
+		}
+	},
+	"require": {
+		"restcord/restcord": "^0.3.1"
+	}
+}
