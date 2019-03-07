@@ -24,7 +24,7 @@ switch ( $PARAMSTR[3] ) {
 					$db->update("playerStats","clanID = '$clan[clanID]', clanScore = 0, ClanGames = 0","WHERE playerID='$plr_id' LIMIT 1");
 					$db->update("clanList","players = players + 1","WHERE clanID='$clan[clanID]' LIMIT 1");
 				} else $error_msg = 'You are not clan leader';
-			} else $error_msg = 'Player not attached to you accaunt';
+			} else $error_msg = 'Player not attached to you account';
 		} else $error_msg = 'You are not logged';
 	break;
 	
@@ -49,7 +49,7 @@ switch ( $PARAMSTR[3] ) {
 					$db->update("playerStats","clanID = '0', clanScore = '0'","WHERE playerID='$plr_id' LIMIT 1");
 					$db->update("clanList","players = players - 1","WHERE clanID='$clan[clanID]' LIMIT 1");
 				} else $error_msg = 'You are not clan leader';
-			} else $error_msg = 'Player not attached to you accaunt';
+			} else $error_msg = 'Player not attached to you account';
 		} else $error_msg = 'You are not logged';
 	break;
 	
@@ -74,7 +74,7 @@ switch ( $PARAMSTR[3] ) {
 					if ($cl_cid <> $clan['clanID']) {$error_msg = "This player is not in your clan"; break;};
 					$db->update("clanList","leaderID = $cl_id","WHERE clanID='$clan[clanID]' LIMIT 1");
 				} else $error_msg = 'You are not clan leader';
-			} else $error_msg = 'Player not attached to you accaunt';
+			} else $error_msg = 'Player not attached to you account';
 		} else $error_msg = 'You are not logged';
 	break;
 	

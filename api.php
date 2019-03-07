@@ -3,7 +3,7 @@ if (!defined("NFK_LIVE")) define("NFK_LIVE", true);
 define('apikey', '1RuRmiMsKv');
 ini_set('display_errors',E_ALL);
 
-$act = $_REQUEST['action'];
+$act = isset($_REQUEST['action']) ? $_REQUEST['action'] : false;
 
 // Configuration
 require("inc/config.inc.php");

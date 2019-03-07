@@ -53,7 +53,7 @@ switch ( $PARAMSTR[3] ) {
 						$_SESSION['me_data']['name'] = $newnick;
 					} else $error_msg = 'New nick name already use';
 				} else $error_msg = 'New nick name is invalid';
-			} else $error_msg = 'Player not attached to you accaunt';
+			} else $error_msg = 'Player not attached to you account';
 		} else $error_msg = 'You are not logged';
 	break;
 	
@@ -69,7 +69,7 @@ switch ( $PARAMSTR[3] ) {
 					setCookie("_nlp_data", $newpass, time()+(60*60*24*7), "/"); 
 					$notice_msg = 'Пароль успешно изменён';
 				} else $error_msg = 'New nick name is invalid';
-			} else $error_msg = 'Player not attached to you accaunt';
+			} else $error_msg = 'Player not attached to you account';
 		} else $error_msg = 'You are not logged';
 	break;
 	
