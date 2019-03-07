@@ -11,9 +11,9 @@ require_once 'config.php';
 use RestCord\DiscordClient;
 
 
-// get players count from the planet
-$json = file_get_contents(Config::planet_data_url);
-$servers = json_decode($json);
+// fetch players from the plalet
+$data = file_get_contents(Config::planet_data_url);
+$servers = json_decode($data);
 $body = "No players online\n";
 $p_count = 0;
 // count players
@@ -21,7 +21,9 @@ foreach ($servers as $s)
 {
 	$load = explode('/', $s->load);
 	$p_count += $load[0];
+	
 }
+$players = "";
 // display players
 if ($p_count > 0)
 {
@@ -33,23 +35,25 @@ if ($p_count > 0)
 		if (count($s->players) == 0)
 			continue;
 
-		$body .= '[' . $s->gametype . '] ' . $s->load . '
+		$body .= '[' . $s->gametype . '] ' . $s->map . ' '  . $s->load . '
 ';
 		foreach ($s->players as $p)
 		{
 			$body .= '- ' . $p->name . '
 ';
+			$players .= $p->name . "\n";
 		}
 		$body .= '
 ';
 	}
-	$body .= '```';
+	$body .= '
+```';
 }
-$body .= "\n*Last activity at " . date("d.m.Y H:i:s") . " MSK*";
+$body .= "\n*Last activity at " . date("d.m.Y H:i:s") . " MSK*\n\n\n";
 
 
 // save previous players count to decrease changes on discord
-$p_count_prev = 0;
+$players_prev = 0;
 if (!file_exists(Config::players_file))
 {
 	file_put_contents(Config::players_file, $p_count);
@@ -57,15 +61,15 @@ if (!file_exists(Config::players_file))
 }
 else
 {
-	$p_count_prev = file_get_contents(Config::players_file);
+	// read from cache
+	$players_prev = file_get_contents(Config::players_file);
 	// if previous value the same then exit script
-	if ($p_count == $p_count_prev)
+	if ($players == $players_prev)
 	{
 		exit;
 	}
-	file_put_contents(Config::players_file, $p_count);
+	file_put_contents(Config::players_file, $players);
 }
-
 
 
 
@@ -77,7 +81,7 @@ $client = new DiscordClient([
 try
 {
 	$params = array(
-		"channel.id" => Config::discord_channel_id
+		"channel.id" => Config::discord_planet_channel_id
 	);
 	// modify channel name
 	$params['name'] = Config::channel_title . ($p_count > 0
@@ -88,6 +92,7 @@ try
 	// get channel messages
 	$messages = $client->channel->getChannelMessages($params);
 	$params['content'] = $body;
+	$params['embed'] = array();
 	if (count($messages) > 0)
 	{
 		$params['message.id'] = (int)$messages[count($messages) - 1]['id'];

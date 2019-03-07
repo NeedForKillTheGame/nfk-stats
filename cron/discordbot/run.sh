@@ -1,4 +1,4 @@
 #!/bin/sh
 
-# add to cron for every 3 seconds
-cd /home/harpywar/discordbot && php update_server_icon.php
+# add to cron for every 5 seconds
+cd /home/harpywar/discordbot && php update_nfkplanet.php && php update_donate.php
