@@ -54,8 +54,8 @@ switch ($act) {
 		foreach($players as $plr){
 			$plrs[$plr['serverName']][] = array(
 				'playerID'=>$plr['playerID'],
-				'nick'=>$plr['nick'],
-				'name'=>$plr['playerName'],
+				'nick'=>html_entity_decode($plr['nick']),
+				'name'=>html_entity_decode($plr['playerName']),
 				'country'=>$plr['country'],
 				'model'=>$plr['model'],
 				'points'=>$plr['AllRating'],
@@ -82,8 +82,8 @@ switch ($act) {
 				{
 					$plist[] = array(
 						'playerID'=>$plr['playerID'],
-						'nick'=>$plr['nick'],
-						'name'=>$plr['playerName'],
+						'nick'=>html_entity_decode($plr['nick']),
+						'name'=>html_entity_decode($plr['playerName']),
 						'country'=>$plr['country'],
 						'model'=>$plr['model'],
 						'points'=>$plr['AllRating'],

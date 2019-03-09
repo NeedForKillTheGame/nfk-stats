@@ -18,7 +18,7 @@ class Config
 	
 	const discord_donate_channel_id = 553143868212772874;
 	const donate_channel_title = "donate";
-	const donate_channel_title_sum = "_%d∕∕%d"; // add donation amount to the channel name
+	const donate_channel_title_sum = "_%d∕%d"; // add donation amount to the channel name
 	// file with last updated donation sum
 	const donate_file = "donate.txt";
 

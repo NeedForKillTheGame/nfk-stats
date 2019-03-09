@@ -153,6 +153,85 @@
 	<!-- GTW: /if_gametype_duel -->
 	
 
+	
+	<!-- GAME CHAT AJAX LOADING -->
+	<table id="tbl" border="0" cellspacing="8"><th style='cursor: pointer; text-align: center;' onclick="ShowOrHide('chat-container'); return false;">{L_GAMECHAT}</th> 
+		<tr>
+			<td style="min-width: 250px">
+				<div id="chat-container">{L_LOADING}...</div>
+			</td>
+		</tr>
+	</table>
+
+	
+<style>
+
+	#chat-container {
+		font-size: 12px;
+		margin-bottom: 10px;
+	}
+	#chat-container .item {
+		padding-bottom: 2px;
+	}
+	
+</style>
+		
+<script language="javascript">
+var players = [];
+var container = document.getElementById('chat-container');
+
+fetch("/demochat/{MATCH_ID}")
+	.then((response) => { 
+		return response.json(); 
+	})
+	.then((json) => {
+		container.innerHTML = '';
+
+		if (!json.DemoUnits.length) {
+			container.innerHTML = "<i>No messages</i>";
+			return;
+		}
+		
+		for (var i in json.DemoUnits) {
+			var d = json.DemoUnits[i];
+			var player = json.Players.filter(p => {
+				return p.PlayerInfo.DXID === d.DemoUnit.TDNETCHATMessage.DXID;
+			});
+			var name = player.length 
+				? windows1251.decode(player[0].RealName) // FIXME: API service return 1251 instead of utf8 on different machines, so this a temporary hack
+				: '<i>Dedicated</i>';
+				
+			var msg = filterStr(d.DemoUnit.MessageText);
+			var gametime = Math.floor(d.DData.gametime / 60).toString().padStart(2, '0') + ':' + (d.DData.gametime % 60).toString().padStart(2, '0');
+			
+			var div = "<div class='item'>[" + gametime + "]&nbsp;<b>" + name + "</b>:&nbsp;" + msg;
+			div += "</div>";
+			container.insertAdjacentHTML('beforeend', div);
+
+		}
+		
+	})
+	.catch((error) => { 
+		container.innerHTML = "<span style='color: crimson; font-style: italic;'>Could not load demo file :<</span>";
+	});
+
+// Clear nickname from special symbols
+// Example: 3H^#arpy^5War -> HarpyWar
+function filterStr(name) {
+	var newName = "";
+	for (var i = 0; i < name.length; i++)
+	{
+		if (name[i] == '^')
+			i++;
+		else
+			newName += name[i];
+	}
+	return newName;
+}
+</script>
+<script src="/js/windows-1251.js"></script>
+
+	
 
 	{IF_HAVE_COMMENT}
 	<!-- GTW: if_have_comments -->

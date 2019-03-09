@@ -11,12 +11,12 @@ if (!$match['demo'] || !file_exists("demos/{$match['demo']}"))
 
 $urlFile = urlencode($match['demo']);
 
-// if 'nocount' parameter not passed then increase download counter
-if ( !isset($_GET['nocount']) ) {
-	$db->update("matchList","dlnum = dlnum+1","WHERE matchID=$matchID");
+// fetch json with demo chat data 
+$url = "http://nfk.harpywar.com:8080/demo?type=chat&url=" . urlencode("https://stats.needforkill.ru/demos/$urlFile");
+if (($json = @file_get_contents($url)) ) {
+	header("Content-type: application/json");
+	echo $json;
+} else {
+	echo "Demo error";
 }
-
-header("Content-type: application/ndm");
-header("Location: /demos/$urlFile");
-
 die();

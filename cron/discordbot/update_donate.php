@@ -37,14 +37,19 @@ try
 	$embed['url'] = "http://nfk.harpywar.com/donate.php";
 	$embed['description'] = '';
 	$procents = round($sum / (Config::donate_max / 100));
-	$embed['description'] .= "**" . $sum . " / " . Config::donate_max . " ₽** (" . $procents . "% for this year)\n\n";
-	$embed['description'] .= "**Respect these guys**\n";
+	$embed['description'] .= "**" . $sum . " / " . Config::donate_max . " ₽** (" . $procents . "% for this year" . (($sum == Config::donate_max) ? ", goal reached!" : "") . ")\n";
+		
+	$embed['description'] .= "\n**Respect these guys**\n";
 	$embed['description'] .= "---------------------->\n\n";
 	for ($i = count($donations) - 1; $i >= 0; $i--)
 	{
 		$d = $donations[$i];
 		$embed['description'] .= ":skull_crossbones:  **" . $d->order_sum . " ₽** from " . $d->username . "\n";
-		$embed['description'] .= "```\n" . $d->message . "```\n";
+		if ($d->message) {
+			$embed['description'] .= "```\n" . $d->message . "```\n";	
+		} else {
+			$embed['description'] .= "\n";
+		}
 	}
 }
 catch (Exception $e) {
@@ -78,7 +83,10 @@ try
 		"channel.id" => Config::discord_donate_channel_id
 	);
 	// modify channel name
-	$params['name'] = Config::donate_channel_title . sprintf(Config::donate_channel_title_sum, $sum, Config::donate_max);
+	$params['name'] = Config::donate_channel_title;
+	if ($sum < Config::donate_max)
+		$params['name'] .= sprintf(Config::donate_channel_title_sum, $sum, Config::donate_max);
+	
 	$client->channel->modifyChannel($params);
 
 	// get channel messages

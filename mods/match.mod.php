@@ -405,6 +405,8 @@ $MARKERS = Array
 		"L_IMPRESSIVES"			=> $dict->data['impressive'],
 		"L_EXCELLENTS"			=> $dict->data['excellent'],
 		"L_HUMILIATIONS"			=> $dict->data['humiliation'],
+		"L_GAMECHAT"			=> $dict->data['gamechat'],
+		"L_LOADING"			=> $dict->data['loading'],
 	);
 	
 $template->assign_variables($MARKERS);

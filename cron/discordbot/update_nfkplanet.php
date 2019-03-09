@@ -20,8 +20,7 @@ $p_count = 0;
 foreach ($servers as $s)
 {
 	$load = explode('/', $s->load);
-	$p_count += $load[0];
-	
+	$p_count += count($s->players);
 }
 $players = "";
 // display players
