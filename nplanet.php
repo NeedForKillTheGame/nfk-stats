@@ -41,18 +41,8 @@ SCROLLBAR-ARROW-COLOR:#E8EAED;
 <?php
 
 require_once("inc/config.inc.php");
+require_once("inc/functions.inc.php");
 require_once("mods/inc/nfk_planet.inc.php");
-function stripNameColor($nick)
-{
-	$pure = "";
-	for ($i = 0; $i < strlen($nick); $i++ )
-	{
-		if (($nick[$i] != '^') && $i > 0 && ($nick[$i-1] != '^'))
-				$pure .= $nick[$i];
-	}
-	
-	return $pure;
-}
 
 function cmpServers($a, $b)
 {
@@ -80,7 +70,7 @@ else
     foreach ($servers as $key => $server)
     {
 		//preg_replace('/\W/', '', $a);
-		$hostlink = stripNameColor($server['Hostname']);
+		$hostlink = stripColor($server['Hostname']);
 		$hostlinkx = $hostlink;
 		$hostlink = str_replace("#", "%23", $hostlink); 
 		//$link = ((substr($server["Hostname"], 0, 3) == "Rip") or (substr($server["Hostname"], 0, 9) == "[twuo.ru]")) ? ('<a target="_blank" href="/server/'.$hostlink.'">'.$hostlinkx.'</a>'):($hostlinkx);

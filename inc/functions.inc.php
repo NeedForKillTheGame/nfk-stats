@@ -274,12 +274,14 @@ function GameTypeShortU($gt) {
 }
 
 function stripColor($nick) {
-		$pure = "";
+	$pure = "";
 	for ($i = 0; $i<strlen($nick); $i++ ) {
-		if (($nick[$i] != '^') && $i > 0 && ($nick[$i-1] != '^'))
-				$pure .= $nick[$i];
+		if ($nick[$i] == '^')
+			$i++;
+		else
+			$pure .= $nick[$i];		
 	}
-	return $pure;
+	return html_entity_decode($pure);
 }
 
 /**
@@ -287,14 +289,7 @@ function stripColor($nick) {
  */
 function stripNameColor($nick)
 {
-	for ($i = 0; $i<=strlen($nick); $i++ )
-	{
-		if (($nick[$i] != '^') and (!is_numeric($nick[$i+1])) )
-			if (($nick[$i-1] != '^') and (!is_numeric($nick[$i])) )
-		$pure .= $nick[$i];
-	}
-	//$pure = htmlspecialchars($pure);
-	return $pure;
+	return stripColor($nick);
 }
 
 /**
@@ -704,10 +699,10 @@ function getUserName($xdata) {
 }
 
 function getIcons($player, $profile = true, $flag = true, $ico = true, $colored = false) {
-	if ($player['author'] <> "") $player['name'] = $player['author'];
+	if (isset($player['author']) && $player['author'] <> "") $player['name'] = $player['author'];
 	
 	if ($colored) {
-		if ($player['nick'] <> "") $plr_name = parseNameColor(clearName($player['nick'])); else  $plr_name = clearName($player['name']);
+		if (isset($player['nick']) && $player['nick'] <> "") $plr_name = parseNameColor(clearName($player['nick'])); else  $plr_name = clearName($player['name']);
 	} else $plr_name = clearName($player['name']);
 	
 	if ($profile) {

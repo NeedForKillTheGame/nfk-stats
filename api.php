@@ -27,8 +27,8 @@ switch ($act) {
 	case "server":
 		$players = array();
 
+		if (!isset($_REQUEST['name'])) die('invalid server "name"');
 		$hostName = urldecode($_REQUEST['name']);
-		if ($hostName == '') die('error');
 		$hostName = $db->clean($hostName);
 		$res = $db->select('*','onServers',"WHERE serverName = '$hostName'");
 		foreach ($res as $row) {
@@ -50,6 +50,7 @@ switch ($act) {
 		$players = $db->select('id, serverName, playerName, p.playerID, nick, model, country, AllRating',
 			'onServers s','LEFT JOIN nfkLive_playerStats p ON p.name = s.playerName LEFT JOIN AltStat_Players a ON a.PlayerId = p.playerID WHERE s.playerName <>  \'Null\' GROUP BY playerName,serverName ORDER BY id');
 
+/*
 		$plrs = array();
 		foreach($players as $plr){
 			$plrs[$plr['serverName']][] = array(
@@ -63,6 +64,7 @@ switch ($act) {
 			);
 		}
 		$players_unique = array();
+*/
 
 		$srvs = array();
 		foreach($servers as $srv){
