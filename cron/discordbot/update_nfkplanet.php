@@ -20,7 +20,12 @@ $p_count = 0;
 foreach ($servers as $s)
 {
 	$load = explode('/', $s->load);
-	$p_count += count($s->players);
+	foreach ($s->players as $p)
+	{
+		if ($p->playerID)
+			$p_count++;
+	}
+	
 }
 $players = "";
 // display players
@@ -38,7 +43,7 @@ if ($p_count > 0)
 ';
 		foreach ($s->players as $p)
 		{
-			$body .= '- ' . $p->name . '
+			$body .= '- ' . ($p->playerID ? '' : '(bot) ') . $p->name . '
 ';
 			$players .= $p->name . "\n";
 		}
