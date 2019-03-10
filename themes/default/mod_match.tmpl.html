@@ -42,7 +42,7 @@
 
 {G_SCORE_BOARD}
 
-<a href="javascript://" onClick="ShowOrHide('wpstats'); return false;"><b>{L_ALL_STATS}</b></a>
+<a href="javascript://" onClick="ShowOrHide('wpstats'); return false;"><span style="font-weight: bold; border-bottom: 1px dashed #002F5B;">{L_ALL_STATS}</span></a>
 <br>
 	<div id="wpstats" style="display:none">
 	<br>
@@ -132,9 +132,16 @@
 		
 	</div>
 			
+<br>
+<!-- GAME CHAT AJAX LOADING -->
+<a href="javascript://" onclick="ShowOrHide('chat-container'); loadGameChat();"><span style="font-weight: bold; border-bottom: 1px dashed #002F5B;">{L_GAMECHAT}</span></a><sup style="padding-left: 3px"><i>new<i></sup>
+	<div id="chat-container" style="display: none">{L_LOADING}...</div>
+
+	
+			
 	{IF_GT_DUEL}
 	<!-- GTW: if_gametype_duel -->
-	<br>
+	<br><br>
 	<b>{L_LAST10_DUELS}</b>
 	<table id="tbl" border="0" cellspacing="1">
 		{G_LAST10_DUELS}
@@ -149,29 +156,22 @@
 		<!-- GTW: /last_duel -->
 	</table>
 	<a href="/duelslist/{PLAYER1_ID}/{PLAYER2_ID}"><b>{L_PLRS_DUEL_LIST}</b></a>
+	<br>
 	<!-- GTW: else -->
 	<!-- GTW: /if_gametype_duel -->
 	
 
-	
-	<!-- GAME CHAT AJAX LOADING -->
-	<table id="tbl" border="0" cellspacing="8"><th style='cursor: pointer; text-align: center;' onclick="ShowOrHide('chat-container'); return false;">{L_GAMECHAT}</th> 
-		<tr>
-			<td style="min-width: 250px">
-				<div id="chat-container">{L_LOADING}...</div>
-			</td>
-		</tr>
-	</table>
 
-	
 <style>
 
 	#chat-container {
 		font-size: 12px;
-		margin-bottom: 10px;
+		margin-top: 8px;
 	}
 	#chat-container .item {
 		padding-bottom: 2px;
+		width: 350px;
+		text-align: left;
 	}
 	
 </style>
@@ -179,8 +179,16 @@
 <script language="javascript">
 var players = [];
 var container = document.getElementById('chat-container');
+var gameChatLoaded = false;
 
-fetch("/demochat/{MATCH_ID}")
+
+function loadGameChat() {
+
+	if (gameChatLoaded)
+		return;
+	gameChatLoaded = true;
+
+	fetch("/demochat/{MATCH_ID}")
 	.then((response) => { 
 		return response.json(); 
 	})
@@ -214,6 +222,7 @@ fetch("/demochat/{MATCH_ID}")
 	.catch((error) => { 
 		container.innerHTML = "<span style='color: crimson; font-style: italic;'>Could not load demo file :<</span>";
 	});
+}
 
 // Clear nickname from special symbols
 // Example: 3H^#arpy^5War -> HarpyWar
@@ -235,6 +244,7 @@ function filterStr(name) {
 
 	{IF_HAVE_COMMENT}
 	<!-- GTW: if_have_comments -->
+	<br><br>
 	<table id="tbl" border="0" cellspacing="8"><th>{L_COMMENTS}</th> 
 		{G_MATCH_COMMENTS}
 		<!-- GTW: comment -->
@@ -249,13 +259,14 @@ function filterStr(name) {
 		</tr>
 		<!-- GTW: /comment -->
 	</table>
+	<br>
 	<!-- GTW: else -->
 	<br><br>
 	<!-- GTW: /if_have_comments -->
 	
 	{IF_CAN_CMT}
 	<!-- GTW: if_can_cmt -->
-	<a href="#addcmt" onClick="ShowOrHide('fcmt'); return false;"><b>{L_ADD_COMMENT}</b></a>
+	<a href="#addcmt" onClick="ShowOrHide('fcmt'); return false;"><span style="font-weight: bold; border-bottom: 1px dashed #002F5B;">{L_ADD_COMMENT}</span></a>
 	<div  id="fcmt" style="display:none">
 		<form name="addcmt" style="" method="POST" action="/do/comment/add/{MODULE_ID}">
 		<table border="0">
