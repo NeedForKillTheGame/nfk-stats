@@ -9,6 +9,8 @@ if (is_numeric($PARAMSTR[2])) {
 } else header('Location: /');
 
 $plr = $player->fetchId($targetUsr) or header('Location: ?/');
+$plr['name'] = html_entity_decode($plr['name']);
+$plr['nick'] = html_entity_decode($plr['nick']);
 
 $CUR_ADDRES .= $PARAMSTR[2].'/';
 
