@@ -734,7 +734,7 @@ function getPlayerName($playerID, $profile = true, $flag = true, $ico = true, $c
 	
 	$player = $db->select("nick, name, country, model, playerID","playerStats","WHERE `playerID`='$playerID' LIMIT 1");
 	$player = $player[0];
-	return getIcons($player,$profile,$flag,$ico,$colored);
+	return html_entity_decode(getIcons($player,$profile,$flag,$ico,$colored));
 	//return getIcons($player['name'],$playerID,$player['country'],$profile,$flag,$ico);
 }
 
