@@ -240,11 +240,17 @@ function filterStr(name) {
 </script>
 <script src="/js/windows-1251.js"></script>
 
-	
+
+<!-- map thumb -->
+<div style="margin-top: 15px; margin-bottom: 20px">
+	<a href="/demomap/{MATCH_ID}/{MATCH_MAP}">
+		<img src="/demomap/{MATCH_ID}/thumb/{MATCH_MAP}" alt="{MATCH_MAP}" title="{L_MAP} {MATCH_MAP}" />
+	</a>
+</div>
+
 
 	{IF_HAVE_COMMENT}
 	<!-- GTW: if_have_comments -->
-	<br><br>
 	<table id="tbl" border="0" cellspacing="8"><th>{L_COMMENTS}</th> 
 		{G_MATCH_COMMENTS}
 		<!-- GTW: comment -->
@@ -261,7 +267,6 @@ function filterStr(name) {
 	</table>
 	<br>
 	<!-- GTW: else -->
-	<br><br>
 	<!-- GTW: /if_have_comments -->
 	
 	{IF_CAN_CMT}
