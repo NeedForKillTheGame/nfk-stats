@@ -368,7 +368,6 @@ $MARKERS = Array
 		"MATCH_DATE_AGO"	=> ($CFG['language'] == 'ru') ? ago_rus(strtotime($match['dateTime'])) : ago_(strtotime($match['dateTime'])),
 		"MATCH_DATE"		=> $match['dateTime'],
 		"GAME_TIME"			=> floor($match['gameTime']/60).":".$match['gameTime'] % 60,
-		"DEMO_LINK"			=> ($match['demo']<>"") ? "<b><a href='/demo/$match[matchID]'>".$dict->data['download']." ".$dict->data['demo']." ($match[dlnum])</a></b>" : "",
 		"DEMO_DLS"			=> $match['dlnum'],
 		"COMMENTS_NUM"		=> $match['comments'],
 		'MODULE_ID' 		=> 2,

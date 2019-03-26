@@ -38,10 +38,11 @@ if (!file_exists($imageFile))
 {
 	set_time_limit(60);
 
-	$image = $nfkMap->DrawMap();
 
 	if ($isThumb)
 	{
+		$nfkMap->drawspecialobjects = false;
+		$image = $nfkMap->DrawMap();
 		// text on image
 		$title = sprintf("%s (%sx%s)", $mapName, $nfkMap->Header->MapSizeX, $nfkMap->Header->MapSizeY);
 		// create resized image with max size 300px and text
@@ -51,6 +52,7 @@ if (!file_exists($imageFile))
 	}
 	else
 	{
+		$image = $nfkMap->DrawMap();
 		// save image
 		imagepng($image, $imageFile);
 	}
