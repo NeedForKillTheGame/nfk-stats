@@ -22,24 +22,45 @@
 		<td><span class='newsnumcom' title="{MATCH_DATE}">{MATCH_DATE_AGO} {L_AGO}</span></td>
 	</tr>
 </table>
-    {DEMO_LINK}<br>
-    {IF_VIDEOS}
-    <!-- GTW: if_videos -->
-        <div>{G_VIDEO_LINKS}</div>
-        <!-- GTW: video_link -->
-            <a href="#" onclick="$('#video{VIDEO_ID}').toggle();">{VIDEO_NAME}</a>
-        <!-- GTW: /video_link -->
-        {G_VIDEOS}
-        <!-- GTW: video -->
-            <div id="video{VIDEO_ID}" style="display: none">
-                <iframe width="854" height="480" src="//www.youtube.com/embed/{VIDEO_URL}" frameborder="0" allowfullscreen></iframe>
-            </div>
-        <!-- GTW: /video -->
-        <br>
-    <!-- GTW: else -->
-    <!-- GTW: /if_videos -->
-	<br>
+	
+<!-- DEMO LINK AND MAP VIEW -->
+{IF_DEMO}
+<!-- GTW: if_demo -->
+<div style='font-weight: bold'>
+    <a href='/demo/{MATCH_ID}'>{L_DOWNLOAD_DEMO} ({DEMO_DLS})</a>
+	&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href='http://nfk.harpywar.com/demoviewer/?demourl=https://stats.needforkill.ru/demo/{MATCH_ID}' target='_blank' STYLE='COLOR: CRIMSON'>Online Demo Viewer</a><sup><i>beta</i></sup>
+</div>
 
+<div style="margin-top: 10px; margin-bottom: 10px">
+	<a href="/demomap/{MATCH_ID}/{MATCH_MAP}">
+		<img src="/demomap/{MATCH_ID}/thumb/{MATCH_MAP}" alt="{L_MAP} {MATCH_MAP}" title="{L_MAP} {MATCH_MAP}" />
+	</a>
+</div>
+<!-- GTW: else -->
+<br>
+<!-- GTW: /if_demo -->
+
+
+	
+{IF_VIDEOS}
+<!-- GTW: if_videos -->
+	<div>{G_VIDEO_LINKS}</div>
+	<!-- GTW: video_link -->
+		<a href="#" onclick="$('#video{VIDEO_ID}').toggle();">{VIDEO_NAME}</a>
+	<!-- GTW: /video_link -->
+	{G_VIDEOS}
+	<!-- GTW: video -->
+		<div id="video{VIDEO_ID}" style="display: none">
+			<iframe width="854" height="480" src="//www.youtube.com/embed/{VIDEO_URL}" frameborder="0" allowfullscreen></iframe>
+		</div>
+	<!-- GTW: /video -->
+	<br>
+<!-- GTW: else -->
+<!-- GTW: /if_videos -->
+
+
+	
 {G_SCORE_BOARD}
 
 <a href="javascript://" onClick="ShowOrHide('wpstats'); return false;"><span style="font-weight: bold; border-bottom: 1px dashed #002F5B;">{L_ALL_STATS}</span></a>
@@ -132,16 +153,22 @@
 		
 	</div>
 			
-<br>
-<!-- GAME CHAT AJAX LOADING -->
-<a href="javascript://" onclick="ShowOrHide('chat-container'); loadGameChat();"><span style="font-weight: bold; border-bottom: 1px dashed darkgreen; color: darkgreen">{L_GAMECHAT}</span></a><sup style="padding-left: 3px"><i>new</i></sup>
+
+<!-- GAME CHAT AJAX LOADER -->
+{IF_DEMO2}
+<!-- GTW: if_demo2 -->
+<div style="margin-top: 16px">
+	<a href="javascript://" onclick="ShowOrHide('chat-container'); loadGameChat();"><span style="font-weight: bold; border-bottom: 1px dashed darkgreen; color: darkgreen">{L_GAMECHAT}</span></a><sup style="padding-left: 3px"><i>new</i></sup>
 	<div id="chat-container" style="display: none">{L_LOADING}...</div>
+</div>
+<!-- GTW: else -->
+<!-- GTW: /if_demo2 -->
 
 	
 			
 	{IF_GT_DUEL}
 	<!-- GTW: if_gametype_duel -->
-	<br><br>
+	<br>
 	<b>{L_LAST10_DUELS}</b>
 	<table id="tbl" border="0" cellspacing="1">
 		{G_LAST10_DUELS}
@@ -240,14 +267,7 @@ function filterStr(name) {
 </script>
 <script src="/js/windows-1251.js"></script>
 
-
-<!-- map thumb -->
-<div style="margin-top: 15px; margin-bottom: 20px">
-	<a href="/demomap/{MATCH_ID}/{MATCH_MAP}">
-		<img src="/demomap/{MATCH_ID}/thumb/{MATCH_MAP}" alt="{MATCH_MAP}" title="{L_MAP} {MATCH_MAP}" />
-	</a>
-</div>
-
+<br><br>
 
 	{IF_HAVE_COMMENT}
 	<!-- GTW: if_have_comments -->

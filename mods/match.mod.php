@@ -262,10 +262,30 @@ if ($match['video']) {
         $G_VIDEOS .= $template->build('video');
     }
 }
-$template->assign_variables(array('GTW_LOGIC' => (bool)$match['video'],
+$template->assign_variables(array(
+	'GTW_LOGIC' => (bool)$match['video'],
     'G_VIDEO_LINKS' => $G_VIDEO_LINKS, 'G_VIDEOS' => $G_VIDEOS,
 ));
 $if_videos = $template->build('if_videos');
+
+
+$template->assign_variables(array(
+	'GTW_LOGIC' => (bool)($match['demo'] && file_exists("demos/{$match['demo']}")),
+	'MATCH_ID'	=> $match['matchID'],
+	'DEMO_DLS'	=> $match['dlnum'],
+	'MATCH_MAP'	=> $match['map']
+));
+$if_demo = $template->build('if_demo');
+
+$template->assign_variables(array(
+	'GTW_LOGIC' => (bool)($match['demo'] && file_exists("demos/{$match['demo']}")),
+));
+$if_demo2 = $template->build('if_demo2');
+
+
+
+
+
 // Подключение комментариев
 $res = $db->select("*","comments","WHERE materialID = '$matchID' AND moduleID = 2 ORDER BY cmtID DESC");
 // GTW: comment
@@ -348,7 +368,7 @@ $MARKERS = Array
 		"MATCH_DATE_AGO"	=> ($CFG['language'] == 'ru') ? ago_rus(strtotime($match['dateTime'])) : ago_(strtotime($match['dateTime'])),
 		"MATCH_DATE"		=> $match['dateTime'],
 		"GAME_TIME"			=> floor($match['gameTime']/60).":".$match['gameTime'] % 60,
-		"DEMO_LINK"			=> ($match['demo']<>"") ? "<b><a href='/demo/$match[matchID]'>".$dict->data['download']." ".$dict->data['demo']." ($match[dlnum])</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href='http://nfk.harpywar.com/demoviewer/?demourl=https://stats.needforkill.ru/demo/$match[matchID]' target='_blank' STYLE='COLOR: CRIMSON'>Online Demo Viewer</a><sup><i>beta</i></sup></b>" : "",
+		"DEMO_LINK"			=> ($match['demo']<>"") ? "<b><a href='/demo/$match[matchID]'>".$dict->data['download']." ".$dict->data['demo']." ($match[dlnum])</a></b>" : "",
 		"DEMO_DLS"			=> $match['dlnum'],
 		"COMMENTS_NUM"		=> $match['comments'],
 		'MODULE_ID' 		=> 2,
@@ -360,6 +380,8 @@ $MARKERS = Array
 		"IF_GT_2x2"		=> $IF_GT_2x2,
 		"IF_HAVE_COMMENT"	=> $if_have_comments,
 		"IF_VIDEOS"	=> $if_videos,
+		"IF_DEMO"	=> $if_demo,
+		"IF_DEMO2"	=> $if_demo2,
 
 		'IF_CAN_CMT' => $IF_CAN_CMT,
 		
