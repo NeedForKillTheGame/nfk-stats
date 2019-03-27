@@ -29,7 +29,7 @@ if (!$match['demo'] || !file_exists($file))
 // read demo map
 $nfkMap = new MapViewer($file);
 $nfkMap->LoadMap();
-$hash = md5($nfkMap->GetMapBytes());
+$hash = $nfkMap->GetHash();
 
 $imageFile = ($isThumb ? MAPS_THUMBS : MAPS_IMAGES) . $hash . ($isThumb ? '.jpg' : '.png');
 
