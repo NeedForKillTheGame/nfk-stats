@@ -43,6 +43,21 @@ switch ($act) {
 		die(json_encode($players));
 	break;
 	
+	case "matches":
+		$players = array();
+
+		$skip = isset($_GET['skip']) ? $_GET['skip'] : 0;  // offset
+		if (!is_numeric($skip))
+			$skip = 0;
+		$take = isset($_GET['take']) ? $_GET['take'] : 10; // count
+		if (!is_numeric($take))
+			$take = 10;
+		if ($take > 1000)
+			$take = 1000;
+		
+		$res = $db->select('*','matchList',"ORDER BY matchID desc LIMIT $skip, $take");
+		die(json_encode($res));
+	
 	case 'get-server-list':
 	case 'gsl':
 		include_once('nfkpl.php');

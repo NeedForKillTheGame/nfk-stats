@@ -28,6 +28,7 @@ class Config
 	
 	
 	const planet_data_url = "https://stats.needforkill.ru/api.php?action=gsl";
+	const matches_data_url = "https://stats.needforkill.ru/api.php?action=matches";
 	const last_donations_url = "http://nfk.harpywar.com/api.php?action=donations";
 	
 	

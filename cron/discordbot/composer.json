@@ -5,6 +5,7 @@
 		}
 	},
 	"require": {
-		"restcord/restcord": "^0.3.1"
+		"restcord/restcord": "^0.3.1",
+		"fightbulc/moment": "^1.29"
 	}
 }

@@ -9,6 +9,7 @@ require_once __DIR__.'/vendor/autoload.php';
 require_once 'config.php';
 
 use RestCord\DiscordClient;
+use Moment\Moment;
 
 
 // fetch players from the plalet
@@ -53,8 +54,6 @@ if ($p_count > 0)
 	$body .= '
 ```';
 }
-$body .= "\n*Last activity at " . date("d.m.Y H:i:s") . " MSK*\n\n\n";
-
 
 // save previous players count to decrease changes on discord
 $players_prev = 0;
@@ -70,12 +69,47 @@ else
 	// if previous value the same then exit script
 	if ($players == $players_prev)
 	{
-		exit;
+		// if minute elapsed after last update then need to update match list (do not exit script)
+		// FIXME: update in 0-15 seconds for every minute (because script run every 10 seconds)
+		if (date("s") > 30)
+		{
+			exit;
+		}
 	}
-	file_put_contents(Config::players_file, $players);
+	else
+	{
+		file_put_contents(Config::players_file, $players);	
+	}
 }
 
+$moment = new Moment( filemtime(Config::players_file) );
+$date = $moment->fromNow()->getRelative(); 
+// bold font weight if activity in last 60 minutes
+$date_str = !strpos($a, 'hour') && !strpos($a, 'day')
+	? "**" . $date . "**"
+	: $date;
+$body .= "\n*Last activity " . $date_str . "*\n\n\n";
 
+
+
+// get last matches
+$data = file_get_contents(Config::matches_data_url);
+$matches = json_decode($data);
+$ebody = "\n";
+foreach ($matches as $m)
+{
+	$moment = new Moment(strtotime($m->dateTime));
+	$date = $moment->fromNow()->getRelative(); 
+
+	$ebody .= '[`#`' . $m->matchID . '](https://stats.needforkill.ru/match/' . $m->matchID . ') ';
+	$ebody .= '[' . $m->gameType . '] **' . $m->players . '** *' . $date . '*';
+	$ebody .= "\n";
+}
+$embed = array(
+	'title' => "**Last " . count($matches) . " matches**",
+	'url' => "https://stats.needforkill.ru",
+	'description' => $ebody
+);
 
 // send update  request to discord
 $client = new DiscordClient([
@@ -96,7 +130,7 @@ try
 	// get channel messages
 	$messages = $client->channel->getChannelMessages($params);
 	$params['content'] = $body;
-	$params['embed'] = array();
+	$params['embed'] = $embed;
 	if (count($messages) > 0)
 	{
 		$params['message.id'] = (int)$messages[count($messages) - 1]['id'];
