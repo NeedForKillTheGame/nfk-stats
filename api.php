@@ -56,6 +56,20 @@ switch ($act) {
 			$take = 1000;
 		
 		$res = $db->select('*','matchList',"ORDER BY matchID desc LIMIT $skip, $take");
+		for ($i = 0; $i < count($res); $i++) {
+			$res[$i]['demo'] = 'https://' . $_SERVER['HTTP_HOST'] . '/demos/' . $res[$i]['demo'];
+		}
+		die(json_encode($res));
+	
+	
+	case "match":
+		$players = array();
+
+		$match_id = isset($_GET['id']) ? $_GET['id'] : 1;  // offset
+		if (!is_numeric($match_id))
+			$match_id = 1;
+
+		$res = $db->select('*','matchData as a',"LEFT JOIN nfkLive_playerStats as b ON a.playerID = b.playerID WHERE a.matchID = $match_id");
 		die(json_encode($res));
 	
 	case 'get-server-list':
