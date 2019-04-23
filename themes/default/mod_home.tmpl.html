@@ -52,7 +52,7 @@
 	<!-- GTW: /recent_match -->
 </table>
 <br>
-<table id="tbl" border="0" cellspacing="2"><th><a href="/comments">{L_LAST_COMMENTS}</a></th> 
+<table id="tbl" border="0" cellspacing="2" style='margin-bottom: 7px;'><th><a href="/comments">{L_LAST_COMMENTS}</a></th> 
 	{G_LAST_COMMENTS}
 	<!-- GTW: last_comment -->
 	<tr >
@@ -63,7 +63,10 @@
 	</tr>
 	<!-- GTW: /last_comment -->	
 </table>
-<br />
+
+<!--
+// LAST TOURNEYS (HIDDEN)
+
 {G_IF_TOUR}
 <!-- GTW: if_tour -->
 	<table id="tbl" border="0" cellspacing="2">
@@ -90,7 +93,11 @@
 	<br />
 <!-- GTW: else -->
 <!-- GTW: /if_tour -->
-<b>{L_TOP8PLAYERS} ({L_SEASON} {CUR_SEASON})</b>
+
+-->
+
+<b>{L_TOP8PLAYERS}<br> [{L_SEASON} {CUR_SEASON}]</b>
+
 <table id="tbl"  border="0">
   <tr>
     <td valign="top" align="center">

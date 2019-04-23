@@ -64,6 +64,17 @@ class db {
     public function clean($string) {
         return $this->_escape($string);
     }
+		
+	// clean all fields of array recursively
+	function clean_request($arr)
+	{
+		for ($i = 0; $i < count($arr); $i++) {
+			$arr[$i] = is_array($arr[$i])
+				? $this->clean_request($arr[$i])
+				: $this->clean($arr[$i]);
+		}
+		return $arr;
+	}
 
  	public function query($a) {
 		$result = mysqli_query( $this->link,"$a") or print( strip_tags( mysqli_error($this->link) ) );

@@ -214,7 +214,7 @@ switch ($act) {
 	
 	// REMOVE ALL PLAYERS
 	case 'delallpl':
-		$server = $G['server'];
+		$server = $db->clean($G['server']);
 		$db->delete('onServers', "serverName='$server'");
 	break;
 	

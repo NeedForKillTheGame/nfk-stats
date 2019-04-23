@@ -37,7 +37,7 @@ try
 	$embed['url'] = "http://nfk.harpywar.com/donate.php";
 	$embed['description'] = '';
 	$procents = round($sum / (Config::donate_max / 100));
-	$embed['description'] .= "**" . $sum . " / " . Config::donate_max . " ₽** (" . $procents . "% for this year" . (($sum == Config::donate_max) ? ", goal reached!" : "") . ")\n";
+	$embed['description'] .= "**" . $sum . " / " . Config::donate_max . " ₽** (" . $procents . "% for this year" . (($sum >= Config::donate_max) ? ", goal reached!" : "") . ")\n";
 		
 	$embed['description'] .= "\n**Respect these guys**\n";
 	$embed['description'] .= "---------------------->\n\n";

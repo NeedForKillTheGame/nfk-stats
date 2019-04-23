@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<update> 
+    <files ver="44"> 
+       <file dir="\\" url="/">bot.dll</file> 
+    </files> 
+    <lastver>44</lastver> 
+</update>
