@@ -414,7 +414,10 @@ switch ($act) {
 	
 	// UPDATE SCORE
 	case 'UpdateScore':
-		include("mods/inc/updateAltStats.inc.php");
+		//old method
+		//include("mods/inc/updateAltStats.inc.php");
+		//new method by Kain
+		include("mods/inc/updateAltStatsVer2.inc.php");
 	break;
 	
 	// TOURNEYS
