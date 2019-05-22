@@ -218,6 +218,35 @@ switch ($act) {
 		$db->delete('onServers', "serverName='$server'");
 	break;
 	
+	
+	// REMOVE ALL PLAYERS + ADD PLAYERS FROM REQUEST
+	case 'updallpl':
+		// delete players for the server
+		$server = $db->clean($G['server']);
+		$db->delete('onServers', "serverName='$server'");
+		
+		// if no players
+		if ( !isset($G['name']) )
+			break;
+	
+		// add players
+		for ($i = 0; $i < count($G['name']); $i++)
+		{
+			$name = $G['name'][$i];
+			$name = $db->clean(iconv('CP1251','UTF-8',$name));
+			$dxid = $G['dxid'][$i];
+			$res = $db->insert('onServers', Array(
+				'serverName'	=> "'$server'",
+				'playerName'	=> "'$name'",
+				'dxid'			=> "'$dxid'",
+			));
+			if ($res == -1) {
+				$res = $db->delete('onServers', "dxid='$dxid' LIMIT 1");
+			};
+		}
+	break;
+	
+	
 	// CHECK DUEL LIMITS
 	case 'checkduel':
 		//die("OK");
