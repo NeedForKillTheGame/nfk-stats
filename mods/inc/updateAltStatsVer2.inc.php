@@ -519,7 +519,7 @@
 	  While($j<=$GameNumRows)
 		{
 		  $k=$j;
-		  While(($Game[$k]['team']!==$WinTeam)and($k<=$GameNumRows))
+		  While( isset($Game[$k]) and ($Game[$k]['team']!==$WinTeam) and ($k<=$GameNumRows))
 			{
 			  $k++;
 			}  
@@ -711,7 +711,7 @@
 	  While($j<=$GameNumRows)
 		{
 		  $k=$j;
-		  While(($Game[$k]['team']!==$WinTeam)and($k<=$GameNumRows))
+		  While( isset($Game[$k]) and ($Game[$k]['team']!==$WinTeam) and ($k<=$GameNumRows) )
 			{
 			  $k++;
 			}  
@@ -737,7 +737,7 @@
 	  for($j=1;$j<=$GameNumRows;$j++)
 		{
 		  $Game[$j]['TdmGame']++;
-		  if($Game[$j]['leaver']==true)
+		  if(isset($Game[$j]['leaver']) && $Game[$j]['leaver']==true)
 			$ChangeReiting = 0;
 		  else
 		  {
@@ -758,9 +758,9 @@
 		  $Game[$j]['TdmReiting']=$Game[$j]['TdmReiting']+$ChangeReiting; 	
 		  mysqli_query($db->link,"UPDATE AltStat_Players SET TdmReiting='{$Game[$j]['TdmReiting']}', TdmWin='{$Game[$j]['TdmWin']}', TdmGame='{$Game[$j]['TdmGame']}' WHERE PlayerId='{$Game[$j]['playerID']}'") or die("Error".mysqli_error($db->link));
 								//Inc clan score
-			$plr_id = $Game[$j][playerID];
+			$plr_id = $Game[$j]['playerID'];
 			$clanID = mysqli_fetch_array(mysqli_query($db->link,"SELECT clanID, playerID FROM nfkLive_playerStats WHERE playerID='$plr_id'"));
-			$clanID = $clanID[clanID];
+			$clanID = $clanID['clanID'];
 			if ($clanID <> 0) {
 				mysqli_query($db->link,"UPDATE `nfkLive_clanList` SET score=score+$ChangeReiting WHERE clanID='$clanID'");
 				mysqli_query($db->link,"UPDATE `nfkLive_playerStats` SET clanScore=clanScore+$ChangeReiting, clanGames=clanGames+1 WHERE playerID='$plr_id'");
@@ -885,7 +885,7 @@
 	  While($j<=$GameNumRows)
 		{
 		  $k=$j;
-		  While(($Game[$k]['team']!==$WinTeam)and($k<=$GameNumRows))
+		  While( isset($Game[$k]) and ($Game[$k]['team']!==$WinTeam) and ($k<=$GameNumRows))
 			{
 			  $k++;
 			}  

@@ -230,9 +230,9 @@ switch ($act) {
 			break;
 	
 		// add players
-		for ($i = 0; $i < count($G['name']); $i++)
+		foreach ($G['name'] as $i => $val)
 		{
-			$name = $G['name'][$i];
+			$name = $val;
 			$name = $db->clean(iconv('CP1251','UTF-8',$name));
 			$dxid = $G['dxid'][$i];
 			$res = $db->insert('onServers', Array(

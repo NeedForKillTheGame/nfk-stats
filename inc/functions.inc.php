@@ -720,7 +720,7 @@ function getIcons($player, $profile = true, $flag = true, $ico = true, $colored 
 		$i_title = $player['model'];
 		$modelname = explode('_', $player['model']);
 		$arr_model = array("crashed", "doom", "doom2", "keel", "sarge", "xaero", "klesk2", "ranger");
-		if (!in_array($modelname[0],$arr_model)) $player['model'] = "sarge_default";
+		if (!isset($modelname[0]) || !in_array($modelname[0],$arr_model)) $player['model'] = "sarge_default";
 		if ($player['model']=="") $player['model'] = "sarge_default";
 		$ico_img = "<img src='/images/players/icon_15/$player[model].png' title='$i_title' align='absmiddle'> ";
 	} else $ico_img = "";
