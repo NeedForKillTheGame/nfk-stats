@@ -405,6 +405,7 @@
 	  $numPlayersInRedTeam = 0;
 	  $numPlayersInBlueTeam = 0;
 	  $WinTeam = 'yellow';
+	  $isDraw = 0;
 	  $maxTime = 0;
 	  for($j=0;$j<$GameNumRows;$j++)
 		{
@@ -490,9 +491,10 @@
 		$AverageRatingRed = round($SumRatingRed/$numPlayersInRedTeam);
 	  if($numPlayersInBlueTeam!==0)
 		$AverageRatingBlue = round($SumRatingBlue/$numPlayersInBlueTeam);
-	  if(($WinTeam=='red') or ($WinTeam=='yellow'))
+	  $isDraw = ($Data['redScore'] == $Data['blueScore']);
+	  if(($WinTeam=='red') or ($isDraw)
 	  {
-		$AddAllWin = formulaElo($AverageRatingRed, $AverageRatingBlue, $WinTeam=='yellow');
+		$AddAllWin = formulaElo($AverageRatingRed, $AverageRatingBlue, $isDraw);
 		$AddAllLose = $AddAllWin*(-1);
 		if($numPlayersInRedTeam<$numPlayersInBlueTeam) $AddAllWin *= 1.25; //bonus
 	  }
