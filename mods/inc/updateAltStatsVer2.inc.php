@@ -492,7 +492,7 @@
 	  if($numPlayersInBlueTeam!==0)
 		$AverageRatingBlue = round($SumRatingBlue/$numPlayersInBlueTeam);
 	  $isDraw = ($Data['redScore'] == $Data['blueScore']);
-	  if(($WinTeam=='red') or ($isDraw)
+	  if(($WinTeam=='red') or ($isDraw))
 	  {
 		$AddAllWin = formulaElo($AverageRatingRed, $AverageRatingBlue, $isDraw);
 		$AddAllLose = $AddAllWin*(-1);
