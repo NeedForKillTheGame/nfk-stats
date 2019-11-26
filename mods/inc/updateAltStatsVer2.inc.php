@@ -24,23 +24,23 @@
 		}
 		else if($currentElo<=200)
 		{
-			if($changeElo<0) $result=$changeElo/1.5; else $result=$changeElo*1.5;
+			if($changeElo<0) $result=$changeElo/1.6; else $result=$changeElo*1.6;
 		}
 		else if($currentElo<=300)
 		{
-			if($changeElo<0) $result=$changeElo/1.2; else $result=$changeElo*1.2;
+			if($changeElo<0) $result=$changeElo/1.4; else $result=$changeElo*1.4;
 		}
 		else if($currentElo<=400)
 		{
-			if($changeElo<0) $result=$changeElo/1; else $result=$changeElo*1;
+			if($changeElo<0) $result=$changeElo/1.2; else $result=$changeElo*1.2;
 		}
 		else if($currentElo<=500)
 		{
-			if($changeElo<0) $result=$changeElo/0.8; else $result=$changeElo*0.8;
+			if($changeElo<0) $result=$changeElo/1; else $result=$changeElo*1;
 		}
 		else
 		{
-			if($changeElo<0) $result=$changeElo/0.5; else $result=$changeElo*0.5;
+			if($changeElo<0) $result=$changeElo/0.7; else $result=$changeElo*0.7;
 		}
     if($result+$currentElo<0) $result = (-1)*$currentElo;
     return round($result);
