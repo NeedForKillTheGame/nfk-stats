@@ -33,11 +33,20 @@ try
 	{
 		$sum += $d->order_sum;
 	}
+	
+	// subtract donations from prev years
+	for ($i = 2019; $i < date("Y"); $i++)
+		$sum -= Config::donate_max;
+	if ($sum < 0)
+		$sum = 0;
+	
 	$embed['title'] = "DONATE FOR THE NFK SERVER <<";
-	$embed['url'] = "http://nfk.harpywar.com/donate.php";
+	$embed['url'] = "https://nfk.harpywar.com/donate.php";
 	$embed['description'] = '';
-	$procents = round($sum / (Config::donate_max / 100));
-	$embed['description'] .= "**" . $sum . " / " . Config::donate_max . " ₽** (" . $procents . "% for this year" . (($sum >= Config::donate_max) ? ", goal reached!" : "") . ")\n";
+	$percents = round($sum / (Config::donate_max / 100));
+	$embed['description'] .= "**" . $sum . (($sum > Config::donate_max)
+		? " ₽**"
+		: " / " . Config::donate_max . " ₽** (" . $percents . "% for this year" . ")\n");
 		
 	$embed['description'] .= "\n**Respect these guys**\n";
 	$embed['description'] .= "---------------------->\n\n";

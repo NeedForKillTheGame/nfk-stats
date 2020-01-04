@@ -12,7 +12,7 @@ if (!$match['demo'] || !file_exists("demos/{$match['demo']}"))
 $urlFile = urlencode($match['demo']);
 
 // fetch json with demo chat data 
-$url = "http://nfk.harpywar.com:8080/demo?type=chat&url=" . urlencode("https://stats.needforkill.ru/demos/$urlFile");
+$url = "https://nfk.harpywar.com/demoparser/demo?type=chat&url=" . urlencode("https://stats.needforkill.ru/demos/$urlFile");
 if (($json = @file_get_contents($url)) ) {
 	header("Content-type: application/json");
 	echo $json;
