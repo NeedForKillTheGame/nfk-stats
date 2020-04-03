@@ -58,6 +58,13 @@ switch ($act) {
 		$res = $db->select('*','matchList',"ORDER BY matchID desc LIMIT $skip, $take");
 		for ($i = 0; $i < count($res); $i++) {
 			$res[$i]['demo'] = 'https://' . $_SERVER['HTTP_HOST'] . '/demos/' . $res[$i]['demo'];
+			
+			// include extended match info
+			if ( isset($_GET['ext']) )
+			{
+				$match_id = $res[$i]['matchID'];
+				$res[$i]['ext'] = $db->select('*','matchData as a',"LEFT JOIN nfkLive_playerStats as b ON a.playerID = b.playerID WHERE a.matchID = $match_id");
+			}
 		}
 		die(json_encode($res));
 	
