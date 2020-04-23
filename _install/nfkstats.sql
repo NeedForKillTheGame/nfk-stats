@@ -2,7 +2,8 @@
 SQLyog Ultimate v12.09 (64 bit)
 MySQL - 5.1.36-community-log : Database - nfkstats
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -160,6 +161,17 @@ CREATE TABLE `nfklive_comments` (
   KEY `fk_matchID` (`materialID`),
   KEY `fk_playerID` (`playerID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5437 DEFAULT CHARSET=utf8;
+
+/*Table structure for table `nfklive_demo_downloads` */
+
+DROP TABLE IF EXISTS `nfklive_demo_downloads`;
+
+CREATE TABLE `nfklive_demo_downloads` (
+  `matchID` int(9) NOT NULL,
+  `ip` varchar(39) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY `matchid_ip_idx` (`matchID`,`ip`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `nfklive_geoipdb` */
 

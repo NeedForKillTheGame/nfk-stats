@@ -12,8 +12,23 @@ if (!$match['demo'] || !file_exists("demos/{$match['demo']}"))
 $urlFile = urlencode($match['demo']);
 
 // if 'nocount' parameter not passed then increase download counter
-if ( !isset($_GET['nocount']) ) {
-	$db->update("matchList","dlnum = dlnum+1","WHERE matchID=$matchID");
+if ( !isset($_GET['nocount']) )
+{
+	$userIp = $_SERVER['REMOTE_ADDR'];
+	
+	// table with unique downloads
+	$res = $db->select("COUNT(matchID) AS dlnum", "demo_downloads", "WHERE matchID = $matchID AND ip = '$userIp'");
+					
+	$dlnum = $res[0]['dlnum'];
+	if ($dlnum == 0)
+	{
+		$db->insert('demo_downloads', array(
+                    'matchID' => "'$matchID'",
+                    'ip' => "'$userIp'"
+                ));
+		
+		$db->update("matchList","dlnum = dlnum+1","WHERE matchID=$matchID");
+	}
 }
 
 header("Content-type: application/ndm");
