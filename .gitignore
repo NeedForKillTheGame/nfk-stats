@@ -1,8 +1,13 @@
 .idea
 composer.phar
 composer.lock
-vendor
-images/maps/*
-images/graph*
-inc/config.inc.php
 demos/
+images/maps/*
+images/graph-month-year-matches.png
+images/graph-month-year-players.png
+images/graph-month-year.png
+images/graph-players-2months.png
+images/graph-players-2months_test.png
+images/graph-players-week.png
+inc/config.inc.php
+vendor
