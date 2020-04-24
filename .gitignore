@@ -3,4 +3,6 @@ composer.phar
 composer.lock
 vendor
 images/maps/*
+images/graph*
 inc/config.inc.php
+demos/
