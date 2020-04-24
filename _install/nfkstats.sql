@@ -832,6 +832,43 @@ BEGIN
 END */$$
 DELIMITER ;
 
+
+
+
+
+
+
+/* Procedure structure for procedure `sp_getLadderPlace` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `sp_getLadderPlace` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getLadderPlace`(pts INTEGER(11),gType VARCHAR(5))
+BEGIN
+	CASE gType
+		WHEN 'DUEL' THEN SELECT COUNT(*) AS place FROM nfkLive_ladderDUEL WHERE score > pts;
+		WHEN 'DM' THEN SELECT COUNT(*) AS place FROM AltStat_Players WHERE DmReiting > pts;
+		WHEN 'TDM' THEN SELECT COUNT(*) AS place FROM AltStat_Players WHERE TdmReiting > pts;
+		WHEN 'CTF' THEN SELECT COUNT(*) AS place FROM AltStat_Players WHERE CtfReiting > pts;
+		WHEN 'DOM' THEN SELECT COUNT(*) AS place FROM AltStat_Players WHERE DomReiting > pts;
+	END CASE;
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `sp_test` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `sp_test` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_test`(OUT t INTEGER(11))
+BEGIN
+	select 2+3 into t;
+	
+END */$$
+DELIMITER ;
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
