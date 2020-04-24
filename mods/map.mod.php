@@ -1,6 +1,6 @@
 <?php
 if (!defined('NFK_LIVE')) die();
-define('MAPS_PATH', 'tribes/maps/dump/');
+define('MAPS_PATH', 'files/maps/');
 define('MAPS_IMAGES', 'images/maps/');
 define('MAPS_THUMBS', 'images/maps/thumbs');
 require_once('inc/autoloader.php');
