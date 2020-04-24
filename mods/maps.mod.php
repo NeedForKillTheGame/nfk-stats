@@ -1,6 +1,6 @@
 <?php
 if (!defined('NFK_LIVE')) die();
-define('MAPS_PATH', 'tribes/maps/dump/');
+define('MAPS_PATH', 'files/maps/');
 require_once('inc/autoloader.php');
 Autoloader::register();
 use NFK\MapViewer\MapViewer;
