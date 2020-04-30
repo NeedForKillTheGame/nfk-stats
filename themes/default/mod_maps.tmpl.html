@@ -12,7 +12,7 @@
     <tr>
         <td>
             <a href="/map/download/{urlName}.mapa"><img src="images/icons/download-map.png"></a>
-            <a href="/map/view/{urlName}.png" class="map-view" rel="prettyPhoto[map]"><img src="images/icons/view-ico.png" alt="{name} / {title} / {author} / {sizeX}x{sizeY}"> {name}</a>
+            <a href="/map/view/{urlName}.png" class="map-view" data-lightbox="image-{name}" data-title="{name} / {title} / {author}"><img src="images/icons/view-ico.png" alt="{name} / {title} / {author} / {sizeX}x{sizeY}"> {name}</a>
         </td>
         <td>{title}</td>
         <td>{author}</td>
@@ -20,9 +20,16 @@
     </tr>
     <!-- GTW: /map -->
 </table>
+
+
+<link rel="stylesheet" href="/css/lightbox.min.css" type="text/css" media="screen" charset="utf-8" />
+<script src="/js/lightbox.min.js" type="text/javascript" charset="utf-8"></script>
 <script>
 $(function() {
-    $(".map-view").prettyPhoto();
+    lightbox.option({
+      'resizeDuration': 0,
+      'wrapAround': true
+    })
 })
 </script>
 <!-- GTW: /main -->
