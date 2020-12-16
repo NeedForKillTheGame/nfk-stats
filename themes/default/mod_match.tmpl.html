@@ -249,7 +249,7 @@ function loadGameChat() {
 				return p.PlayerInfo.DXID === d.DemoUnit.TDNETCHATMessage.DXID;
 			});
 			var name = player.length 
-				? windows1251.decode(player[0].RealName) // FIXME: API service return 1251 instead of utf8 on different machines, so this a temporary hack
+				? player[0].RealName //windows1251.decode(player[0].RealName) // FIXME: API service return 1251 instead of utf8 on different machines, so this a temporary hack
 				: '<i>Dedicated</i>';
 				
 			var msg = filterStr(d.DemoUnit.MessageText);
