@@ -46,7 +46,7 @@ $calc_rows = $db->select("SQL_CALC_FOUND_ROWS $matchList.matchID","matchList",
 		"INNER JOIN $matchData ON $matchList.matchID = $matchData.matchID
 		WHERE $matchData.playerID = $plr[playerID] AND $matchList.gameType = 'DUEL'");
 		
-$total = $db->select("FOUND_ROWS() as rows","","");
+$total = $db->select("FOUND_ROWS() as 'rows'","","");
 $total = $total[0]['rows'];
 $pages_count = ceil($total / $CFG['items_per_page']);
 		

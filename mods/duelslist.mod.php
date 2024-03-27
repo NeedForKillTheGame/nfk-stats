@@ -58,7 +58,7 @@ if ($twoPlayers) {
 		) AS dlist2
 		WHERE dlist1.matchID = dlist2.matchID
 		LIMIT ".(($cur_page - 1)*$CFG['items_per_page']).", ".($CFG['items_per_page']));
-	$total = $db->select("FOUND_ROWS() as rows","","");
+	$total = $db->select("FOUND_ROWS() as 'rows'","","");
 	$total = $total[0]['rows'];
 	$pages_count = ceil($total / $CFG['items_per_page']);
 
