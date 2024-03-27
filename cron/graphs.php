@@ -13,9 +13,9 @@ require_once("../inc/classes.inc.php");
 
 /* CAT:Line chart */ 
 /* pChart library inclusions */ 
-include_once("../inc/pChart/class/pData.class.php"); 
-include_once("../inc/pChart/class/pDraw.class.php"); 
-include_once("../inc/pChart/class/pImage.class.php"); 
+include_once("../inc/pChart/library/pData.php");
+include_once("../inc/pChart/library/pDraw.php");
+include_once("../inc/pChart/library/pImage.php");
 
 function getGraph($vars = '') {
 	$graphData = $vars['graphData'];
@@ -35,7 +35,7 @@ function getGraph($vars = '') {
 	$myPicture = new pImage($graphH,$graphW,$graphData,$transperent); 
 	$myPicture->Antialias = FALSE; 
 	//$myPicture->drawRectangle(0,0,$graphH-1,$graphW-1,array("R"=>0,"G"=>0,"B"=>0));
-	$myPicture->setFontProperties(array("FontName"=>"../inc/pChart/fonts/verdana.ttf","FontSize"=>$fontSize)); 
+	$myPicture->setFontProperties(array("FontName"=>"../inc/pChart/library/fonts/verdana.ttf","FontSize"=>$fontSize));
 	$myPicture->drawText((int)$graphH/2,16,$captionText,array("FontSize"=>9,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE)); 
 	$myPicture->setGraphArea($graphArea['x'],$graphArea['y'],$graphH+$graphArea['h'],$graphW+$graphArea['w']); 
 	$scaleSettings = array("TickAlpha"=>100,"Mode"=>SCALE_MODE_START0, "LabelRotation"=>$labelRotation,"XMargin"=>0,"YMargin"=>0,"Floating"=>TRUE,"GridR"=>200,"GridG"=>200,"GridB"=>200,"DrawSubTicks"=>TRUE,"CycleBackground"=>TRUE); 
@@ -91,7 +91,7 @@ if ($cronPeriod == 'graph-7days') {
 		'graphH' => 240,
 		'graphW' => 110,
 		'captionText' => 'Игроки на NFK Planet',
-		'fileName' => '../images/graph-players-week.png',
+		'fileName' => '../images/graphs/graph-players-week.png',
 		'graphArea' => array(
 			'x'=>16, 'y'=>16, 'h'=>-16, 'w'=>-16
 		),
@@ -151,7 +151,7 @@ if ($cronPeriod == 'graph-62days') {
 		'graphW' => 200,
 		'captionText' => 'Активность на NFK Planet',
 		'labelRotation' => 45,
-		'fileName' => '../images/graph-players-2months.png',
+		'fileName' => '../images/graphs/graph-players-2months.png',
 		'graphArea' => array(
 			'x'=>35, 'y'=>16, 'h'=>-16, 'w'=>-40
 		),
@@ -186,7 +186,7 @@ if ($cronPeriod == 'graph-year-month-matches' || $cronPeriod == 'graph-62days') 
 		'graphW' => 200,
 		'captionText' => 'Активность на NFK Planet',
 		'labelRotation' => 45,
-		'fileName' => '../images/graph-month-year-matches.png',
+		'fileName' => '../images/graphs/graph-month-year-matches.png',
 		'graphArea' => array(
 			'x'=>35, 'y'=>16, 'h'=>-16, 'w'=>-40
 		),
@@ -226,7 +226,7 @@ if ($cronPeriod == 'graph-year-month-players' || $cronPeriod == 'graph-62days') 
 		'graphW' => 200,
 		'captionText' => 'Активность на NFK Planet',
 		'labelRotation' => 45,
-		'fileName' => '../images/graph-month-year-players.png',
+		'fileName' => '../images/graphs/graph-month-year-players.png',
 		'graphArea' => array(
 			'x'=>35, 'y'=>16, 'h'=>-16, 'w'=>-40
 		),

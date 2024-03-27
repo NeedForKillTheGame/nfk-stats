@@ -1,4 +1,4 @@
-<?php if ( isset($_GET["Action"])) { $Script = $_GET["Script"]; highlight_file($Script); exit(); } ?>
+<?php if ( isset($_GET["Action"])) { $Script = $_GET["Script"]; goCheck($Script); } ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -169,8 +169,7 @@
 
  function showHideMenu(Element)
   {
-   status = document.getElementById(Element).style.display;
-   if ( status == "none" )
+   if ( document.getElementById(Element).style.display == "none"  )
     {
      if ( LastOpened != "" && LastOpened != Element ) { showHideMenu(LastOpened); }
 
@@ -345,6 +344,19 @@
 <?php
      exit();
     }
+  }
+
+ function goCheck($Script)
+  {
+   $Script = stripslashes($Script);
+   $Script = preg_replace("/\//","",$Script);
+   $Script = preg_replace("/\:/","",$Script);
+
+   if ( file_exists($Script) ) 
+    { highlight_file($Script); }
+   else
+    { echo "Script source code cannot be fetched."; }
+   exit();
   }
 
  function size($Value)

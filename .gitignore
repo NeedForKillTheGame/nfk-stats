@@ -1,13 +1,9 @@
 .idea
+.well-known/
 composer.phar
 composer.lock
 demos/
 images/maps/*
-images/graph-month-year-matches.png
-images/graph-month-year-players.png
-images/graph-month-year.png
-images/graph-players-2months.png
-images/graph-players-2months_test.png
-images/graph-players-week.png
+images/graphs/*
 inc/config.inc.php
 vendor

@@ -2,9 +2,9 @@
  /* CAT:Bar Chart */
 
  /* pChart library inclusions */
- include("../class/pData.class.php");
- include("../class/pDraw.class.php");
- include("../class/pImage.class.php");
+ include(__DIR__ . "/../library/pData.php");
+ include(__DIR__ . "/../library/pDraw.php");
+ include(__DIR__ . "/../library/pImage.php");
 
  /* Create and populate the pData object */
  $MyData = new pData();  
@@ -25,17 +25,17 @@
 
  /* Set the graph area */ 
  $myPicture->setGraphArea(70,60,480,200);
- $myPicture->drawGradientArea(70,60,480,200,DIRECTION_HORIZONTAL,array("StartR"=>200,"StartG"=>200,"StartB"=>200,"EndR"=>240,"EndG"=>240,"EndB"=>240,"Alpha"=>30));
+ $myPicture->drawGradientArea(70,60,480,200,DIRECTION_HORIZONTAL,array("StartR"=>200,"StartG"=>200,"StartB"=>200,"EndR"=>255,"EndG"=>255,"EndB"=>255,"Alpha"=>30));
 
  /* Draw the chart scale */ 
- $scaleSettings = array("DrawXLines"=>FALSE,"Mode"=>SCALE_MODE_START0,"GridR"=>0,"GridG"=>0,"GridB"=>0,"GridAlpha"=>10,"Pos"=>SCALE_POS_TOPBOTTOM);
+ $scaleSettings = array("AxisAlpha"=>10,"TickAlpha"=>10,"DrawXLines"=>FALSE,"Mode"=>SCALE_MODE_START0,"GridR"=>0,"GridG"=>0,"GridB"=>0,"GridAlpha"=>10,"Pos"=>SCALE_POS_TOPBOTTOM);
  $myPicture->drawScale($scaleSettings); 
 
  /* Turn on shadow computing */ 
  $myPicture->setShadow(TRUE,array("X"=>1,"Y"=>1,"R"=>0,"G"=>0,"B"=>0,"Alpha"=>10));
 
  /* Draw the chart */ 
- $myPicture->drawBarChart(array("Rounded"=>TRUE,"Surrounding"=>30));
+ $myPicture->drawBarChart(array("DisplayValues"=>TRUE,"DisplayShadow"=>TRUE,"DisplayPos"=>LABEL_POS_INSIDE,"Rounded"=>TRUE,"Surrounding"=>30));
 
  /* Render the picture (choose the best way) */
  $myPicture->autoOutput("pictures/example.drawBarChart.poll.png");
