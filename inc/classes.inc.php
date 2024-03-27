@@ -343,12 +343,12 @@ class skin {
 			
 			if ($block_name[0] != "/") {
 				$block_begin	= $index[1];
-				$block_end		= $block[ "/".$block_name ]['index'][1];				
-				// Cut includings						
-				if ($block[$block_name]['sub'][0] != "") {						
+				$block_end		= $block[ "/".$block_name ]['index'][1];
+				// Cut includings
+				if ($block[$block_name]['sub'][0] != "") {
 					// There are could be multiply includings
 					$exsub = ""; // there were no subs yet
-					foreach ($block[$block_name][sub] as $sub) {					
+					foreach ($block[$block_name]["sub"] as $sub) {
 						$sub_begin 	= $block[ $sub ]['index'][0];
 						$sub_end 	= $block[ "/".$sub ]['index'][1];
 						if ($exsub == '') {

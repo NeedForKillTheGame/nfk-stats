@@ -19,7 +19,7 @@ if ( !is_numeric($cur_page) ) $cur_page = 1;
 
 $res = $db->select("*","clanList","ORDER BY score DESC");
 
-$total = $db->select("FOUND_ROWS() as rows","","");
+$total = $db->select("FOUND_ROWS() as 'rows'","","");
 $total = $total[0]['rows'];
 $pages_count = ceil($total / $CFG['items_per_page']);
 

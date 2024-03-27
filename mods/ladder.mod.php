@@ -48,7 +48,7 @@ $res = $db->select("SQL_CALC_FOUND_ROWS *","ladderDUEL","WHERE `games`<>0 AND sc
 
 
 					
-$total = $db->select("FOUND_ROWS() as rows","","");
+$total = $db->select("FOUND_ROWS() as 'rows'","","");
 $total = $total[0]['rows'];
 $pages_count = ceil($total / $CFG['items_per_page']);
 

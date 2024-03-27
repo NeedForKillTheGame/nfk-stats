@@ -31,7 +31,7 @@ $matches = $db->select("SQL_CALC_FOUND_ROWS
 				WHERE md.playerID = '$plr[playerID]' $andGameType
 				ORDER BY ml.matchID DESC 
 				LIMIT ".(($cur_page - 1)*$CFG['items_per_page']).", ".($CFG['items_per_page']));
-$total = $db->select("FOUND_ROWS() as rows","","");
+$total = $db->select("FOUND_ROWS() as 'rows'","","");
 $total = $total[0]['rows'];
 $pages_count = ceil($total / $CFG['items_per_page']);
 		
