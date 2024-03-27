@@ -2,9 +2,9 @@
 
 # run every 1 hour
 
-cd /var/www/cron
+cd /var/www/stats.needforkill.ru/cron
 
-php graphs.php graph-7days
-php graphs.php graph-62days
-php graphs.php graph-month
-php graphs.php graph-year-month-players
+/usr/bin/php7.2 graphs.php graph-7days
+/usr/bin/php7.2 graphs.php graph-62days
+/usr/bin/php7.2 graphs.php graph-month
+/usr/bin/php7.2 graphs.php graph-year-month-players
