@@ -8,7 +8,7 @@ if (is_numeric($PARAMSTR[2])) {
 	$targetUsr = $xdata['playerID'];
 } else header('Location: /');
 
-$plr = $player->fetchId($targetUsr) or header('Location: ?/');
+$plr = $player->fetchId($targetUsr) or header('Location: /');
 $plr['name'] = html_entity_decode($plr['name']);
 $plr['nick'] = html_entity_decode($plr['nick']);
 
