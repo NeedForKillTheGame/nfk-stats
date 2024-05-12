@@ -47,8 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     'gameType' => "'$match[gametype]'",
                     'timeLimit' => "'$match[timelimit]'",
                     'players' => "'$match[players]'",
-                    'redScore' => isset($match['redscore']) ? "'$match[redscore]'" : "''",
-                    'blueScore' => isset($match['redscore']) ? "'$match[bluescore]'" : "''",
+                    'redScore' => isset($match['redscore']) ? "'$match[redscore]'" : "NULL",
+                    'blueScore' => isset($match['redscore']) ? "'$match[bluescore]'" : "NULL",
                     'dateTime' => "NOW()",
                     'gameTime' => "'$match[matchtime]'",
                 ));
@@ -164,8 +164,8 @@ switch ($act) {
 			'gameType'		=> "'$G[gametype]'",
 			'timeLimit'		=> "'$G[timelimit]'",
 			'players'		=> "'$G[players]'", 
-			'redScore'		=> isset($G['redscore']) ? "'$G[redscore]'" :  "''",
-			'blueScore'		=> isset($G['bluescore']) ? "'$G[bluescore]'" :  "''",
+			'redScore'		=> isset($G['redscore']) ? "'$G[redscore]'" :  "NULL",
+			'blueScore'		=> isset($G['bluescore']) ? "'$G[bluescore]'" :  "NULL",
 			'dateTime'		=> "NOW()",
 			'gameTime'		=> "'$G[matchtime]'",
 		));
@@ -345,7 +345,7 @@ switch ($act) {
 		$summ_hits = $G['gaun_hits']+$G['mach_hits']+$G['shot_hits']+$G['gren_hits']+$G['rocket_hits']
 					+$G['shaft_hits']+$G['plasma_hits']+$G['rail_hits']+$G['bfg_hits'];
 		// Summ fire
-		$summ_fire = (isset($G['gaun_fire']) ? $G['gaun_fire'] : '') + $G['mach_fire']+$G['shot_fire']+$G['gren_fire']+$G['rocket_fire']
+		$summ_fire = (isset($G['gaun_fire']) ? $G['gaun_fire'] : '0') + $G['mach_fire']+$G['shot_fire']+$G['gren_fire']+$G['rocket_fire']
 					+$G['shaft_fire']+$G['plasma_fire']+$G['rail_fire']+$G['bfg_fire'];
 		
 		// INSERT MATCH DATA
@@ -360,7 +360,7 @@ switch ($act) {
 			'ping'			=> "'$G[ping]'",
 			'time'			=> "'$G[time]'",
 			'IP'			=> "'$G[ip]'",
-			'suisides'		=> isset($G['suicides']) ? "'$G[suicides]'" : "''",
+			'suisides'		=> isset($G['suicides']) ? "'$G[suicides]'" : "'0'",
 			'dmgrecvd'		=> "'$G[dmgrecvd]'",
 			'dmggiven'		=> "'$G[dmggiven]'",
 			'bfg_hits'		=> "'$G[bfg_hits]'", 
