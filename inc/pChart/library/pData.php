@@ -774,7 +774,7 @@
    function saveOrientation($Orientation) { $this->Data["Orientation"]=$Orientation; }
 
    /* Convert a string to a single elements array */
-   function convertToArray($Value)
+   function convertToArray($Values)
     { return array($Values); }
 
 
