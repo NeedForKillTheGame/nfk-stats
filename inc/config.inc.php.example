@@ -16,7 +16,7 @@ $CFG = Array (
     'default_page'		=> 'home',
     'items_per_page'		=> 30,
 );
-define("NFKPLANET_HOST", "local.planet.needforkill.ru");
+define("NFKPLANET_HOST", "planet.needforkill.ru");
 
 // season label for the main page
 define("CUR_SEASON", "2019");
@@ -26,10 +26,10 @@ define("CUR_SEASON", "2019");
 
 // [debug] log all insert and update queries
 define("QUERY_LOG_FILE", "/var/www/demos/queries");
-define("LOG_QUERIES", true);
+define("LOG_QUERIES", false);
 // [debug] log all queries from nfk dedicated servers
 define("RESPONSE_LOG_FILE", "/var/www/demos/responses");
-define("LOG_RESPONSES", true);
+define("LOG_RESPONSES", false);
 
 
 $COLORS = Array (
