@@ -1,10 +1,12 @@
 #!/bin/sh
 
-# run every 1 hour
+# set it up to run every 1 hour
+cd /var/www/cron
+echo "$(date +'%Y/%m/%d %H:%M:%S') Generating graphs..."
 
-cd /var/www/stats.needforkill.ru/cron
+php graphs.php graph-7days
+php graphs.php graph-62days
+php graphs.php graph-month
+php graphs.php graph-year-month-players
 
-/usr/bin/php7.2 graphs.php graph-7days
-/usr/bin/php7.2 graphs.php graph-62days
-/usr/bin/php7.2 graphs.php graph-month
-/usr/bin/php7.2 graphs.php graph-year-month-players
+echo "$(date +'%Y/%m/%d %H:%M:%S') Finished generating graphs."
