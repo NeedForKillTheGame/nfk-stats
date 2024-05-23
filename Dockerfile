@@ -1,4 +1,4 @@
-FROM alpine:3.19 AS builder
+FROM alpine:3.20 AS builder
 
 RUN apk update && \
     apk add \
@@ -76,7 +76,7 @@ RUN ./configure \
     if [ $TESTS_ENABLE = 1 ]; then make test; fi && \
     make install
 
-FROM alpine:3.19
+FROM alpine:3.20
 
 ENV TZ=Europe/Moscow
 
