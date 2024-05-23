@@ -244,7 +244,7 @@ class db {
 		$search = array("\\",  "\x00", "\n",  "\r",  "'",  '"', "\x1a");
 		$replace = array("\\\\","\\0","\\n", "\\r", "\'", '\"', "\\Z");
 		$str = str_replace($search, $replace, $value);
-		$str = htmlentities($str);
+		$str = htmlentities($str, ENT_NOQUOTES);
 		return $str;
 	}
 	

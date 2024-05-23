@@ -270,7 +270,7 @@ $MARKERS = Array
 	"L_SEASONS"			=> $dict->data['seasons'],
 	"L_MAPS"			=> $dict->data['maps'],
     "L_NEWS"			=> $dict->data['news'],
-	"ENGINE_VERSION"	=> "1.3.1",
+	"ENGINE_VERSION"	=> "1.3.2",
 	"PAGE_GEN_TIME"		=> $gentime,
 );
 $template->assign_variables($MARKERS);
