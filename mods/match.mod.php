@@ -365,7 +365,7 @@ $MARKERS = Array
 		"GAMETYPE"			=> GameType($match['gameType']),
 		"GAMETYPE_SHORT"	=> $match['gameType'],
 		"PLAYERS"			=> $match['players'],
-		"MATCH_DATE_AGO"	=> ($CFG['language'] == 'ru') ? ago_rus(strtotime($match['dateTime'])) : ago_(strtotime($match['dateTime'])),
+		"MATCH_DATE_AGO"	=> ($CUR_LANG == 'ru') ? ago_rus(strtotime($match['dateTime'])) : ago_(strtotime($match['dateTime'])),
 		"MATCH_DATE"		=> $match['dateTime'],
 		"GAME_TIME"			=> floor($match['gameTime']/60).":".$match['gameTime'] % 60,
 		"DEMO_DLS"			=> $match['dlnum'],
