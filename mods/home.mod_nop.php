@@ -69,7 +69,7 @@ foreach ($res as $row) {
 		"GAMETYPE"				=> GameType($row['gameType']),
 		"GAMETYPE_SHORT"		=> $row['gameType'],
 		"PLAYERS"				=> $row['players'],
-		"MATCH_DATE_AGO"		=> ($CFG['language'] == 'ru') ? ago_rus(strtotime($row['dateTime'])) : ago_(strtotime($row['dateTime'])),
+		"MATCH_DATE_AGO"		=> ($CUR_LANG == 'ru') ? ago_rus(strtotime($row['dateTime'])) : ago_(strtotime($row['dateTime'])),
 		"MATCH_DATE"			=> $row['dateTime'],
 		"GAME_TIME"				=> floor($row['gameTime']/60).":".$row['gameTime'] % 60,
 		"DEMO_LINK"				=> ($row['demo']<>"") ? "<a href='/demo/$row[matchID]'>".$dict->data['download']." ($row[dlnum])</a>" : "",
