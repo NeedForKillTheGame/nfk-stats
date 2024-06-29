@@ -82,15 +82,15 @@ if ($cronPeriod == 'graph-7days') {
 		$daysLabel[] = strftime('%e%a',$time); //  iconv("windows-1251", "UTF-8",strftime('%#d%a',$time));
 	}
 	$MyData = new pData();   
-	$MyData->addPoints($players,"Игроки"); 
+	$MyData->addPoints($players,"Players"); 
 	$MyData->addPoints($daysLabel,"Labels"); 
-	$MyData->setSerieDescription("Labels","Дни"); 
+	$MyData->setSerieDescription("Labels","Days"); 
 	$MyData->setAbscissa("Labels"); 
 	getGraph(array(
 		'graphData' => $MyData,
 		'graphH' => 240,
 		'graphW' => 110,
-		'captionText' => 'Игроки на NFK Planet',
+		'captionText' => 'NFK Planet activity',
 		'fileName' => '../images/graphs/graph-players-week.png',
 		'graphArea' => array(
 			'x'=>16, 'y'=>16, 'h'=>-16, 'w'=>-16
@@ -137,11 +137,11 @@ if ($cronPeriod == 'graph-62days') {
 		$daysLabel[] = strftime('%m.%e %a',$time); //  iconv("windows-1251", "UTF-8",strftime('%m/%#d%a',$time));
 	}
 	$MyData = new pData();   
-	$MyData->addPoints($matches,"Матчи"); 
-	$MyData->addPoints($players,"Игроки"); 
+	$MyData->addPoints($matches,"Matches"); 
+	$MyData->addPoints($players,"Players"); 
 	
 	$MyData->addPoints($daysLabel,"Labels"); 
-	$MyData->setSerieDescription("Labels","Дни"); 
+	$MyData->setSerieDescription("Labels","Days"); 
 	$MyData->setAbscissa("Labels"); 
 
 	
@@ -149,7 +149,7 @@ if ($cronPeriod == 'graph-62days') {
 		'graphData' => $MyData,
 		'graphH' => 1280,
 		'graphW' => 200,
-		'captionText' => 'Активность на NFK Planet',
+		'captionText' => 'Activity for the last 2 months',
 		'labelRotation' => 45,
 		'fileName' => '../images/graphs/graph-players-2months.png',
 		'graphArea' => array(
@@ -176,15 +176,15 @@ if ($cronPeriod == 'graph-year-month-matches' || $cronPeriod == 'graph-62days') 
         $daysLabel[] = $yearMonth;
     }
 	$MyData = new pData();
-	$MyData->addPoints($matches,"Матчи");
+	$MyData->addPoints($matches,"Matches");
 	$MyData->addPoints($daysLabel,"Labels");
-	$MyData->setSerieDescription("Labels","Дни");
+	$MyData->setSerieDescription("Labels","Days");
 	$MyData->setAbscissa("Labels");
 	getGraph(array(
 		'graphData' => $MyData,
 		'graphH' => 1280,
 		'graphW' => 200,
-		'captionText' => 'Активность на NFK Planet',
+		'captionText' => 'Total number of matches',
 		'labelRotation' => 45,
 		'fileName' => '../images/graphs/graph-month-year-matches.png',
 		'graphArea' => array(
@@ -216,15 +216,15 @@ if ($cronPeriod == 'graph-year-month-players' || $cronPeriod == 'graph-62days') 
         $daysLabel[] = $yearMonth;
     }
 	$MyData = new pData();
-	$MyData->addPoints($players,"Игроки");
+	$MyData->addPoints($players,"Players");
 	$MyData->addPoints($daysLabel,"Labels");
-	$MyData->setSerieDescription("Labels","Дни");
+	$MyData->setSerieDescription("Labels","Days");
 	$MyData->setAbscissa("Labels");
 	getGraph(array(
 		'graphData' => $MyData,
 		'graphH' => 1280,
 		'graphW' => 200,
-		'captionText' => 'Активность на NFK Planet',
+		'captionText' => 'Total number of players',
 		'labelRotation' => 45,
 		'fileName' => '../images/graphs/graph-month-year-players.png',
 		'graphArea' => array(
@@ -260,15 +260,15 @@ if ($cronPeriod == 'graph-month') {
 		$daysLabel[] =  strftime('%m/%e%a',$time);//  iconv("windows-1251", "UTF-8",strftime('%m/%#d%a',$time)); %e
 	}
 	$MyData = new pData();   
-	$MyData->addPoints($players,"Игроки"); 
+	$MyData->addPoints($players,"Players"); 
 	$MyData->addPoints($daysLabel,"Labels"); 
-	$MyData->setSerieDescription("Labels","Дни"); 
+	$MyData->setSerieDescription("Labels","Days"); 
 	$MyData->setAbscissa("Labels"); 
 	getGraph(array(
 		'graphData' => $MyData,
 		'graphH' => 1280,
 		'graphW' => 200,
-		'captionText' => 'Игроки на NFK Planet',
+		'captionText' => 'Latest NFK Planet activity',
 		'labelRotation' => 45,
 		'graphArea' => array(
 			'x'=>35, 'y'=>16, 'h'=>-16, 'w'=>-40
