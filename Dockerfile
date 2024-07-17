@@ -129,12 +129,13 @@ RUN mkdir /etc/php && \
     ln -sf /dev/stdout /var/log/nginx/error.log && \
     rm -f /etc/nginx/http.d/default.conf && \
     rm -rf /var/www/localhost && \
-    echo "0 * * * * /var/www/cron/update_graphs.sh" > /etc/crontab
+    echo "0 * * * * /var/www/cron/update_graphs.sh" > /etc/crontab && \
+    echo "*/15 * * * * find /tmp/ -type f -name sess_* -mmin +30 -delete" >> /etc/crontab
 
 ENV PORT=80
 ENV REAL_IP="" 
 
-HEALTHCHECK --start-period=20s --interval=30s --retries=2 CMD curl --fail http://localhost:$PORT || kill 1
+HEALTHCHECK --start-period=30s --start-interval=15s --interval=30s --retries=2 CMD curl --fail http://localhost:$PORT || kill 1
 
 WORKDIR /var/www
 
